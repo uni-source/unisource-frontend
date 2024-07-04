@@ -1,0 +1,109 @@
+*{
+    font-family: 'poppins' !important;
+} 
+
+.bg-body-tertiary{
+    background-color: rgb(255, 255, 255) !important;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.logo-images{
+    display: flex;
+    align-items: center;
+}
+
+.logo-text{
+    font-size: 25px;
+    color:#3900F8;
+    font-weight: bolder;
+    padding-left: 20px;
+}
+
+.logo{
+    height: 60px;
+    width: 65px;
+    margin-left: 20px;
+}
+
+.navbar-btn{
+    font-size: 18px;
+    font-weight: bolder;
+    color: white;
+    width: 130px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #000;
+    background: #9E3DFF;
+    margin-right: 30px;
+}
+
+.navbar-nav {
+    margin: 0 auto;
+  }
+  
+.nav-link {
+    margin: 0 15px;
+}
+
+.nav-link-content{
+    font-size: 18px;
+}
+
+@media(max-width:992px){
+    .navbar-btn{
+        font-size: 15px;
+        height: 40px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Ensure button takes full width of Navbar */
+
+    }
+} 
+
+
+@media(max-width:700px){
+
+    .logo-text{
+        font-size: 18px;
+        padding-left: 10px;
+    }
+
+    .logo{
+        height:60px;
+        width: 65px;
+        margin-left: 10px;
+    }
+
+    .nav-link-content{
+        font-size: 17px;
+    }
+
+    
+
+
+}
+
+@media(max-width:480px){
+
+    .logo-text{
+        font-size: 16px;
+        padding-left: 5px;
+    }
+
+    .logo{
+        height:50px;
+        width: 55px;
+        margin-left: 5px;
+    }
+
+    .nav-link-content{
+        font-size: 15px;
+    }
+
+    
+    
+}

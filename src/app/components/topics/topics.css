@@ -1,0 +1,39 @@
+.dot {
+    height: 18px;
+    width: 18px;
+    background-color: #333;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+.topic-name{
+  font-size: 38px;
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.text-center{
+  padding: 40px 0px 30px 0px;
+}
+
+@media (max-width: 702px) {
+  .topic-name{
+    font-size: 25px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .dot {
+    height: 12px;
+    width: 12px;
+    background-color: #333;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .text-center{
+    padding: 10px 0 0 10px;
+  }
+  
+}
+
