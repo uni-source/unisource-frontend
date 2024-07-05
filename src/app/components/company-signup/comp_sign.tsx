@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import './std_sign.css'
+import './comp_sign.css'
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import CustomIcon from '../custom_icon/customicon';
 
 
-export default function StdSign() {
+export default function CompSign() {
 
   return (
       <Container component="main" maxWidth="xs">
@@ -29,6 +29,16 @@ export default function StdSign() {
             Sign Up
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
+          <TextField
+              className='custom-text-field-color'
+              margin="normal"
+              required
+              fullWidth
+              id="company"
+              label="Company Name"
+              name="company"
+              autoFocus
+            />
             <TextField
               className='custom-text-field-color'
               margin="normal"
@@ -38,7 +48,7 @@ export default function StdSign() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+              
             />
             <TextField
               className='custom-text-field-color'
@@ -51,10 +61,7 @@ export default function StdSign() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /><br />
+           <br />
             <button className="submit-btn">SIGN UP</button>
           </Box>
         </Box>

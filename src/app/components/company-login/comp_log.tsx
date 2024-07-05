@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import './std_sign.css'
+import './comp_log.css'
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import CustomIcon from '../custom_icon/customicon';
 
 
-export default function StdSign() {
+export default function CompLogIn() {
 
   return (
       <Container component="main" maxWidth="xs">
@@ -26,7 +26,7 @@ export default function StdSign() {
         >
             <CustomIcon />
           <Typography component="h1" variant="h5">
-            Sign Up
+            Login
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -55,7 +55,7 @@ export default function StdSign() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /><br />
-            <button className="submit-btn">SIGN UP</button>
+            <button className="submit-btn">LOG IN</button>
           </Box>
         </Box>
       </Container>
