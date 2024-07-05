@@ -31,7 +31,7 @@ const NavScrollExample: React.FC = () => {
               <Nav.Link href="/eligibility" className='nav-link-content'>Eligibility</Nav.Link>
               <Nav.Link href="/terms" className='nav-link-content'>Terms</Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            <Form className="d-flex form-btn">
             <Link href="/getstart" passHref>
               <button className="navbar-btn">Sign Up</button>
             </Link> 
