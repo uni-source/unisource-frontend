@@ -5,6 +5,7 @@ import NavScrollExample from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import AboutHeader from '../components/AboutHeader/AboutHeader';
 import Mission from '../components/Mission/Mission';
+import ForWhom from '../components/ForWhom/ForWhom';
 
 const About = () => {
   return (
@@ -12,6 +13,8 @@ const About = () => {
     <NavScrollExample />
     <AboutHeader/>
     <Mission/>
+    <Topic message='For Whom'/>
+    <ForWhom/>
     <Footer />
     </>
   )
