@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
         </div>
         <hr className="my-4" />
-        <div className="row">
+        <div className="row spacing">
           <div className="col-12 text-center">
             <span className="text-muted">
               © 2024 Faculty of Technology. All Rights Reserved.

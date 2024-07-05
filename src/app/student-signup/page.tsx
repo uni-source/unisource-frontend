@@ -1,14 +1,16 @@
-import React from 'react';
+import React from 'react'
 import NavScrollExample from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
+import StdSign from '../components/student-signup/std_sign';
 
-const Login = () => {
+const StdSignUp = () => {
   return (
     <>
     <NavScrollExample />
+    <StdSign />
     <Footer />
     </>
-  )
+    )
 }
 
-export default Login;
+export default StdSignUp;
