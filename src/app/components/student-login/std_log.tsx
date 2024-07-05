@@ -1,6 +1,7 @@
-'use client';
-import React, {useState,useEffect} from 'react';
+'use client'; 
+import React, { useState, useEffect } from 'react';
 import './std_log.css'
+import { useRouter } from 'next/navigation'; 
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -10,17 +11,26 @@ import CustomIcon from '../custom_icon/customicon';
 import { useSelector } from 'react-redux';
 import { useLoginMutation } from '../../../../redux/features/auth/authApi';
 
-export default function StdLogIn() {
+const StdLogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter(); 
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      router.push('/');
+    }
+  }, [router]);
 
   useEffect(() => {
     if (isSuccess) {
       console.log("User login Success");
       console.log(token);
-      //Redirect to the student dashboard
+      // Redirect to the student dashboard or another page
+      //router.push('/dashboard'); // Example redirection
     }
     if (isError) {
       if ("data" in error) {
@@ -28,7 +38,7 @@ export default function StdLogIn() {
         console.log(errorData?.data?.message);
       }
     }
-  }, [isSuccess, isError, error, token]);
+  }, [isSuccess, isError, error, token, router]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -88,4 +98,6 @@ export default function StdLogIn() {
       </Box>
     </Container>
   );
-}
+};
+
+export default StdLogIn;

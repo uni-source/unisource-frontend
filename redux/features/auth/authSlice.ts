@@ -34,6 +34,7 @@ const authSlice = createSlice({
       state.user=action.payload.user;
       state.message = action.payload.message;
       localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('user', action.payload.user);
     },
     userLoggedOut: (state) => {
       state.success = null;
@@ -41,6 +42,7 @@ const authSlice = createSlice({
       state.user=null;
       state.message = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
     },
   },
 });
