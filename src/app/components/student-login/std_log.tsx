@@ -10,15 +10,14 @@ import Container from '@mui/material/Container';
 import CustomIcon from '../custom_icon/customicon';
 import { useSelector } from 'react-redux';
 import { useLoginMutation } from '../../../../redux/features/auth/authApi';
-
+import toast from "react-hot-toast";
 const StdLogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter(); 
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
-
-  useEffect(() => {
+  useEffect(() => {    
     const user = localStorage.getItem('user');
     if (user) {
       router.push('/');
@@ -27,7 +26,7 @@ const StdLogIn = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log("User login Success");
+      toast.success("User login Successful")
       console.log(token);
       // Redirect to the student dashboard or another page
       //router.push('/dashboard'); // Example redirection
@@ -35,7 +34,7 @@ const StdLogIn = () => {
     if (isError) {
       if ("data" in error) {
         const errorData = error as any || "Registration Error";
-        console.log(errorData?.data?.message);
+        toast.error(errorData?.data?.message);
       }
     }
   }, [isSuccess, isError, error, token, router]);

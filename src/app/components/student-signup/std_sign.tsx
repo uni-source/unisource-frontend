@@ -8,18 +8,18 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CustomIcon from "../custom_icon/customicon";
 import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
-
+import toast from "react-hot-toast";
 export default function StdSign() {
   const [register, { isLoading, isSuccess,error, isError }] =useRegisterMutation();
   useEffect(() => {
     if (isSuccess) {
-      console.log("User signup Success");
+      toast.success("User sign up Successful")
       //Redirect to the student dashboard
     }
     if (isError) {
       if ("data" in error) {
         const errorData = error as any || "Registration Error";
-        console.log(errorData?.data?.message);
+        toast.error(errorData?.data?.message);
       }
     }
   }, [isSuccess, isError, error]);

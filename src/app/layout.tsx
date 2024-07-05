@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ClientProvider from "./ClientProvider";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
       <ClientProvider>
           {children}
+          <Toaster position="top-center" reverseOrder={false} />
         </ClientProvider>
       </body>
     </html>
