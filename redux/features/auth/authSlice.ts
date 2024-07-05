@@ -2,13 +2,15 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface AuthState {
   success: boolean | null;
-  data: any;
+  token:string|null;
+  user: any;
   message: string | null;
 }
 
 const initialState: AuthState = {
   success: null,
-  data: null,
+  token: null,
+  user:null,
   message: null,
 };
 
@@ -21,21 +23,24 @@ const authSlice = createSlice({
       action: PayloadAction<{ success: any; data: any; message: any }>
     ) => {
       state.success = action.payload.success;
-      state.data = action.payload.data;
       state.message = action.payload.message;
     },
     userLoggedIn: (
       state,
-      action: PayloadAction<{ success: any; data: any; message: any }>
+      action: PayloadAction<{ success: any; token: string;user:any; message: any }>
     ) => {
       state.success = action.payload.success;
-      state.data = action.payload.data;
+      state.token = action.payload.token;
+      state.user=action.payload.user;
       state.message = action.payload.message;
+      localStorage.setItem('token', action.payload.token);
     },
     userLoggedOut: (state) => {
       state.success = null;
-      state.data = null;
+      state.token = null;
+      state.user=null;
       state.message = null;
+      localStorage.removeItem('token');
     },
   },
 });
