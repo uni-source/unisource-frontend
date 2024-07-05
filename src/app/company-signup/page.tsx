@@ -2,7 +2,7 @@ import React from 'react'
 import NavScrollExample from '../components/navbar/navbar'
 import Footer from '../components/footer/footer'
 
-export const SignupCompany = () => {
+export default function CompSignUp() {
   return (
     <>
     <NavScrollExample />
@@ -10,3 +10,4 @@ export const SignupCompany = () => {
     </>
   )
 }
+

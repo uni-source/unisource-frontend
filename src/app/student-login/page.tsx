@@ -2,7 +2,7 @@ import React from 'react';
 import NavScrollExample from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 
-const Login = () => {
+const StdLogin = () => {
   return (
     <>
     <NavScrollExample />
@@ -11,4 +11,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default StdLogin;
