@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavScrollExample from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "UniSource",
   description: "University-Driven Open Source Community",
-  // icons: {
-  //   icon: './UniSourceLogo.ico',  
-  // },
+
 };
 
 export default function RootLayout({
@@ -20,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NavScrollExample/>
+        {children}
+        <Footer/>
+      </body>
     </html>
   );
 }

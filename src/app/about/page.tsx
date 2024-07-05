@@ -5,7 +5,7 @@ import Topic from '../components/topics/topics';
 
 const About = () => {
   return (
-    <><NavScrollExample /><Topic message='About Unisource' /></>
+    <><Topic message='About Unisource' /></>
   )
 }
 
