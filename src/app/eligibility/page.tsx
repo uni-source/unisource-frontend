@@ -1,9 +1,14 @@
 import React from 'react'
+import NavScrollExample from '../components/navbar/navbar'
+import Footer from '../components/footer/footer';
 
 
 const Eligibility = () => {
   return (
-    <h1>Eligibility</h1>
+    <>
+    <NavScrollExample />
+    <Footer />
+    </>
   )
 }
 
