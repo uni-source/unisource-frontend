@@ -1,5 +1,6 @@
 import React from 'react';
-import './homestats.css'; // Ensure the CSS file name matches
+import './homestats.css';
+import Link from 'next/link';
 
 const HeaderStats = () => {
   return (
@@ -10,7 +11,9 @@ const HeaderStats = () => {
           <p id="p-desc">
             UniSource is a platform specially developed for the Undergraduate students at the Faculty of Technology, University of Sri Jayewardenepura to obtain a chance to gain hands on experience by contributing for real world projects. 
           </p>
+          <Link href="/about" passHref>
           <button className="learn-more-btn">Learn More</button>
+          </Link> 
         </div>
         <div className="unisource-stats">
           <div className="stat-item" id="radius-1">
