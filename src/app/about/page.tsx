@@ -8,7 +8,6 @@ const About = () => {
   return (
     <>
     <NavScrollExample />
-    <Topic message='About Unisource' />
     <Footer />
     </>
   )
