@@ -1,17 +1,14 @@
-'use client';
-import React from 'react'
-import Topic from '../components/topics/topics';
+import React from 'react';
 import NavScrollExample from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 
-const About = () => {
+const Login = () => {
   return (
     <>
     <NavScrollExample />
-    <Topic message='About Unisource' />
     <Footer />
     </>
   )
 }
 
-export default About;
+export default Login;
