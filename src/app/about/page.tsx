@@ -6,6 +6,7 @@ import Footer from '../components/footer/footer';
 import AboutHeader from '../components/AboutHeader/AboutHeader';
 import Mission from '../components/Mission/Mission';
 import ForWhom from '../components/ForWhom/ForWhom';
+import GetStart from '../components/GetStart/GetStart';
 
 const About = () => {
   return (
@@ -15,6 +16,8 @@ const About = () => {
     <Mission/>
     <Topic message='For Whom'/>
     <ForWhom/>
+    <Topic message='How to Get start'/>
+    <GetStart/>
     <Footer />
     </>
   )
