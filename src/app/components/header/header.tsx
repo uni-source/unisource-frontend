@@ -1,5 +1,6 @@
 import './header.css';
 import React from 'react';
+import Link from 'next/link';
 
 function Header() {
   return (
@@ -17,7 +18,9 @@ function Header() {
             <span className='logo-description'>
               Open Source Project<br />Development Community 
             </span><br />
-            <button className="header-btn">Get Started</button>
+            <Link href="/getstart" passHref>
+              <button className="header-btn">Get Started</button>
+            </Link> 
           </div>
         </div>
       </div>
