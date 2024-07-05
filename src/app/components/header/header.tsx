@@ -15,7 +15,7 @@ function Header() {
           </div>
           <div className="sub-header-text">
             <span className='logo-description'>
-              Open Source Project<br />development community 
+              Open Source Project<br />Development Community 
             </span><br />
             <button className="header-btn">Get Started</button>
           </div>
