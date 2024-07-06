@@ -65,7 +65,7 @@ export default function StdSign() {
             required
             fullWidth
             id="name"
-            label="Name"
+            label="Student Name"
             name="name"
             autoComplete="name"
             autoFocus
