@@ -7,6 +7,8 @@ import AboutHeader from '../components/AboutHeader/AboutHeader';
 import Mission from '../components/Mission/Mission';
 import ForWhom from '../components/ForWhom/ForWhom';
 import GetStart from '../components/GetStart/GetStart';
+import ContactUs from '../components/ContactUs/ContactUs';
+
 
 const About = () => {
   return (
@@ -18,6 +20,7 @@ const About = () => {
     <ForWhom/>
     <Topic message='How to Get start'/>
     <GetStart/>
+    <ContactUs/>
     <Footer />
     </>
   )
