@@ -16,7 +16,9 @@
     "@next/swc-win32-x64-msvc": "^14.2.4",
     "@reduxjs/toolkit": "^2.2.6",
     "@types/react-bootstrap": "^0.32.36",
+    "@types/yup": "^0.32.0",
     "bootstrap": "^5.3.3",
+    "formik": "^2.4.6",
     "next": "14.2.4",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -24,7 +26,8 @@
     "react-fast-marquee": "^1.6.5",
     "react-hot-toast": "^2.4.1",
     "react-redux": "^9.1.2",
-    "reactstrap": "^9.2.2"
+    "reactstrap": "^9.2.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",

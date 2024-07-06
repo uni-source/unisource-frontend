@@ -1,5 +1,7 @@
 "use client";
-import  React,{useEffect} from "react";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import "./std_sign.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -9,12 +11,28 @@ import Container from "@mui/material/Container";
 import CustomIcon from "../custom_icon/customicon";
 import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
 import toast from "react-hot-toast";
+
+// Validation schema using Yup
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .trim()
+    .min(2, 'Student name must be at least 2 characters')
+    .required('Student name is required'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+});
+
 export default function StdSign() {
-  const [register, { isLoading, isSuccess,error, isError }] =useRegisterMutation();
+  const [register, { isLoading, isSuccess, error, isError }] = useRegisterMutation();
+
   useEffect(() => {
     if (isSuccess) {
-      toast.success("User sign up Successful")
-      //Redirect to the student dashboard
+      toast.success("User sign up successful");
+      // Redirect to the student dashboard
     }
     if (isError) {
       if ("data" in error) {
@@ -24,23 +42,28 @@ export default function StdSign() {
     }
   }, [isSuccess, isError, error]);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      const user = {
+        name: values.name,
+        email: values.email,
+        role: "STUDENT",
+        password: values.password,
+      };
 
-    const user = {
-      name: data.get("name"),
-      email: data.get("email"),
-      role: "STUDENT",
-      password: data.get("password"),
-    };
-
-    try {
-      await register(user).unwrap();
-    } catch (err) {
-      console.error("Failed to register user:", err);
-    }
-  };
+      try {
+        await register(user).unwrap();
+      } catch (err) {
+        console.error("Failed to register user:", err);
+      }
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -58,17 +81,21 @@ export default function StdSign() {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
             className="custom-text-field-color"
             margin="normal"
             required
             fullWidth
             id="name"
-            label="Name"
+            label="Student Name"
             name="name"
             autoComplete="name"
             autoFocus
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
           />
           <TextField
             className="custom-text-field-color"
@@ -79,6 +106,10 @@ export default function StdSign() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
             className="custom-text-field-color"
@@ -90,11 +121,15 @@ export default function StdSign() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <button className="submit-btn" type="submit" disabled={isLoading}>
             {isLoading ? "Signing Up..." : "SIGN UP"}
           </button>
-        </Box>
+        </form>
       </Box>
     </Container>
   );
