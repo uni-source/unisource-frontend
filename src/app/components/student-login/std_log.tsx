@@ -1,6 +1,8 @@
-'use client'; 
-import React, { useState, useEffect } from 'react';
-import './std_log.css'
+'use client';
+import React, { useEffect } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import './std_log.css';
 import { useRouter } from 'next/navigation'; 
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -11,12 +13,22 @@ import CustomIcon from '../custom_icon/customicon';
 import { useSelector } from 'react-redux';
 import { useLoginMutation } from '../../../../redux/features/auth/authApi';
 import toast from "react-hot-toast";
+
+// Yup Validation
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+});
+
 const StdLogIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const router = useRouter(); 
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
+
   useEffect(() => {    
     const user = localStorage.getItem('user');
     if (user) {
@@ -26,32 +38,39 @@ const StdLogIn = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("User login Successful")
+      toast.success("User login successful");
       console.log(token);
       // Redirect to the student dashboard or another page
-      //router.push('/dashboard'); // Example redirection
+      // router.push('/dashboard'); // Example redirection
     }
     if (isError) {
       if ("data" in error) {
-        const errorData = error as any || "Registration Error";
+        const errorData = error as any || "Login Error";
         toast.error(errorData?.data?.message);
       }
     }
   }, [isSuccess, isError, error, token, router]);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      await login({ email, password }).unwrap();
-    } catch (err) {
-      console.error('Failed to log in: ', err);
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        await login(values).unwrap();
+      } catch (err) {
+        console.error('Failed to log in: ', err);
+      }
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <Box className="form-border"
+      <Box
+        className="form-border"
         sx={{
           marginTop: 8,
           display: 'flex',
@@ -63,7 +82,7 @@ const StdLogIn = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
             className='custom-text-field-color'
             margin="normal"
@@ -74,8 +93,10 @@ const StdLogIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
             className='custom-text-field-color'
@@ -87,13 +108,15 @@ const StdLogIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
           <button className="submit-btn" type="submit" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'LOG IN'}
           </button>
-        </Box>
+        </form>
       </Box>
     </Container>
   );
