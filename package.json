@@ -11,8 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^5.15.21",
-    "@mui/material": "^5.15.21",
+    "@mui/icons-material": "^5.16.0",
+    "@mui/material": "^5.16.0",
     "@next/swc-win32-x64-msvc": "^14.2.4",
     "@reduxjs/toolkit": "^2.2.6",
     "@types/react-bootstrap": "^0.32.36",
