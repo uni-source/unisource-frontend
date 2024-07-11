@@ -32,7 +32,7 @@ const StdLogIn = () => {
   useEffect(() => {    
     const user = localStorage.getItem('user');
     if (user) {
-      router.push('/');
+      router.push('/student-dashboard');
     }
   }, [router]);
 
@@ -41,7 +41,7 @@ const StdLogIn = () => {
       toast.success("User login successful");
       console.log(token);
       // Redirect to the student dashboard or another page
-      // router.push('/dashboard'); // Example redirection
+        router.push('/student-dashboard'); 
     }
     if (isError) {
       if ("data" in error) {
