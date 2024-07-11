@@ -113,13 +113,20 @@ const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'inherit',
 });
+interface MiniDrawerProps {
+  childTitle: string;
+}
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('Dashboard');
+  const [title, setTitle] = React.useState('');
   const [notifications, setNotifications] = React.useState(true);
 
+  React.useEffect(() => {
+    setTitle(childTitle);
+  })
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -129,9 +136,9 @@ export default function MiniDrawer() {
   };
 
   const handleTitleChange = (text: string) => {
-    if (text !== 'Logout') {
-      setTitle(text);
-    }
+    // if (text !== 'Logout') {
+    //   setTitle(text);
+    // }
   };
 
   const menuItems = [
