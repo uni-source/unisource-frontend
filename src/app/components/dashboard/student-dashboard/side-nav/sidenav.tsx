@@ -113,13 +113,20 @@ const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'inherit',
 });
+interface MiniDrawerProps {
+  childTitle: string;
+}
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('Dashboard');
+  const [title, setTitle] = React.useState('');
   const [notifications, setNotifications] = React.useState(true);
 
+  React.useEffect(() => {
+    setTitle(childTitle);
+  })
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -129,19 +136,19 @@ export default function MiniDrawer() {
   };
 
   const handleTitleChange = (text: string) => {
-    if (text !== 'Logout') {
-      setTitle(text);
-    }
+    // if (text !== 'Logout') {
+    //   setTitle(text);
+    // }
   };
 
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
-    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-profile' },
-    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-projects' },
-    { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-myprojects' },
-    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-proposals' },
-    { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-badges' },
-    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/logout' }
+    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-profile' },
+    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-projects' },
+    { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-myprojects' },
+    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-proposals' },
+    { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-badges' },
+    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/logout' }
   ];
 
   return (
@@ -171,7 +178,7 @@ export default function MiniDrawer() {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }}/>
+            <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} />
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
               Avindu Kavinda
             </Typography>
