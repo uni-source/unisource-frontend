@@ -1,4 +1,5 @@
 'use client';
+import './sidenav.css';
 import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -27,7 +28,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-
+import Link from 'next/link';
+import { link } from 'fs';
 
 const drawerWidth = 240;
 
@@ -57,7 +59,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -108,11 +109,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const StyledLink = styled(Link)({
+  textDecoration: 'none',
+  color: 'inherit',
+});
+
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('Dashboard');
-  const [notifications, setNotifications] = React.useState(true); // Example: notifications available
+  const [notifications, setNotifications] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -129,13 +135,13 @@ export default function MiniDrawer() {
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }}/>},
-    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} /> },
-    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} /> },
-    { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} /> },
-    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }}/> },
-    { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }}/> },
-    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }}/> }
+    { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
+    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-profile' },
+    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-projects' },
+    { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-myprojects' },
+    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-proposals' },
+    { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-badges' },
+    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/logout' }
   ];
 
   return (
@@ -155,21 +161,19 @@ export default function MiniDrawer() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography sx={{fontSize: 25, fontWeight: "500", paddingLeft: "20px"}} noWrap component="div">
+            <Typography sx={{ fontSize: 25, fontWeight: "700", paddingLeft: "20px" }} noWrap component="div">
               {title}
             </Typography>
           </Box>
-          {/* Notification Icon */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton color="inherit">
               <Badge variant="dot" color="success" invisible={!notifications}>
-                <NotificationsIcon sx={{ fontSize: 30}} />
+                <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            {/* Student Profile Picture and Name */}
-            <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }} />
+            <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }}/>
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
-              Avindu Kavinda {/* Replace with dynamic student name */}
+              Avindu Kavinda
             </Typography>
           </Box>
         </Toolbar>
@@ -183,33 +187,34 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {menuItems.map((item) => (
-            <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-                onClick={() => handleTitleChange(item.text)}
-              >
-                <ListItemIcon
+            <StyledLink href={item.link} key={item.text}>
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
+                  onClick={() => handleTitleChange(item.text)}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </StyledLink>
           ))}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        
       </Box>
     </Box>
   );
