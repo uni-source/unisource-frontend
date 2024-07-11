@@ -36,6 +36,8 @@ const NavScrollExample: React.FC = () => {
     logoSrc = './assets/USJ.png';
     buttonText = 'Log In';
     buttonLink = '/company-login';
+  } else if (currentRoute === '/getstart') {
+
   }
 
   return (
@@ -57,7 +59,10 @@ const NavScrollExample: React.FC = () => {
           </Nav>
           <Form className="d-flex form-btn">
             <Link href={buttonLink} passHref>
-              <button className="navbar-btn">{buttonText}</button>
+              <button className="navbar-btn"
+               style={{ visibility: currentRoute === '/getstart' ? 'hidden' : 'visible' }}>
+                {buttonText}
+              </button>
             </Link>
           </Form>
         </Navbar.Collapse>
