@@ -3,6 +3,6 @@ import MiniDrawer from '../components/dashboard/student-dashboard/side-nav/siden
 
 export default function page() {
   return (
-    <MiniDrawer />
+    <MiniDrawer childTitle='Dashboard' />
   )
 }

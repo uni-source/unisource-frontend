@@ -113,13 +113,20 @@ const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'inherit',
 });
+interface MiniDrawerProps {
+  childTitle: string;
+}
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('Dashboard');
+  const [title, setTitle] = React.useState('');
   const [notifications, setNotifications] = React.useState(true);
 
+  React.useEffect(() => {
+    setTitle(childTitle);
+  })
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -129,9 +136,9 @@ export default function MiniDrawer() {
   };
 
   const handleTitleChange = (text: string) => {
-    if (text !== 'Logout') {
-      setTitle(text);
-    }
+    // if (text !== 'Logout') {
+    //   setTitle(text);
+    // }
   };
 
   const menuItems = [
@@ -171,9 +178,7 @@ export default function MiniDrawer() {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <StyledLink href="/student-profile">
-              <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }} />
-            </StyledLink>
+            <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} />
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
               Avindu Kavinda
             </Typography>
