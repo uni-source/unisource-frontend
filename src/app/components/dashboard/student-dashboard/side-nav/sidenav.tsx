@@ -171,7 +171,9 @@ export default function MiniDrawer() {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }}/>
+            <StyledLink href="/student-profile">
+              <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }} />
+            </StyledLink>
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
               Avindu Kavinda
             </Typography>
