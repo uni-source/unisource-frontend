@@ -32,7 +32,7 @@ const StdLogIn = () => {
   useEffect(() => {    
     const user = localStorage.getItem('user');
     if (user) {
-      router.push('/');
+      router.push('/student-dashboard');
     }
   }, [router]);
 

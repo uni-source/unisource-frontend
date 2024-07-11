@@ -36,8 +36,6 @@ const NavScrollExample: React.FC = () => {
     logoSrc = './assets/USJ.png';
     buttonText = 'Log In';
     buttonLink = '/company-login';
-  } else if (currentRoute === '/getstart') {
-
   }
 
   return (
