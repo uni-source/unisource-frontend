@@ -18,7 +18,7 @@ export default function Home() {
     <Topic message="Our Partners"/>
     <Cslider />
     <Topic message="Key Benefits"/>
-    {/*<Benefits />*/}
+    <Benefits />
     <Topic message="Technologies You Reach Here"/>
     <Tslider />
     <Footer />
