@@ -7,7 +7,7 @@
     align-items: center;
     height: 400px;
     width: auto;
-    background-color:#f5f5f5;
+    background-color: var(--light-grey);
 }
 
 .uni-logo {
@@ -63,7 +63,7 @@
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid #000;
-    background: #9E3DFF;
+    background: var(--button-purple);
     margin-top: 20px;
     margin-right: 30px;
 
@@ -202,7 +202,7 @@
         flex-shrink: 0;
         border-radius: 20px;
         border: 1px solid #000;
-        background: #9E3DFF;
+        background: var(--button-purple);
         margin-left: 15px;
     }
 }
