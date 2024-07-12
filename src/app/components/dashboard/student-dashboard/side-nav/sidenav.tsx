@@ -141,6 +141,7 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     // }
   };
 
+
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-profile' },
@@ -151,10 +152,11 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/logout' }
   ];
 
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton
@@ -184,7 +186,7 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
             </Typography>
           </Box>
         </Toolbar>
-      </AppBar>
+      </AppBar> 
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -220,9 +222,8 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-      </Box>
+      
     </Box>
   );
 }
+
