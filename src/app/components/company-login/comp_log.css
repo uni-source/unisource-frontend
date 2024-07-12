@@ -17,7 +17,7 @@
     flex-shrink: 0;
     border-radius: 10px;
     border: 1px solid #000;
-    background: #9E3DFF;
+    background: var(--button-purple);
     margin-top: 20px;
     margin-right: 30px;
     margin-bottom: 20px;

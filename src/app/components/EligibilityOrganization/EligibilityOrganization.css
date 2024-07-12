@@ -20,7 +20,7 @@
 .E-Organization-container {
     width: 80%;
     max-width: 1202px;
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     border-radius: 4px;
     margin-top: 2rem;
     padding: 30px;

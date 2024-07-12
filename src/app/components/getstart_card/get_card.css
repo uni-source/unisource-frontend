@@ -26,7 +26,7 @@
   
   .card{
     border: 0px;
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
   }
@@ -55,13 +55,13 @@
     height: 40px; 
     border-radius: 20px;
     border: 1px solid #000;
-    background: #9E3DFF;
+    background: var(--button-purple);
     margin-right: 30px;
   }
   
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
   .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
-    background-color: #9E3DFF !important;
+    background-color: var(--button-purple) !important;
     border-color: #000 !important;
     color: white !important;
   }

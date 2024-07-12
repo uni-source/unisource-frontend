@@ -9,7 +9,7 @@
 }
 
 .Eligibility-Header-inner{
-    background-color: #F5F5F5;
+    background-color: var(--light-grey);
     height: 253px;
     display: flex;
     justify-content: center;

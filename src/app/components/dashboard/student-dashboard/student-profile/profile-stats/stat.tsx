@@ -17,7 +17,7 @@ export default function ProfileStat() {
       <MDBContainer className="py-5">
         <MDBRow>
           <MDBCol lg="4">
-            <MDBCard className="mb-4" style={{ backgroundColor: '#f5f5f5', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}>
+            <MDBCard className="mb-4" style={{ backgroundColor: 'var(--light-grey)', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)' }}>
               <MDBCardBody className="text-center">
                 <MDBCardImage
                   src="https://media.licdn.com/dms/image/D4E03AQFkbHfoa8g2nw/profile-displayphoto-shrink_400_400/0/1718241961893?e=2147483647&v=beta&t=fWIji-DWP0-uUIcfBep7y8xwthVRYDkBwy9rYRWXx5M"
@@ -31,7 +31,7 @@ export default function ProfileStat() {
           </MDBCol>
           <MDBCol lg="8">
             <MDBCard className="mb-4" 
-                style={{ backgroundColor: '#f5f5f5', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
+                style={{ backgroundColor: 'var(--light-grey)', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">

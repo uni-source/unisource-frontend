@@ -1,5 +1,5 @@
 .ContactUs-outer {
-    background-color: #F5F5F5;
+    background-color: var(--light-gray);
     padding: 2rem 0;
     position: relative;
     bottom: -1.5rem; 
@@ -29,7 +29,7 @@
   
   .ContactUs-right-container {
     flex: 1; 
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: left;
   }
@@ -86,7 +86,7 @@
     }
     .ContactUs-right-container {
       width: 100%;
-      background-color: #F4E9FF;
+      background-color: var(--light-purple);
       padding-top: 2rem;
       padding-left: 2rem;
       height: auto;
@@ -131,7 +131,7 @@
     }
 
     .ContactUs-right-container {
-      background-color:#F4E9FF;
+      background-color: var(--light-purple);
       padding-left: 1rem;
       padding-top: 1.5rem;
       

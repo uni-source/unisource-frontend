@@ -22,7 +22,7 @@
 }
 
 .card {
-  background: #F4E9FF;
+  background: var(--light-purple);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   padding: 20px;

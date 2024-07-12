@@ -14,7 +14,7 @@ interface StatCardProps {
 const CustomCard = styled(Card)({
   border: 'none',
   borderRadius: '1rem',
-  backgroundColor: '#F5F5F5 !important',
+  backgroundColor: 'var(--light-grey) !important',
   boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
   transition: 'transform 0.2s',
   '&:hover': {
