@@ -2,9 +2,9 @@
 import React from 'react';
 import MiniDrawer from '@/app/components/dashboard/student-dashboard/side-nav/sidenav';
 import Box from '@mui/material/Box';
-import StatCard from '@/app/components/dashboard/student-dashboard/stat-card/statcard';
-import VerifiedIcon from '@mui/icons-material/Verified';
 import ProfileStat from '@/app/components/dashboard/student-dashboard/student-profile/profile-stats/stat';
+import AccountInformationForm from '@/app/components/dashboard/student-dashboard/student-profile/account-info/account-info';
+import PasswordSettingsForm from '@/app/components/dashboard/student-dashboard/student-profile/psw-setting/psw-setting';
 
 export default function page() {
   return (
@@ -12,6 +12,8 @@ export default function page() {
       <MiniDrawer childTitle='My Profile' />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4}}>
         <ProfileStat />
+        <AccountInformationForm />
+        <PasswordSettingsForm />
       </Box>
     </Box>
   )
