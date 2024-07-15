@@ -1,0 +1,116 @@
+
+.E-Student-outer {
+    background-color: white;
+    width: 100%;
+    margin-top: 0.3rem;
+    justify-content: center;
+
+    
+  }
+
+.E-Student-inner {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color:white;
+    padding-top: 0.3rem;
+    
+    
+  }
+
+.E-Student-container {
+    width: 80%;
+    max-width: 1250px;
+    background-color: var(--light-purple);
+    border-radius: 4px;
+    margin-top: 2rem;
+    padding: 30px;
+    text-align: left;
+    padding-left: 5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+
+#student {
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+#list {
+    font-family: Poppins;
+    font-size: 20px;
+   
+}
+
+@media (max-width: 1199px) {
+    .E-Student-outer {
+        margin-top: 0.5rem;
+    }
+
+    .E-Student-inner {
+        padding-top: 0.5rem;
+    }
+
+    .E-Student-container {
+        padding-left: 2rem;
+    }
+
+    #student {
+        font-size: 20px;
+    }
+
+    #list {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .E-Student-outer {
+        margin-top: 0.5rem;
+    }
+
+    .E-Student-inner {
+        display: block;
+        text-align: center;
+        padding-top: 0.5rem;
+    }
+
+    .E-Student-container {
+        width: 90%;
+        padding: 20px;
+        padding-left: 1rem;
+    }
+
+    #student {
+        font-size: 18px;
+    }
+
+    #list {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    
+    .E-Student-container {
+        width: 90%;
+        margin: 1rem auto;
+        width: calc(100% - 240px);
+        max-width: calc(1500px - 240px);
+    }
+
+    #student {
+        font-family: Poppins;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #list {
+        font-family: Poppins;
+        font-size: 20px;
+    }
+}
+

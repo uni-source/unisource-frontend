@@ -37,7 +37,7 @@
   }
   
   .unisource-description {
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     padding: 70px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -56,7 +56,7 @@
   }
   
   .stat-item {
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     padding: 1.9rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -85,7 +85,7 @@
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid #000;
-    background: #9E3DFF;
+    background: var(--button-purple);
     margin-top: 20px;
     margin-right: 30px;
   }

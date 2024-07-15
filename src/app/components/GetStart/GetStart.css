@@ -22,7 +22,7 @@
 
 .GetStarted-left-container,
 .GetStarted-right-container {
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     border-radius: 15px;
     padding: 30px;
 }

@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #F4E9FF;
+    background-color: var(--light-purple);
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 30px;

@@ -96,14 +96,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       ...openedMixin(theme),
       '& .MuiDrawer-paper': {
         ...openedMixin(theme),
-        backgroundColor: '#F4E9FF', 
+        backgroundColor: 'var(--light-purple)', 
       },
     }),
     ...(!open && {
       ...closedMixin(theme),
       '& .MuiDrawer-paper': {
         ...closedMixin(theme),
-        backgroundColor: '#F4E9FF', 
+        backgroundColor: 'var(--light-purple)', 
       },
     }),
   }),
@@ -141,6 +141,7 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     // }
   };
 
+
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-profile' },
@@ -151,10 +152,11 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/logout' }
   ];
 
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton
@@ -178,15 +180,13 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <StyledLink href="/student-profile">
-              <Avatar alt="Student Profile" src="./Student.png" sx={{ width: 40, height: 40, marginLeft: 1 }} />
-            </StyledLink>
+            <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} />
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
               Avindu Kavinda
             </Typography>
           </Box>
         </Toolbar>
-      </AppBar>
+      </AppBar> 
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -222,9 +222,8 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-      </Box>
+      
     </Box>
   );
 }
+
