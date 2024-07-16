@@ -3,8 +3,6 @@ import {
   MDBContainer,
   MDBRow,
   MDBCol,
-  MDBInput,
-  MDBTextArea,
   MDBBtn,
   MDBCard,
   MDBCardBody
@@ -12,14 +10,13 @@ import {
 import { useUpdateDescriptionMutation } from '../../../../../../../redux/features/student/studentApi';
 import './account-info.css';
 import toast from 'react-hot-toast';
+
 interface ProfileProfileStatProps {
   student: any;
   refetch: any;
 }
-const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
-  student,
-  
-}) => {
+
+const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, refetch }) => {
   const [formData, setFormData] = useState({
     fullname: '',
     contactNumber: '',
@@ -27,16 +24,16 @@ const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
   });
 
   const [updateDescription] = useUpdateDescriptionMutation();
-  const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    setFormData({ fullname: student?.data?.name, contactNumber: '', description: student?.data?.description });
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUserId(parsedUser?.id);
+    if (student) {
+      setFormData({
+        fullname: student?.data?.name || '',
+        contactNumber: '',
+        description: student?.data?.description || ''
+      });
     }
-  }, [userId]);
+  }, [student]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -45,17 +42,22 @@ const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
 
   const handleSaveChanges = async () => {
     try {
-      await updateDescription({ description: formData.description, identityId: userId });
+      await updateDescription({ description: formData.description, identityId: student?.data?.identityId });
       toast.success("Description updated successfully");
+      refetch();
       handleClear();
     } catch (error) {
-        toast.error("Failed to update description"); 
-        handleClear();
+      toast.error("Failed to update description");
+      handleClear();
     }
   };
 
   const handleClear = () => {
-    setFormData({ fullname: '', contactNumber: '', description: '' });
+    setFormData({
+      fullname: student?.data?.name || '',
+      contactNumber: '',
+      description: student?.data?.description || ''
+    });
   };
 
   return (
@@ -70,22 +72,45 @@ const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
               <MDBRow>
                 <MDBCol md="6">
                   <div className="custom-input mb-4">
-                    <input type="text" id="fullname" className="form-control" value={formData.fullname} onChange={handleInputChange} />
-                    <label htmlFor="fullname" className={`form-label ${formData.fullname ? 'floating' : ''}`}>Full name</label>
+                    <input
+                      type="text"
+                      id="fullname"
+                      className="form-control"
+                      value={formData.fullname}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="fullname" className={`form-label ${formData.fullname ? 'floating' : ''}`}>
+                      Full name
+                    </label>
                   </div>
                 </MDBCol>
                 <MDBCol md="6">
                   <div className="custom-input mb-4">
-                    <input type="text" id="contactNumber" className="form-control" value={formData.contactNumber} onChange={handleInputChange} />
-                    <label htmlFor="contactNumber" className={`form-label ${formData.contactNumber ? 'floating' : ''}`}>Contact Number</label>
+                    <input
+                      type="text"
+                      id="contactNumber"
+                      className="form-control"
+                      value={formData.contactNumber}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="contactNumber" className={`form-label ${formData.contactNumber ? 'floating' : ''}`}>
+                      Contact Number
+                    </label>
                   </div>
                 </MDBCol>
               </MDBRow>
               <MDBRow className="mt-3">
                 <MDBCol md="12">
                   <div className="custom-input mb-4">
-                    <textarea id="description" className="form-control" value={formData.description} onChange={handleInputChange}></textarea>
-                    <label htmlFor="description" className={`form-label ${formData.description ? 'floating' : ''}`}>Description</label>
+                    <textarea
+                      id="description"
+                      className="form-control"
+                      value={formData.description}
+                      onChange={handleInputChange}
+                    ></textarea>
+                    <label htmlFor="description" className={`form-label ${formData.description ? 'floating' : ''}`}>
+                      Description
+                    </label>
                   </div>
                 </MDBCol>
               </MDBRow>
