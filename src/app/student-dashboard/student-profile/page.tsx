@@ -18,9 +18,10 @@ const Page: React.FC = () => {
       setUserId(parsedUser?.id);
       console.log(parsedUser?.id)
     }
-  }, [userId]);
+  });
 
-  const { data: student, isLoading, refetch } = useGetStudentQuery(userId !== 0 ? userId : undefined);
+  const { data: student, isLoading, refetch } = useGetStudentQuery(userId,
+    { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
     return <div><Loading /></div>;

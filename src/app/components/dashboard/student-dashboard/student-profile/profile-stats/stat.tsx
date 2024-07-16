@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 import {
   MDBCol,
   MDBContainer,
@@ -37,7 +37,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       console.log(student);
       setImage(student?.data?.public_url);
     }
-  }, [student,refetch]);
+  }, [student, refetch]);
   useEffect(() => {
     if (updateAvatarIsSuccess) {
       toast.success("User sign up successful");
@@ -62,16 +62,16 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       };
       reader.readAsDataURL(file);
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('public_id', student?.data?.public_id);
-      formData.append('identityId', student?.data?.identityId);
-  
+      formData.append("file", file);
+      formData.append("public_id", student?.data?.public_id);
+      formData.append("identityId", student?.data?.identityId);
+
       try {
         await updateAvatar(formData).unwrap();
       } catch (err) {
         console.error(err);
       }
-      
+
       refetch();
     }
   };
@@ -93,34 +93,32 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                 style={{ position: "relative", padding: "10px" }}
               >
                 {image ? (
-        <MDBCardImage
-          src={image}
-          alt="avatar"
-          className="rounded-circle"
-          fluid
-          style={{
-            width: "180px",
-            height: "180px",
-            marginBottom: "25px",
-            marginTop: "20px",
-            objectFit: "contain",
-            zIndex: 10,
-          }}
-        />
-      ) : (
-        <Avatar
-          alt="avatar"
-          sx={{
-            width: 180,
-            height: 180,
-            marginBottom: "25px",
-            marginTop: "20px",
-            zIndex: 10,
-          }}
-        >
-          {/* You can add initials or an icon inside the Avatar if needed */}
-        </Avatar>
-      )}
+                  <MDBCardImage
+                    src={image}
+                    alt="avatar"
+                    className="rounded-circle"
+                    fluid
+                    style={{
+                      width: "180px",
+                      height: "180px",
+                      marginBottom: "25px",
+                      marginTop: "20px",
+                      objectFit: "contain",
+                      zIndex: 10,
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    alt="avatar"
+                    sx={{
+                      width: 180,
+                      height: 180,
+                      marginBottom: "25px",
+                      marginTop: "20px",
+                      zIndex: 10,
+                    }}
+                  ></Avatar>
+                )}
                 <input
                   type="file"
                   id="banner"
@@ -147,22 +145,15 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
             </MDBCard>
           </MDBCol>
           <MDBCol lg="8">
-            <MDBCard
-              className="mb-4"
-              style={{
-                backgroundColor: "var(--light-grey)",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
-              }}
-            >
+            <MDBCard className="mb-4" 
+                style={{ backgroundColor: 'var(--light-grey)', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      Avindu Kavinda
-                    </MDBCardText>
+                    <MDBCardText className="text-muted">{student?.data?.name}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -171,9 +162,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      ict21xxx@fot.sjp.ac.lk
-                    </MDBCardText>
+                    <MDBCardText className="text-muted">{student?.data?.email}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -182,7 +171,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Student ID</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">10100</MDBCardText>
+                    <MDBCardText className="text-muted">{student?.data?.identityId}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -191,9 +180,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Account Status</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      Verified <VerifiedUserIcon />
-                    </MDBCardText>
+                    <MDBCardText className="text-muted">{student?.data?.verified? "Verified":"Not Verified"} {student?.data?.verified? <VerifiedUserIcon/>:null}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -202,7 +189,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Score</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">30</MDBCardText>
+                    <MDBCardText className="text-muted">{student?.data?.score}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>

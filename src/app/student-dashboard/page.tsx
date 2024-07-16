@@ -6,7 +6,6 @@ import StatsRow from '../components/dashboard/student-dashboard/stat-row/statrow
 import BasicTable from '../components/dashboard/student-dashboard/contribution-summary-table/cstable';
 import { useGetStudentQuery } from '../../../redux/features/student/studentApi';
 import Loading from '../components/loading/loading';
-
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
@@ -16,9 +15,10 @@ const Page: React.FC = () => {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
     }
-  }, [userId]);
+  });
 
-  const { data: student, isLoading, refetch } = useGetStudentQuery(userId !== 0 ? userId : undefined);
+  const { data: student, isLoading, refetch } = useGetStudentQuery(userId,
+    { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
     return <div><Loading /></div>;
