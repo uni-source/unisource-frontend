@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CustomIcon from "../custom_icon/customicon";
 import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
+import { useRouter } from 'next/navigation'; 
 import toast from "react-hot-toast";
 
 // Validation schema using Yup
@@ -27,12 +28,14 @@ const validationSchema = Yup.object({
 });
 
 export default function StdSign() {
+  const router = useRouter(); 
   const [register, { isLoading, isSuccess, error, isError }] = useRegisterMutation();
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("User sign up successful");
       // Redirect to the student dashboard
+      router.push('/student-login'); 
     }
     if (isError) {
       if ("data" in error) {
@@ -66,6 +69,7 @@ export default function StdSign() {
   });
 
   return (
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
