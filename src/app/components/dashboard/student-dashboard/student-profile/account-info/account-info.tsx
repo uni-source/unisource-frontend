@@ -12,8 +12,14 @@ import {
 import { useUpdateDescriptionMutation } from '../../../../../../../redux/features/student/studentApi';
 import './account-info.css';
 import toast from 'react-hot-toast';
-
-const AccountInformationForm: React.FC = () => {
+interface ProfileProfileStatProps {
+  student: any;
+  refetch: any;
+}
+const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
+  student,
+  
+}) => {
   const [formData, setFormData] = useState({
     fullname: '',
     contactNumber: '',
@@ -25,6 +31,7 @@ const AccountInformationForm: React.FC = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
+    setFormData({ fullname: student?.data?.name, contactNumber: '', description: student?.data?.description });
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
@@ -40,8 +47,10 @@ const AccountInformationForm: React.FC = () => {
     try {
       await updateDescription({ description: formData.description, identityId: userId });
       toast.success("Description updated successfully");
+      handleClear();
     } catch (error) {
         toast.error("Failed to update description"); 
+        handleClear();
     }
   };
 

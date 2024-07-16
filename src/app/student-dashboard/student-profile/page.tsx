@@ -16,6 +16,7 @@ const Page: React.FC = () => {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
+      console.log(parsedUser?.id)
     }
   }, [userId]);
 
@@ -30,7 +31,7 @@ const Page: React.FC = () => {
       <MiniDrawer childTitle='My Profile' />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4 }}>
         <ProfileStat student={student} refetch={refetch} />
-        <AccountInformationForm />
+        <AccountInformationForm student={student} refetch={refetch}/>
         <PasswordSettingsForm />
       </Box>
     </Box>
