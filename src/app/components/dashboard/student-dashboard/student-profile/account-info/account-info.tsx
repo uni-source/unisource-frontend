@@ -9,18 +9,53 @@ import {
   MDBCard,
   MDBCardBody
 } from 'mdb-react-ui-kit';
+import { useUpdateDescriptionMutation } from '../../../../../../../redux/features/student/studentApi';
 import './account-info.css';
-
-const AccountInformationForm: React.FC = () => {
+import toast from 'react-hot-toast';
+interface ProfileProfileStatProps {
+  student: any;
+  refetch: any;
+}
+const AccountInformationForm: React.FC <ProfileProfileStatProps> = ({
+  student,
+  
+}) => {
   const [formData, setFormData] = useState({
     fullname: '',
     contactNumber: '',
     description: ''
   });
 
+  const [updateDescription] = useUpdateDescriptionMutation();
+  const [userId, setUserId] = useState<number>(0);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    setFormData({ fullname: student?.data?.name, contactNumber: '', description: student?.data?.description });
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserId(parsedUser?.id);
+    }
+  }, [userId]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      await updateDescription({ description: formData.description, identityId: userId });
+      toast.success("Description updated successfully");
+      handleClear();
+    } catch (error) {
+        toast.error("Failed to update description"); 
+        handleClear();
+    }
+  };
+
+  const handleClear = () => {
+    setFormData({ fullname: '', contactNumber: '', description: '' });
   };
 
   return (
@@ -56,12 +91,12 @@ const AccountInformationForm: React.FC = () => {
               </MDBRow>
               <MDBRow className="mt-4">
                 <MDBCol md="auto">
-                  <MDBBtn  className="ac-info-button">
+                  <MDBBtn className="ac-info-button" onClick={handleSaveChanges}>
                     Save changes
                   </MDBBtn>
                 </MDBCol>
                 <MDBCol md="auto">
-                <MDBBtn className="ac-info-button">
+                  <MDBBtn className="ac-info-button" onClick={handleClear}>
                     Clear
                   </MDBBtn>
                 </MDBCol>
