@@ -17,7 +17,25 @@ export const studentApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+
+    updateScore: builder.mutation({
+      query: (Data) => ({
+        url: "api/v1/student/score",
+        method: "PUT",
+        body: Data,
+        credentials: "include" as const,
+      }),
+    }),
+
+    updateDescription: builder.mutation({
+      query: (Data) => ({
+        url: "api/v1/student/description",
+        method: "PUT",
+        body: Data,
+        credentials: "include" as const,
+      }),
+    }),
     }),
 });
 
-export const { useGetStudentQuery,useUpdateAvatarMutation} = studentApi;
+export const { useGetStudentQuery,useUpdateAvatarMutation,useUpdateScoreMutation,useUpdateDescriptionMutation} = studentApi;
