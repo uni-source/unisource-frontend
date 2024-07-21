@@ -29,7 +29,9 @@ import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Link from 'next/link';
-import { link } from 'fs';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { userLoggedOut } from '../../../../../../redux/features/auth/authSlice';
 
 const drawerWidth = 240;
 
@@ -113,19 +115,22 @@ const StyledLink = styled(Link)({
   textDecoration: 'none',
   color: 'inherit',
 });
+
 interface MiniDrawerProps {
   childTitle: string;
 }
 
-export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
+export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
   const theme = useTheme();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [notifications, setNotifications] = React.useState(true);
 
   React.useEffect(() => {
     setTitle(childTitle);
-  })
+  }, [childTitle]);
   
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -135,12 +140,10 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     setOpen(false);
   };
 
-  const handleTitleChange = (text: string) => {
-    // if (text !== 'Logout') {
-    //   setTitle(text);
-    // }
+  const handleLoggedOut = () => {
+    dispatch(userLoggedOut());
+    router.push('/');
   };
-
 
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
@@ -149,14 +152,13 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
     { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-myprojects' },
     { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-proposals' },
     { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-badges' },
-    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/logout' }
+    { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
-
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-        <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <IconButton
@@ -196,15 +198,14 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
         <Divider />
         <List>
           {menuItems.map((item) => (
-            <StyledLink href={item.link} key={item.text}>
-              <ListItem disablePadding sx={{ display: 'block' }}>
+            item.text === 'Logout' ? (
+              <ListItem disablePadding sx={{ display: 'block' }} key={item.text} onClick={item.onClick}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
                   }}
-                  onClick={() => handleTitleChange(item.text)}
                 >
                   <ListItemIcon
                     sx={{
@@ -218,12 +219,33 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps)  {
                   <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
-            </StyledLink>
+            ) : (
+              <StyledLink href={item.link} key={item.text}>
+                <ListItem disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </StyledLink>
+            )
           ))}
         </List>
       </Drawer>
-      
     </Box>
   );
 }
-

@@ -33,7 +33,7 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4 }}>
         <ProfileStat student={student} refetch={refetch} />
         <AccountInformationForm student={student} refetch={refetch}/>
-        <PasswordSettingsForm />
+        <PasswordSettingsForm student={student} refetch={refetch}/>
       </Box>
     </Box>
   );
