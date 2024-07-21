@@ -8,6 +8,7 @@ import {
   MDBCardBody
 } from 'mdb-react-ui-kit';
 import { useUpdateDescriptionMutation } from '../../../../../../../redux/features/student/studentApi';
+import { useUpdateUserMutation } from '../../../../../../../redux/features/user/userApi';
 import './account-info.css';
 import toast from 'react-hot-toast';
 
@@ -24,12 +25,14 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
   });
 
   const [updateDescription] = useUpdateDescriptionMutation();
+  const [updateUser] = useUpdateUserMutation();
 
   useEffect(() => {
     if (student) {
+      console.log(student);
       setFormData({
         fullname: student?.data?.name || '',
-        contactNumber: '',
+        contactNumber: student?.data?.contact || '',
         description: student?.data?.description || ''
       });
     }
@@ -42,6 +45,7 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
 
   const handleSaveChanges = async () => {
     try {
+      await updateUser({id:student?.data?.identityId,name:formData.fullname,contact:formData.contactNumber})
       await updateDescription({ description: formData.description, identityId: student?.data?.identityId }).then(()=>{
       toast.success("Description updated successfully");
       refetch();
@@ -59,7 +63,7 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
   const handleClear = () => {
     setFormData({
       fullname: student?.data?.name || '',
-      contactNumber: '',
+      contactNumber: student?.data?.contact || '',
       description: student?.data?.description || ''
     });
   };
