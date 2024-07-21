@@ -42,12 +42,16 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
 
   const handleSaveChanges = async () => {
     try {
-      await updateDescription({ description: formData.description, identityId: student?.data?.identityId });
+      await updateDescription({ description: formData.description, identityId: student?.data?.identityId }).then(()=>{
       toast.success("Description updated successfully");
       refetch();
       handleClear();
+      }).catch(()=>{
+        toast.error("Failed to update description");
+      });
+      
     } catch (error) {
-      toast.error("Failed to update description");
+      toast.error("Failed to update");
       handleClear();
     }
   };
