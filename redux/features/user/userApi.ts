@@ -12,8 +12,17 @@ export const userApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    updatePassword: builder.mutation({
+        query: (formData) => ({
+          url: "api/v1/auth/reset-password",
+          method: "PUT",
+          body: formData,
+          credentials: "include" as const,
+        }),
+      }),
+
     
     }),
 });
 
-export const {useUpdateUserMutation} = userApi;
+export const {useUpdateUserMutation,useUpdatePasswordMutation} = userApi;

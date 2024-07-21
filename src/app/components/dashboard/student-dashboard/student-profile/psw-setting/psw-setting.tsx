@@ -8,8 +8,16 @@ import {
   MDBCardBody
 } from 'mdb-react-ui-kit';
 import './psw-setting.css';
+import { useUpdatePasswordMutation } from '../../../../../../../redux/features/user/userApi';
+import toast from 'react-hot-toast';
 
-const PasswordSettingsForm: React.FC = () => {
+interface ProfileProfileStatProps {
+  student: any;
+  refetch: any;
+}
+
+const PasswordSettingsForm: React.FC<ProfileProfileStatProps> = ({ student, refetch }) => {
+  const [updatePassword] = useUpdatePasswordMutation();
   const [formData, setFormData] = useState({
     oldPassword: '',
     newPassword: '',
@@ -24,6 +32,26 @@ const PasswordSettingsForm: React.FC = () => {
 
   const handleCheckboxChange = () => {
     setFormData({ ...formData, showPassword: !formData.showPassword });
+  };
+
+  const handleSaveChanges = async () => {
+    if (formData.newPassword !== formData.confirmPassword) {
+      toast.error("New password and confirm password do not match");
+      return;
+    }
+    try {
+      await updatePassword({id:student?.data?.identityId,password:formData.newPassword,oldPassword:formData.oldPassword})
+      toast.success("Password reset successfully")
+      
+    } catch (error) {
+      toast.error("Failed to update");
+    }
+    setFormData({
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+      showPassword: false,
+    })
   };
 
   const inputType = formData.showPassword ? 'text' : 'password';
@@ -67,7 +95,7 @@ const PasswordSettingsForm: React.FC = () => {
               </MDBRow>
               <MDBRow className="mt-4">
                 <MDBCol md="auto">
-                  <MDBBtn className="password-btn">
+                  <MDBBtn className="password-btn" onClick={handleSaveChanges}>
                     Save changes
                   </MDBBtn>
                 </MDBCol>
