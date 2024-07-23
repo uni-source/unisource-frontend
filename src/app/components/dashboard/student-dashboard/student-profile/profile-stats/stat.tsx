@@ -108,16 +108,20 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     }}
                   />
                 ) : (
-                  <Avatar
+                  <MDBCardImage
+                    src='/avatar.png'
                     alt="avatar"
-                    sx={{
-                      width: 180,
-                      height: 180,
+                    className="rounded-circle"
+                    fluid
+                    style={{
+                      width: "180px",
+                      height: "180px",
                       marginBottom: "25px",
                       marginTop: "20px",
+                      objectFit: "contain",
                       zIndex: 10,
                     }}
-                  ></Avatar>
+                  />
                 )}
                 <input
                   type="file"

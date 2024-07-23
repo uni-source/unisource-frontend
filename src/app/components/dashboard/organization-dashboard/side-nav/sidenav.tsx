@@ -146,12 +146,12 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard' },
-    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-profile' },
-    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-projects' },
-    { text: 'My Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-myprojects' },
-    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-proposals' },
-    { text: 'Badges', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/student-dashboard/student-badges' },
+    { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard' },
+    { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-profile' },
+    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-projects' },
+    { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-all-projects' },
+    { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-proposals' },
+    { text: 'Mentor Account', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-mentor-account' },
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
 
