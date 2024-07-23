@@ -35,7 +35,7 @@ const ProposalGrid: React.FC = () => {
         <DataGrid
           rows={proposals}
           columns={columns}
-          pageSizeOptions={[5]}
+          pageSize={5}
           disableRowSelectionOnClick
           hideFooterPagination
           classes={{

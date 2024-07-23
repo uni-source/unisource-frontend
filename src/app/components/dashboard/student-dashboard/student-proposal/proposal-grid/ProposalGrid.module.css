@@ -1,4 +1,3 @@
-
 .tableContainer {
   overflow-x: auto;
   padding: 30px;
@@ -8,7 +7,7 @@
 .tableBox {
   height: 400px;
   width: 100%;
-  background-color: 'var(--light-grey)'; 
+  background-color: var(--light-grey); 
   color: black;
   border-radius: 30px; 
   padding: 20px; 
@@ -17,9 +16,6 @@
   max-width: 100%; 
   overflow: hidden;
   padding-left: 50px;
-  
-  
-  
 }
 
 .statusAccepted {
@@ -32,7 +28,7 @@
 }
 
 .MuiDataGrid-root {
-  background-color: 'var(--light-grey)'; 
+  background-color: var(--light-grey); 
   color: black;
   border-radius: 10px;
   overflow: hidden;
@@ -43,10 +39,10 @@
 }
 
 .columnHeader {
-  background-color: 'var(--light-grey)'; 
+  background-color: var(--light-grey); 
   font-size: 17px;
   font-weight: bolder; 
-  font-family:'Poppings';
+  font-family: 'Poppins';
 }
 
 .dataGridRow {
@@ -57,19 +53,61 @@
   display: none; 
 }
 
-@media (max-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 1024px) {
   .tableContainer {
     padding: 20px;
-    margin: 0 10px; 
+    margin: 0 20px;
+  }
+
+  .tableBox {
+    padding: 15px; 
+  }
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    padding: 15px;
+    margin: 0 10px;
     border-radius: 15px;
   }
 
   .tableBox {
-    padding: 10px; 
+    padding: 10px;
+  }
+
+  .statusAccepted {
+    font-size: 12px;
+  }
+
+  .columnHeader {
+    font-size: 15px;
   }
 
   .MuiDataGrid-root {
-    font-size: 14px; 
-    font-weight: bolder;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tableContainer {
+    padding: 10px;
+    margin: 0 5px;
+  }
+
+  .tableBox {
+    padding: 5px;
+  }
+
+  .statusAccepted {
+    font-size: 10px;
+  }
+
+  .columnHeader {
+    font-size: 13px;
+  }
+
+  .MuiDataGrid-root {
+    font-size: 12px;
   }
 }
