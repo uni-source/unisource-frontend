@@ -1,0 +1,75 @@
+
+.tableContainer {
+  overflow-x: auto;
+  padding: 30px;
+  margin: 0 50px; 
+}
+
+.tableBox {
+  height: 400px;
+  width: 100%;
+  background-color: 'var(--light-grey)'; 
+  color: black;
+  border-radius: 30px; 
+  padding: 20px; 
+  margin: 0 auto; 
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+  max-width: 100%; 
+  overflow: hidden;
+  padding-left: 50px;
+  
+  
+  
+}
+
+.statusAccepted {
+  padding: 10px 20px;
+  background-color: #d4edda;
+  color: #259c41;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.MuiDataGrid-root {
+  background-color: 'var(--light-grey)'; 
+  color: black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dataGridRoot {
+  border: none; 
+}
+
+.columnHeader {
+  background-color: 'var(--light-grey)'; 
+  font-size: 17px;
+  font-weight: bolder; 
+  font-family:'Poppings';
+}
+
+.dataGridRow {
+  border-bottom: 1px solid rgba(224, 224, 224, 1); 
+}
+
+.columnSeparator {
+  display: none; 
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    padding: 20px;
+    margin: 0 10px; 
+    border-radius: 15px;
+  }
+
+  .tableBox {
+    padding: 10px; 
+  }
+
+  .MuiDataGrid-root {
+    font-size: 14px; 
+    font-weight: bolder;
+  }
+}
