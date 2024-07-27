@@ -24,6 +24,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
   const [
     updateAvatar,
     {
+      isLoading: updateAvatarIsLoading,
       isSuccess: updateAvatarIsSuccess,
       isError: updateAvatarIsError,
       error: updateAvatarError,
@@ -39,7 +40,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
   }, [student, refetch]);
   useEffect(() => {
     if (updateAvatarIsSuccess) {
-      toast.success("User profile picture update successful");
+      toast.success("User sign up successful");
     }
     if (updateAvatarIsError) {
       if ("data" in updateAvatarError) {
@@ -64,7 +65,13 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       formData.append("file", file);
       formData.append("public_id", student?.data?.public_id);
       formData.append("identityId", student?.data?.identityId);
-      await updateAvatar(formData).unwrap();
+
+      try {
+        await updateAvatar(formData).unwrap();
+      } catch (err) {
+        console.error(err);
+      }
+
       refetch();
     }
   };
@@ -102,7 +109,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   />
                 ) : (
                   <MDBCardImage
-                    src='/avatar.png'
+                    src='/organization-avatar.png'
                     alt="avatar"
                     className="rounded-circle"
                     fluid
@@ -137,7 +144,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     style={{ color: "black", fontSize: "25px" }}
                   />
                 </label>
-                <p style={{ marginBottom: "1rem" }}>Student</p>
+                <p style={{ marginBottom: "1rem" }}>Organization</p>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -147,7 +154,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
+                    <MDBCardText>Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">{student?.data?.name}</MDBCardText>
@@ -165,7 +172,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Student ID</MDBCardText>
+                    <MDBCardText>Identity ID</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">{student?.data?.identityId}</MDBCardText>
@@ -183,7 +190,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Score</MDBCardText>
+                    <MDBCardText>Role</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">{student?.data?.score}</MDBCardText>
