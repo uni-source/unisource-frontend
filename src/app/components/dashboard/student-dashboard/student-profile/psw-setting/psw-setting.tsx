@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   MDBContainer,
   MDBRow,
@@ -17,13 +17,29 @@ interface ProfileProfileStatProps {
 }
 
 const PasswordSettingsForm: React.FC<ProfileProfileStatProps> = ({ student, refetch }) => {
-  const [updatePassword] = useUpdatePasswordMutation();
+  const [updatePassword, {
+    isSuccess: updatePasswordIsSuccess,
+    isError: updatePasswordIsError,
+    error: updatePasswordError,
+  }] = useUpdatePasswordMutation();
   const [formData, setFormData] = useState({
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
     showPassword: false,
   });
+  useEffect(() => {
+    if (updatePasswordIsSuccess) {
+      toast.success("User Password update successful");
+    }
+    if (updatePasswordIsError) {
+      if ("data" in updatePasswordError) {
+        const errorData =
+          (updatePasswordError as any) || "Password update failed";
+        toast.error(errorData?.data?.message);
+      }
+    }
+  }, [updatePasswordIsSuccess, updatePasswordError, updatePasswordIsError]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -39,13 +55,7 @@ const PasswordSettingsForm: React.FC<ProfileProfileStatProps> = ({ student, refe
       toast.error("New password and confirm password do not match");
       return;
     }
-    try {
-      await updatePassword({id:student?.data?.identityId,password:formData.newPassword,oldPassword:formData.oldPassword})
-      toast.success("Password reset successfully")
-      
-    } catch (error) {
-      toast.error("Failed to update");
-    }
+    await updatePassword({id:student?.data?.identityId,password:formData.newPassword,oldPassword:formData.oldPassword}) 
     setFormData({
       oldPassword: '',
       newPassword: '',

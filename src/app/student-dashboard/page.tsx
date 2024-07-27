@@ -6,6 +6,8 @@ import StatsRow from '../components/dashboard/student-dashboard/stat-row/statrow
 import BasicTable from '../components/dashboard/student-dashboard/contribution-summary-table/cstable';
 import { useGetStudentQuery } from '../../../redux/features/student/studentApi';
 import Loading from '../components/loading/loading';
+import studentAuth from '../custom-hooks/studentAuth';
+
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
@@ -26,7 +28,7 @@ const Page: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <MiniDrawer childTitle="Dashboard" />
+      <MiniDrawer childTitle="Dashboard" student={student} />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8 }}>
         <h4>Overview</h4>
         <StatsRow />
@@ -36,4 +38,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default studentAuth(Page);

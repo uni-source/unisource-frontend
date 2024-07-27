@@ -10,11 +10,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CustomIcon from '../custom_icon/customicon';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../../../redux/features/auth/authApi';
 import toast from "react-hot-toast";
 
-// Yup Validation
+
 const validationSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email address')
@@ -28,7 +28,7 @@ const StdLogIn = () => {
   const router = useRouter(); 
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
-
+  const dispatch = useDispatch();
   useEffect(() => {    
     const user = localStorage.getItem('user');
     if (user) {
@@ -39,9 +39,7 @@ const StdLogIn = () => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("User login successful");
-      console.log(token);
-      // Redirect to the student dashboard or another page
-        router.push('/student-dashboard'); 
+      router.push('/student-dashboard'); 
     }
     if (isError) {
       if ("data" in error) {
@@ -58,11 +56,7 @@ const StdLogIn = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      try {
-        await login(values).unwrap();
-      } catch (err) {
-        console.error('Failed to log in: ', err);
-      }
+      dispatch(await login(values).unwrap());
     },
   });
 

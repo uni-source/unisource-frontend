@@ -24,7 +24,6 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
   const [
     updateAvatar,
     {
-      isLoading: updateAvatarIsLoading,
       isSuccess: updateAvatarIsSuccess,
       isError: updateAvatarIsError,
       error: updateAvatarError,
@@ -40,7 +39,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
   }, [student, refetch]);
   useEffect(() => {
     if (updateAvatarIsSuccess) {
-      toast.success("User sign up successful");
+      toast.success("User profile picture update successful");
     }
     if (updateAvatarIsError) {
       if ("data" in updateAvatarError) {
@@ -65,13 +64,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       formData.append("file", file);
       formData.append("public_id", student?.data?.public_id);
       formData.append("identityId", student?.data?.identityId);
-
-      try {
-        await updateAvatar(formData).unwrap();
-      } catch (err) {
-        console.error(err);
-      }
-
+      await updateAvatar(formData).unwrap();
       refetch();
     }
   };
