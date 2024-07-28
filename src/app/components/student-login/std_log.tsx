@@ -1,51 +1,48 @@
-'use client';
-import React, { useEffect } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import './std_log.css';
-import { useRouter } from 'next/navigation'; 
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import CustomIcon from '../custom_icon/customicon';
-import { useSelector } from 'react-redux';
-import { useLoginMutation } from '../../../../redux/features/auth/authApi';
+"use client";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import "./std_log.css";
+import { useRouter } from "next/navigation";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import CustomIcon from "../custom_icon/customicon";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../../../../redux/features/auth/authApi";
 import toast from "react-hot-toast";
 
-// Yup Validation
 const validationSchema = Yup.object({
   email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 });
 
 const StdLogIn = () => {
-  const router = useRouter(); 
+  const router = useRouter();
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
-
-  useEffect(() => {    
-    const user = localStorage.getItem('user');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const user = localStorage.getItem("user");
     if (user) {
-      router.push('/student-dashboard');
+      router.push("/student-dashboard");
     }
   }, [router]);
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("User login successful");
-      console.log(token);
-      // Redirect to the student dashboard or another page
-        router.push('/student-dashboard'); 
+      router.push("/student-dashboard");
     }
     if (isError) {
       if ("data" in error) {
-        const errorData = error as any || "Login Error";
+        const errorData = (error as any) || "Login Error";
         toast.error(errorData?.data?.message);
       }
     }
@@ -53,16 +50,12 @@ const StdLogIn = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      try {
-        await login(values).unwrap();
-      } catch (err) {
-        console.error('Failed to log in: ', err);
-      }
+      dispatch(await login(values).unwrap());
     },
   });
 
@@ -73,9 +66,9 @@ const StdLogIn = () => {
         className="form-border"
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <CustomIcon />
@@ -84,7 +77,7 @@ const StdLogIn = () => {
         </Typography>
         <form onSubmit={formik.handleSubmit}>
           <TextField
-            className='custom-text-field-color'
+            className="custom-text-field-color"
             margin="normal"
             required
             fullWidth
@@ -99,7 +92,7 @@ const StdLogIn = () => {
             helperText={formik.touched.email && formik.errors.email}
           />
           <TextField
-            className='custom-text-field-color'
+            className="custom-text-field-color"
             margin="normal"
             required
             fullWidth
@@ -114,7 +107,7 @@ const StdLogIn = () => {
             helperText={formik.touched.password && formik.errors.password}
           />
           <button className="submit-btn" type="submit" disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'LOG IN'}
+            {isLoading ? "Logging in..." : "LOG IN"}
           </button>
         </form>
       </Box>

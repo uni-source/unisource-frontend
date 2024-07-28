@@ -7,64 +7,74 @@ import {
   MDBCard,
   MDBCardBody
 } from 'mdb-react-ui-kit';
-import { useUpdateDescriptionMutation } from '../../../../../../../redux/features/student/studentApi';
+import { useUpdateOrganizationDescriptionMutation } from '../../../../../../../redux/features/organization/organizationApi';
 import { useUpdateUserMutation } from '../../../../../../../redux/features/user/userApi';
 import './account-info.css';
 import toast from 'react-hot-toast';
 
 interface ProfileProfileStatProps {
-  student: any;
+  organization: any;
   refetch: any;
 }
 
-const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, refetch }) => {
+const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ organization, refetch }) => {
   const [formData, setFormData] = useState({
     fullname: '',
     contactNumber: '',
     description: ''
   });
 
-  const [updateDescription] = useUpdateDescriptionMutation();
-  const [updateUser] = useUpdateUserMutation();
+  const [updateOrganizationDescription,{  isSuccess:updateDescriptionIsSuccess, isError:updateDescriptionIsError, error:updateDescriptionError }] = useUpdateOrganizationDescriptionMutation();
+  const [updateUser,{  isSuccess:updateUserIsSuccess, isError:updateUserIsError, error:updateUserError }] = useUpdateUserMutation();
 
   useEffect(() => {
-    if (student) {
-      console.log(student);
+    if (organization) {
       setFormData({
-        fullname: student?.data?.name || '',
-        contactNumber: student?.data?.contact || '',
-        description: student?.data?.description || ''
+        fullname: organization?.data?.name || '',
+        contactNumber: organization?.data?.contact || '',
+        description: organization?.data?.description || ''
       });
     }
-  }, [student]);
+  }, [organization]);
 
+  useEffect(() => {
+    if (updateDescriptionIsSuccess) {
+      toast.success("Description updated successfully");
+    }
+    if (updateDescriptionIsError) {
+      if ("data" in updateDescriptionError) {
+        const errorData = updateDescriptionError as any || "Update Error";
+        toast.error(errorData?.data?.message);
+      }
+    }
+    if (updateUserIsSuccess) {
+      toast.success("User updated successfully");
+    }
+    if (updateUserIsError) {
+      if ("data" in updateUserError) {
+        const errorData = updateUserError as any || "Update Error";
+        toast.error(errorData?.data?.message);
+      }
+    }
+  }, [updateUserIsSuccess,updateUserIsError,updateUserError,updateDescriptionIsSuccess, updateDescriptionIsError,updateDescriptionError]);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSaveChanges = async () => {
-    try {
-      await updateUser({id:student?.data?.identityId,name:formData.fullname,contact:formData.contactNumber})
-      await updateDescription({ description: formData.description, identityId: student?.data?.identityId }).then(()=>{
+  const handleSaveChanges = async () => {    
+      await updateUser({id:organization?.data?.identityId,name:formData.fullname,contact:formData.contactNumber})
+      await updateOrganizationDescription({ description: formData.description, identityId: organization?.data?.identityId })
       toast.success("Description updated successfully");
       refetch();
-      handleClear();
-      }).catch(()=>{
-        toast.error("Failed to update description");
-      });
-      
-    } catch (error) {
-      toast.error("Failed to update");
-      handleClear();
-    }
+      handleClear();      
   };
 
   const handleClear = () => {
     setFormData({
-      fullname: student?.data?.name || '',
-      contactNumber: student?.data?.contact || '',
-      description: student?.data?.description || ''
+      fullname: organization?.data?.name || '',
+      contactNumber: organization?.data?.contact || '',
+      description: organization?.data?.description || ''
     });
   };
 
@@ -107,7 +117,21 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
                   </div>
                 </MDBCol>
               </MDBRow>
-              
+              <MDBRow className="mt-3">
+                <MDBCol md="12">
+                  <div className="custom-input mb-4">
+                    <textarea
+                      id="description"
+                      className="form-control"
+                      value={formData.description}
+                      onChange={handleInputChange}
+                    ></textarea>
+                    <label htmlFor="description" className={`form-label ${formData.description ? 'floating' : ''}`}>
+                      Description
+                    </label>
+                  </div>
+                </MDBCol>
+              </MDBRow>
               <MDBRow className="mt-4">
                 <MDBCol md="auto">
                   <MDBBtn className="ac-info-button" onClick={handleSaveChanges}>

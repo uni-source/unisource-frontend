@@ -24,8 +24,8 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
     description: ''
   });
 
-  const [updateDescription] = useUpdateDescriptionMutation();
-  const [updateUser] = useUpdateUserMutation();
+  const [updateDescription,{  isSuccess:updateDescriptionIsSuccess, isError:updateDescriptionIsError, error:updateDescriptionError }] = useUpdateDescriptionMutation();
+  const [updateUser,{  isSuccess:updateUserIsSuccess, isError:updateUserIsError, error:updateUserError }] = useUpdateUserMutation();
 
   useEffect(() => {
     if (student) {
@@ -37,6 +37,26 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
       });
     }
   }, [student]);
+  useEffect(() => {
+    if (updateDescriptionIsSuccess) {
+      toast.success("Description updated successfully");
+    }
+    if (updateDescriptionIsError) {
+      if ("data" in updateDescriptionError) {
+        const errorData = updateDescriptionError as any || "Update Error";
+        toast.error(errorData?.data?.message);
+      }
+    }
+    if (updateUserIsSuccess) {
+      toast.success("User updated successfully");
+    }
+    if (updateUserIsError) {
+      if ("data" in updateUserError) {
+        const errorData = updateUserError as any || "Update Error";
+        toast.error(errorData?.data?.message);
+      }
+    }
+  }, [updateUserIsSuccess,updateUserIsError,updateUserError,updateDescriptionIsSuccess, updateDescriptionIsError,updateDescriptionError]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -44,20 +64,9 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ student, re
   };
 
   const handleSaveChanges = async () => {
-    try {
       await updateUser({id:student?.data?.identityId,name:formData.fullname,contact:formData.contactNumber})
-      await updateDescription({ description: formData.description, identityId: student?.data?.identityId }).then(()=>{
-      toast.success("Description updated successfully");
-      refetch();
-      handleClear();
-      }).catch(()=>{
-        toast.error("Failed to update description");
-      });
-      
-    } catch (error) {
-      toast.error("Failed to update");
-      handleClear();
-    }
+      await updateDescription({ description: formData.description, identityId: student?.data?.identityId })
+      handleClear();    
   };
 
   const handleClear = () => {

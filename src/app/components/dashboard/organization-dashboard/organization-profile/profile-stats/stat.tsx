@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import Avatar from "@mui/material/Avatar";
 import {
   MDBCol,
   MDBContainer,
@@ -11,36 +10,35 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
-import { useUpdateAvatarMutation } from "../../../../../../../redux/features/student/studentApi";
+import { useUpdateOrganizationAvatarMutation } from "../../../../../../../redux/features/organization/organizationApi";
 import toast from "react-hot-toast";
 interface ProfileProfileStatProps {
-  student: any;
+  organization: any;
   refetch: any;
 }
 const ProfileStat: React.FC<ProfileProfileStatProps> = ({
-  student,
+  organization,
   refetch,
 }) => {
   const [
-    updateAvatar,
+    updateOrganizationAvatar,
     {
       isLoading: updateAvatarIsLoading,
       isSuccess: updateAvatarIsSuccess,
       isError: updateAvatarIsError,
       error: updateAvatarError,
     },
-  ] = useUpdateAvatarMutation();
+  ] = useUpdateOrganizationAvatarMutation();
   const [image, setImage] = useState("");
 
   useEffect(() => {
-    if (student?.data?.public_url) {
-      console.log(student);
-      setImage(student?.data?.public_url);
+    if (organization?.data?.public_url) {
+      setImage(organization?.data?.public_url);
     }
-  }, [student, refetch]);
+  }, [organization, refetch]);
   useEffect(() => {
     if (updateAvatarIsSuccess) {
-      toast.success("User sign up successful");
+      toast.success("Organization profile picture upload successful");
     }
     if (updateAvatarIsError) {
       if ("data" in updateAvatarError) {
@@ -63,15 +61,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       reader.readAsDataURL(file);
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("public_id", student?.data?.public_id);
-      formData.append("identityId", student?.data?.identityId);
-
-      try {
-        await updateAvatar(formData).unwrap();
-      } catch (err) {
-        console.error(err);
-      }
-
+      formData.append("public_id", organization?.data?.public_id);
+      formData.append("identityId", organization?.data?.identityId);
+      await updateOrganizationAvatar(formData).unwrap();
       refetch();
     }
   };
@@ -109,7 +101,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   />
                 ) : (
                   <MDBCardImage
-                    src='/organization-avatar.png'
+                    src="/organization-avatar.png"
                     alt="avatar"
                     className="rounded-circle"
                     fluid
@@ -149,15 +141,22 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
             </MDBCard>
           </MDBCol>
           <MDBCol lg="8">
-            <MDBCard className="mb-4" 
-                style={{ backgroundColor: 'var(--light-grey)', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
+            <MDBCard
+              className="mb-4"
+              style={{
+                backgroundColor: "var(--light-grey)",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.name}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {organization?.data?.name}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -166,7 +165,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.email}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {organization?.data?.email}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -175,7 +176,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Identity ID</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.identityId}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {organization?.data?.identityId}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -184,18 +187,16 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Account Status</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.verified? "Verified":"Not Verified"} {student?.data?.verified? <VerifiedUserIcon/>:null}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {organization?.data?.verified
+                        ? "Verified"
+                        : "Not Verified"}{" "}
+                      {organization?.data?.verified ? (
+                        <VerifiedUserIcon />
+                      ) : null}
+                    </MDBCardText>
                   </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Role</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.score}</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
+                </MDBRow>                
               </MDBCardBody>
             </MDBCard>
           </MDBCol>

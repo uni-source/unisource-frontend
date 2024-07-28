@@ -32,6 +32,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { userLoggedOut } from '../../../../../../redux/features/auth/authSlice';
+import { MDBCardImage } from 'mdb-react-ui-kit';
 
 const drawerWidth = 240;
 
@@ -118,9 +119,10 @@ const StyledLink = styled(Link)({
 
 interface MiniDrawerProps {
   childTitle: string;
+  organization:any;
 }
 
-export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
+export default function MiniDrawer({ childTitle,organization }: MiniDrawerProps) {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -148,7 +150,7 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard' },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-profile' },
-    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-projects' },
+    { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/create-project' },
     { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-all-projects' },
     { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-proposals' },
     { text: 'Mentor Account', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-mentor-account' },
@@ -182,9 +184,30 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} />
+            {organization?.data?.public_url ? (
+                  <MDBCardImage
+                    src={organization?.data?.public_url}
+                    alt="avatar"
+                    className="rounded-circle"
+                    fluid
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      marginLeft: 1
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    alt="avatar"
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      marginLeft: 1
+                    }}
+                  ></Avatar>
+                )}
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
-              Avindu Kavinda
+              {organization?.data?.name}
             </Typography>
           </Box>
         </Toolbar>

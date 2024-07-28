@@ -29,7 +29,7 @@ export const studentApi = apiSlice.injectEndpoints({
 
     updateDescription: builder.mutation({
       query: (Data) => ({
-        url: "api/v1/student/description",
+        url: "api/v1/student",
         method: "PUT",
         body: Data,
         credentials: "include" as const,

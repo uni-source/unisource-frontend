@@ -10,36 +10,37 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CustomIcon from "../custom_icon/customicon";
 import { useRegisterMutation } from "../../../../redux/features/auth/authApi";
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
   name: Yup.string()
     .trim()
-    .min(2, 'Student name must be at least 2 characters')
-    .required('Student name is required'),
+    .min(2, "Student name must be at least 2 characters")
+    .required("Student name is required"),
   email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters')
-    .required('Password is required'),
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 });
 
 export default function StdSign() {
-  const router = useRouter(); 
-  const [register, { isLoading, isSuccess, error, isError }] = useRegisterMutation();
+  const router = useRouter();
+  const [register, { isLoading, isSuccess, error, isError }] =
+    useRegisterMutation();
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("User sign up successful");
       // Redirect to the student dashboard
-      router.push('/student-login'); 
+      router.push("/student-login");
     }
     if (isError) {
       if ("data" in error) {
-        const errorData = error as any || "Registration Error";
+        const errorData = (error as any) || "Registration Error";
         toast.error(errorData?.data?.message);
       }
     }
@@ -47,9 +48,9 @@ export default function StdSign() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
@@ -60,16 +61,11 @@ export default function StdSign() {
         password: values.password,
       };
 
-      try {
-        await register(user).unwrap();
-      } catch (err) {
-        console.error("Failed to register user:", err);
-      }
+      await register(user).unwrap();
     },
   });
 
   return (
-
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box

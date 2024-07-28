@@ -7,6 +7,7 @@ import AccountInformationForm from '@/app/components/dashboard/student-dashboard
 import PasswordSettingsForm from '@/app/components/dashboard/student-dashboard/student-profile/psw-setting/psw-setting';
 import Loading from '@/app/components/loading/loading';
 import { useGetStudentQuery } from '../../../../redux/features/student/studentApi';
+import studentAuth from '@/app/custom-hooks/studentAuth';
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -29,7 +30,7 @@ const Page: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <MiniDrawer childTitle='My Profile' />
+      <MiniDrawer childTitle='My Profile' student={student}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4 }}>
         <ProfileStat student={student} refetch={refetch} />
         <AccountInformationForm student={student} refetch={refetch}/>
@@ -39,4 +40,4 @@ const Page: React.FC = () => {
   );
 };
 
-export default Page;
+export default studentAuth(Page);

@@ -32,6 +32,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { userLoggedOut } from '../../../../../../redux/features/auth/authSlice';
+import { MDBCardImage } from 'mdb-react-ui-kit';
 
 const drawerWidth = 240;
 
@@ -118,9 +119,10 @@ const StyledLink = styled(Link)({
 
 interface MiniDrawerProps {
   childTitle: string;
+  student:any;
 }
 
-export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
+export default function MiniDrawer({ childTitle,student }: MiniDrawerProps) {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -182,9 +184,31 @@ export default function MiniDrawer({ childTitle }: MiniDrawerProps) {
                 <NotificationsIcon sx={{ fontSize: 30 }} />
               </Badge>
             </IconButton>
-            <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} />
+            {student?.data?.public_url ? (
+                  <MDBCardImage
+                    src={student?.data?.public_url}
+                    alt="avatar"
+                    className="rounded-circle"
+                    fluid
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      marginLeft: 1
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    alt="avatar"
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      marginLeft: 1
+                    }}
+                  ></Avatar>
+                )}
+            {/* <Avatar alt="Student Profile" src="" sx={{ width: 40, height: 40, marginLeft: 1 }} /> */}
             <Typography variant="body1" sx={{ display: { xs: 'none', md: 'block' }, marginLeft: 1 }}>
-              Avindu Kavinda
+              {student?.data?.name }
             </Typography>
           </Box>
         </Toolbar>
