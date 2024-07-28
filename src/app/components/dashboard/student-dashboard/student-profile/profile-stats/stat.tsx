@@ -102,7 +102,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   />
                 ) : (
                   <MDBCardImage
-                    src='/avatar.png'
+                    src="/avatar.png"
                     alt="avatar"
                     className="rounded-circle"
                     fluid
@@ -142,15 +142,22 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
             </MDBCard>
           </MDBCol>
           <MDBCol lg="8">
-            <MDBCard className="mb-4" 
-                style={{ backgroundColor: 'var(--light-grey)', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>
+            <MDBCard
+              className="mb-4"
+              style={{
+                backgroundColor: "var(--light-grey)",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+              }}
+            >
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.name}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {student?.data?.name}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -159,7 +166,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.email}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {student?.data?.email}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -168,7 +177,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Student ID</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.identityId}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {student?.data?.identityId}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -177,7 +188,10 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Account Status</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.verified? "Verified":"Not Verified"} {student?.data?.verified? <VerifiedUserIcon/>:null}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {student?.data?.verified ? "Verified" : "Not Verified"}{" "}
+                      {student?.data?.verified ? <VerifiedUserIcon /> : null}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -186,7 +200,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     <MDBCardText>Score</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{student?.data?.score}</MDBCardText>
+                    <MDBCardText className="text-muted">
+                      {student?.data?.score}
+                    </MDBCardText>
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
