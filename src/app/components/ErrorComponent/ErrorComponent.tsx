@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const ErrorComponent = () => {
     return (
-      <div className="Error-outer">
+      <div className="Error-container-outer">
         <div className="Error-Inner">
             <div className="Error-container">
                 <div className="Error-header">
