@@ -26,7 +26,7 @@ const Page: React.FC = () => {
   }
   return (
     <Box sx={{ display: 'flex' }}>
-      <MiniDrawer childTitle="Projects" organization={organization}/>
+      <MiniDrawer childTitle="Projects " organization={organization}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8 }}>
         <CreateProject/>
       </Box>

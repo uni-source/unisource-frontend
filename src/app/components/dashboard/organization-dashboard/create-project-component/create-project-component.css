@@ -49,7 +49,7 @@
     height: 50px;
 }
 
-#description{
+#projectDescription{
     height: 330px;
 }
 
@@ -63,7 +63,7 @@
 }
 
 #label-technologies{
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 #label-resources{

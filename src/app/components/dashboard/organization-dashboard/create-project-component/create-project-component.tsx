@@ -67,7 +67,7 @@ const CreateProject = () => {
                       </label>
                     <div className="custom-input mb-4">
                       <textarea
-                        id="description"
+                        id="projectDescription"
                         className="form-control"
                       ></textarea>
                     </div>
