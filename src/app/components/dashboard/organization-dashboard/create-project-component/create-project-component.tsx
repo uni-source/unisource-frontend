@@ -122,7 +122,7 @@ const CreateProject = () => {
                     </label>
                     <Select
                       labelId="mentor-label"
-                      id="mentor"
+                      id="organizationMentor"
                       label="Assign Mentor"
                       className="form-control"
                     >

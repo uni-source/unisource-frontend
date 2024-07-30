@@ -44,13 +44,14 @@
   margin-bottom: 20px !important;
   }
 
+/*comment*/
 
 .form-control{
     height: 50px;
 }
 
 #projectDescription{
-    height: 330px;
+    height: 329px;
 }
 
 #technologies{
