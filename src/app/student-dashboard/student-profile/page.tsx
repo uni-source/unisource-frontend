@@ -40,4 +40,5 @@ const Page: React.FC = () => {
   );
 };
 
-export default studentAuth(Page);
+// export default studentAuth(Page);
+export default Page;
