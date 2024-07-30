@@ -26,7 +26,9 @@ const Page: React.FC = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <MiniDrawer childTitle='Badges' student={student}/>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4}}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4, '@media (max-width: 600px)': {
+            width: 320,
+          }, }}>
         <BadgeTable />
       </Box>
     </Box>
