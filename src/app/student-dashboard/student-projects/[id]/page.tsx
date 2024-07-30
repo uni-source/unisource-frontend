@@ -36,4 +36,5 @@ const Page: React.FC = ({params}:any) => {
 
   )
 }
-export default studentAuth(Page);
+// export default studentAuth(Page);
+export default Page;

@@ -39,4 +39,5 @@ const Page: React.FC = () => {
     </Box>
     )
 };
-export default studentAuth(Page);
+// export default studentAuth(Page);
+export default Page;
