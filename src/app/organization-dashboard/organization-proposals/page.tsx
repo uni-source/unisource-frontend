@@ -4,7 +4,7 @@ import MiniDrawer from "@/app/components/dashboard/organization-dashboard/side-n
 import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
 import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
-import SearchBox from "@/app/components/dashboard/organization-dashboard/organization-proposal/searchbox/Searchbox";
+import SearchBox from "@/app/components/dashboard/organization-dashboard/organization-proposal/searchbox/searchbox";
 import ProposalTable from "@/app/components/dashboard/organization-dashboard/organization-proposal/proposal-table/proposal-table";
 
 const Page: React.FC = () => {
@@ -42,7 +42,7 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-        <SearchBox/>
+        <SearchBox />
         <ProposalTable />
       </Box>
     </Box>
