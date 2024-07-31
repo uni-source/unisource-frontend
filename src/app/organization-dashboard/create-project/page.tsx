@@ -34,4 +34,5 @@ const Page: React.FC = () => {
   );
 };
 
-export default organizationAuth(Page);
+// export default organizationAuth(Page);
+export default Page;

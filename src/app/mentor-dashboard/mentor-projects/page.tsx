@@ -1,13 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import MiniDrawer from "@/app/components/dashboard/organization-dashboard/side-nav/sidenav";
+import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sidenav";
 import Box from "@mui/material/Box";
-import ProfileStat from "@/app/components/dashboard/organization-dashboard/organization-profile/profile-stats/stat";
-import AccountInformationForm from "@/app/components/dashboard/organization-dashboard/organization-profile/account-info/account-info";
-import PasswordSettingsForm from "@/app/components/dashboard/organization-dashboard/organization-profile/psw-setting/psw-setting";
 import Loading from "@/app/components/loading/loading";
 import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
-import organizationAuth from '../../custom-hooks/organizationAuth';
+import ProjectTable from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-list/project-list";
+import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
+
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
@@ -37,13 +36,14 @@ const Page: React.FC = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <MiniDrawer
-        childTitle="Organization Profile"
-        organization={organization}
+        childTitle="All Projects"
+        mentor={organization}
       />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4 }}>
-        <ProfileStat organization={organization} refetch={refetch} />
-        <AccountInformationForm organization={organization} refetch={refetch} />
-        <PasswordSettingsForm organization={organization} refetch={refetch} />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
+            width: 320,
+          }, }}>
+          <SearchBox />
+          <ProjectTable />
       </Box>
     </Box>
   );
