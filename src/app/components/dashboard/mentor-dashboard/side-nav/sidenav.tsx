@@ -148,7 +148,7 @@ export default function MiniDrawer({ childTitle,mentor }: MiniDrawerProps) {
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/mentor-dashboard' },
     { text: 'Profile', icon: <AccountCircleIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/mentor-dashboard/mentor-profile' },
-    { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/mentor-dashboard/mentor-all-projects' },
+    { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/mentor-dashboard/mentor-projects' },
     { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/mentor-dashboard/mentor-proposals' },
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
