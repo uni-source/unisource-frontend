@@ -3,9 +3,8 @@ import React, { useEffect, useState } from "react";
 import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sidenav";
 import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
-import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
-import ProjectTable from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-list/project-list";
-import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
+import { useGetOrganizationQuery } from "../../../../../redux/features/organization/organizationApi";
+import ProjectGrid from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-table/project-table";
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -42,8 +41,7 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-          <SearchBox />
-          <ProjectTable />
+        <ProjectGrid />
       </Box>
     </Box>
   );
