@@ -38,7 +38,7 @@ const ProjectGrid: React.FC = () => {
             <input type="email" className="form-control" id="resorces" />
           </div>
         </div>
-        <Link href='/organization-dashboard/organization-proposals'>
+        <Link href='/mentor-dashboard/mentor-projects'>
         <button type="button" className="btn btn-back">Back</button>
         </Link>
       </form>
