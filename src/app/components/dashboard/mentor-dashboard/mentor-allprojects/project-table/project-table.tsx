@@ -2,7 +2,11 @@ import React from 'react';
 import './project-table.css';
 import Link from 'next/link';
 
-const ProjectGrid: React.FC = () => {
+interface ProjectGridProps{
+  id:number,
+}
+
+const ProjectGrid: React.FC<ProjectGridProps> = ({ id }) => {
   return (
     <div className="container project-form-container">
       <form>
