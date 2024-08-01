@@ -4,8 +4,16 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import './project-list.css';
+import { useRouter } from 'next/navigation';
+
 
 const ProjectTable=() =>{  
+
+  const router = useRouter();
+  
+  const handleViewClick = (id: number) => {
+   router.push(`/mentor-dashboard/mentor-projects/${id}`);
+  };
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Project ID', flex: 1 },
@@ -21,6 +29,7 @@ const ProjectTable=() =>{
         <Button
             className='view-button'
             variant="contained"
+            onClick={() => handleViewClick(params.row.id)}
         >
             View
         </Button>
