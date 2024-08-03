@@ -3,10 +3,6 @@
     margin-bottom: 1.5rem;
   }
 
-  .overall{
-    background-color: var(--light-grey);
-  }
-  
   .custom-input .form-label {
     position: absolute;
     top: 50%;

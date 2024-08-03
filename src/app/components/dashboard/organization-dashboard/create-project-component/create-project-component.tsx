@@ -139,14 +139,14 @@ const CreateProject = () => {
               <br />
 
                 <MDBRow className="mt-4">
-                  <MDBCol md="3">
-                    <MDBBtn className="ac-info-button" >
-                      Create Project
+                  <MDBCol md="auto">
+                    <MDBBtn className="ac-info-button">
+                      create Project
                     </MDBBtn>
                   </MDBCol>
-                  <MDBCol md="3">
+                  <MDBCol md="auto">
                     <MDBBtn className="ac-info-button">
-                      Clear details
+                      Clear
                     </MDBBtn>
                   </MDBCol>
                 </MDBRow>
