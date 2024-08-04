@@ -268,6 +268,7 @@ const CreateProject: React.FC<OrganizationIdProps> = ({ organizationId }) => {
                       onClick={() => formik.resetForm()}
                     >
                       Clear details
+
                     </MDBBtn>
                   </MDBCol>
                 </MDBRow>

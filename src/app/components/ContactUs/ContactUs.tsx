@@ -4,7 +4,7 @@ import Topic from '../topics/topics';
 
 const ContactUs = () => {
   return (
-    <div className="ContactUs-outer">
+    <div className="ContactUs-outer" id='ContactUs-outer-id'>
             <Topic message="Contact Us" />
       <div className="ContactUs-inner">
         <div className="ContactUs-container">
