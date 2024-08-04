@@ -1,11 +1,13 @@
 .ContactUs-outer {
-    background-color: var(--light-gray) !important;
     padding: 2rem 0;
     position: relative;
     bottom: -1.5rem; 
     margin-top: 2rem;
   }
   
+  #ContactUs-outer-id{
+    background-color: #F5F5F5 ;
+  }
   .ContactUs-inner {
     display: flex;
     justify-content: center;
