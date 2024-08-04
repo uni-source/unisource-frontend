@@ -7,7 +7,6 @@ import {
   MDBCard,
   MDBCardBody
 } from 'mdb-react-ui-kit';
-import { useUpdateOrganizationDescriptionMutation } from '../../../../../../../redux/features/organization/organizationApi';
 import { useUpdateUserMutation } from '../../../../../../../redux/features/user/userApi';
 import './account-info.css';
 import toast from 'react-hot-toast';
@@ -21,32 +20,21 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ organizatio
   const [formData, setFormData] = useState({
     fullname: '',
     contactNumber: '',
-    description: ''
   });
 
-  const [updateOrganizationDescription,{  isSuccess:updateDescriptionIsSuccess, isError:updateDescriptionIsError, error:updateDescriptionError }] = useUpdateOrganizationDescriptionMutation();
+  
   const [updateUser,{  isSuccess:updateUserIsSuccess, isError:updateUserIsError, error:updateUserError }] = useUpdateUserMutation();
 
   useEffect(() => {
     if (organization) {
       setFormData({
         fullname: organization?.data?.name || '',
-        contactNumber: organization?.data?.contact || '',
-        description: organization?.data?.description || ''
+        contactNumber: organization?.data?.contact || ''
       });
     }
   }, [organization]);
 
   useEffect(() => {
-    if (updateDescriptionIsSuccess) {
-      toast.success("Description updated successfully");
-    }
-    if (updateDescriptionIsError) {
-      if ("data" in updateDescriptionError) {
-        const errorData = updateDescriptionError as any || "Update Error";
-        toast.error(errorData?.data?.message);
-      }
-    }
     if (updateUserIsSuccess) {
       toast.success("User updated successfully");
     }
@@ -56,7 +44,7 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ organizatio
         toast.error(errorData?.data?.message);
       }
     }
-  }, [updateUserIsSuccess,updateUserIsError,updateUserError,updateDescriptionIsSuccess, updateDescriptionIsError,updateDescriptionError]);
+  }, [updateUserIsSuccess,updateUserIsError,updateUserError]);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
@@ -64,8 +52,7 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ organizatio
 
   const handleSaveChanges = async () => {    
       await updateUser({id:organization?.data?.identityId,name:formData.fullname,contact:formData.contactNumber})
-      await updateOrganizationDescription({ description: formData.description, identityId: organization?.data?.identityId })
-      toast.success("Description updated successfully");
+      toast.success("Updated successfully");
       refetch();
       handleClear();      
   };
@@ -73,8 +60,7 @@ const AccountInformationForm: React.FC<ProfileProfileStatProps> = ({ organizatio
   const handleClear = () => {
     setFormData({
       fullname: organization?.data?.name || '',
-      contactNumber: organization?.data?.contact || '',
-      description: organization?.data?.description || ''
+      contactNumber: organization?.data?.contact || ''
     });
   };
 

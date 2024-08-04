@@ -7,7 +7,7 @@ import { useGetOrganizationQuery } from "../../../../../redux/features/organizat
 import ProjectGrid from "@/app/components/dashboard/organization-dashboard/organization-all-project-component/project-table/project-table";
 
 
-const Page: React.FC = () => {
+const Page: React.FC = ({params}:any) => {
   const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-            <ProjectGrid/>
+            <ProjectGrid id={params.id}/>
             
         
       </Box>
@@ -51,5 +51,5 @@ const Page: React.FC = () => {
   );
 };
 
-// export default organizationAuth(Page);
+
 export default Page;

@@ -91,8 +91,8 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     className="rounded-circle"
                     fluid
                     style={{
-                      width: "180px",
-                      height: "180px",
+                      width: "150px",
+                      height: "150px",
                       marginBottom: "25px",
                       marginTop: "20px",
                       objectFit: "contain",
@@ -106,8 +106,8 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     className="rounded-circle"
                     fluid
                     style={{
-                      width: "180px",
-                      height: "180px",
+                      width: "150px",
+                      height: "150px",
                       marginBottom: "25px",
                       marginTop: "20px",
                       objectFit: "contain",
@@ -181,22 +181,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Account Status</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      {organization?.data?.verified
-                        ? "Verified"
-                        : "Not Verified"}{" "}
-                      {organization?.data?.verified ? (
-                        <VerifiedUserIcon />
-                      ) : null}
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>                
+                             
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
