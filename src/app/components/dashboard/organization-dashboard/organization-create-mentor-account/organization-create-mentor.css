@@ -3,6 +3,8 @@
     margin-bottom: 1.5rem;
   }
 
+ 
+  
   .custom-input .form-label {
     position: absolute;
     top: 50%;
@@ -46,30 +48,12 @@
     height: 50px;
 }
 
-#projectDescription{
-    height: 329px;
-}
-
-#technologies{
-    height: 100px;
-}
-
 
 #mdb-container{
     margin-top: 1rem;
 }
 
-#label-technologies{
-    margin-top: 0;
-}
 
-#label-resources{
-    margin-top: 15px;
-}
-#label-duedate{
-    margin-top: 15px;
-}
 
-#label-mentor{
-    margin-top: 15px;
-}
+
+

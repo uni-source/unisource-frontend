@@ -5,7 +5,8 @@ import MiniDrawer from '@/app/components/dashboard/organization-dashboard/side-n
 import Loading from '@/app/components/loading/loading';
 import { useGetOrganizationQuery } from '../../../../redux/features/organization/organizationApi';
 import organizationAuth from '../../custom-hooks/organizationAuth';
-import CreateProject from '@/app/components/dashboard/organization-dashboard/create-project-component/create-project-component';
+import CreateMentor from '@/app/components/dashboard/organization-dashboard/organization-create-mentor-account/organization-create-mentor';
+
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
@@ -26,9 +27,9 @@ const Page: React.FC = () => {
   }
   return (
     <Box sx={{ display: 'flex' }}>
-      <MiniDrawer childTitle="Projects  " organization={organization}/>
+      <MiniDrawer childTitle="Mentor Account" organization={organization}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8 }}>
-        <CreateProject organizationId={userId}/>
+            <CreateMentor/>
       </Box>
     </Box>
   );

@@ -4,9 +4,8 @@ import MiniDrawer from '../components/dashboard/mentor-dashboard/side-nav/sidena
 import Box from '@mui/material/Box';
 import StatsRow from '../components/dashboard/mentor-dashboard/stat-row/statrow';
 import BasicTable from '../components/dashboard/mentor-dashboard/contribution-summery-table/cstable';
-import { useGetStudentQuery } from '../../../redux/features/student/studentApi';
 import Loading from '../components/loading/loading';
-import studentAuth from '../custom-hooks/studentAuth';
+import { useGetMentorByIdQuery } from '../../../redux/features/mentor/mentorApi';
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -19,7 +18,7 @@ const Page: React.FC = () => {
     }
   });
 
-  const { data: mentor, isLoading, refetch } = useGetStudentQuery(userId,
+  const { data: mentor, isLoading, refetch } = useGetMentorByIdQuery(userId,
     { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
@@ -40,5 +39,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default studentAuth(Page);
 export default Page;
