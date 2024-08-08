@@ -154,7 +154,7 @@ export default function MiniDrawer({ childTitle,organization }: MiniDrawerProps)
     { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/create-project' },
     { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-all-projects' },
     { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-proposals' },
-    { text: 'Mentor Account', icon: <CoPresentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-mentor-account' },
+    { text: 'Mentor Account', icon: <CoPresentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/create-mentor' },
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
 
