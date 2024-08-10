@@ -12,7 +12,7 @@ const ProposalTable=() =>{
   const router = useRouter();
   
   const handleViewClick = (id: number) => {
-   router.push(`/mentor-dashboard/mentor-projects/${id}`);
+   router.push(`/mentor-dashboard/mentor-proposals/${id}`);
   };
 
   const columns: GridColDef[] = [
