@@ -27,7 +27,6 @@ const StudentTable=() =>{
         <Button
             className='view-button'
             variant="contained"
-            onClick={() => handleViewClick(params.row.id)}
         >
             View
         </Button>
