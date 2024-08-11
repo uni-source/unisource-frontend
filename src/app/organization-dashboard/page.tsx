@@ -31,10 +31,10 @@ const Page: React.FC = () => {
     <Box sx={{ display: 'flex' }}>
       <MiniDrawer childTitle="Dashboard" organization={organization}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8 }}>
-        <StatsRow />
+        <StatsRow organizationId={userId}/>
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
-            <RecentProjects />
+            <RecentProjects organizationId={userId}/>
           </Grid>
           <Grid item xs={12} md={4}>
             <LeaderBoard />

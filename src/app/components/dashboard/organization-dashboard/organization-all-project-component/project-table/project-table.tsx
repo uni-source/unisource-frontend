@@ -53,6 +53,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ id }) => {
 
     useEffect(() => {
         if (project) {
+            console.log(project)
             formik.setValues({
                 name: project?.data?.name || '',
                 title: project?.data?.title || '',

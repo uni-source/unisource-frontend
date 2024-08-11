@@ -6,28 +6,36 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Card from "react-bootstrap/Card";
 import { styled } from "@mui/material/styles";
 import { Typography } from "@mui/material";
+import { useGetProjectByOrganizationIdQuery } from "../../../../../../redux/features/project/projectApi"; 
 
 const CustomCard = styled(Card)({
   border: "none",
   borderRadius: "1rem",
   backgroundColor: "var(--light-grey) !important",
   boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-  padding:"10px"
+  padding: "10px",
 });
-const RecentProjects = () => {
-  const columns: GridColDef[] = [
-    { field: "name", headerName: "Project Name", flex: 1 },
-    { field: "mentor", headerName: "Mentor", flex: 1 },
-    { field: "DueDate", headerName: "Due date", flex: 1 },
-    { field: "status", headerName: "Status", flex: 1 },
-  ];
 
-  const rows: any = [];
+const RecentProjects = ({ organizationId }: { organizationId: number }) => {
+  const { data: projectData, isLoading, isError } = useGetProjectByOrganizationIdQuery(organizationId);
+
+  const rows = React.useMemo(() => {
+    if (!projectData || isError || isLoading) return [];
+    const sortedProjects = [...projectData.data].sort((a: any, b: any) => b.id - a.id);
+
+    return sortedProjects.slice(0, 10).map((project: any) => ({
+      id: project.id,
+      name: project.name,
+      mentor: project.mentorName,
+      DueDate: new Date(project.dueDate).toLocaleDateString(),
+      status: project.status,
+    }));
+  }, [projectData, isLoading, isError]);
 
   return (
     <CustomCard className="stat-card">
-      <Typography variant="h5" component="div">Recent projects</Typography>
-      <br/>
+      <Typography variant="h5" component="div">Recent Projects</Typography>
+      <br />
       <Box
         sx={{
           height: 400,
@@ -39,21 +47,24 @@ const RecentProjects = () => {
           },
         }}
       >
-        <Box>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
-                },
+        <DataGrid
+          rows={rows}
+          columns={[
+            { field: "name", headerName: "Project Name", flex: 1 },
+            { field: "mentor", headerName: "Mentor", flex: 1 },
+            { field: "DueDate", headerName: "Due Date", flex: 1 },
+            { field: "status", headerName: "Status", flex: 1 },
+          ]}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
               },
-            }}
-            pageSizeOptions={[5]}
-            disableRowSelectionOnClick
-          />
-        </Box>
+            },
+          }}
+          pageSizeOptions={[5]}
+          disableRowSelectionOnClick
+        />
       </Box>
     </CustomCard>
   );

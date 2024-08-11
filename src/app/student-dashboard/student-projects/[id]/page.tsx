@@ -30,7 +30,7 @@ const Page: React.FC = ({params}:any) => {
             width: 320,
           }, }}>
         <h4>Project Details</h4>
-        <ProjectDetails id={params.id}/>
+        <ProjectDetails projectId={params.id}/>
       </Box>
     </Box>
 

@@ -41,7 +41,7 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-          <ProjectTable />
+          <ProjectTable organizationId={userId}/>
       </Box>
     </Box>
   );

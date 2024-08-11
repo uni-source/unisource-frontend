@@ -47,6 +47,20 @@ export const projectApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+    getProjectByMentorId: builder.query({
+      query: (id) => ({
+        url: `api/v1/project/mentor/${id}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
+    getProjectByOrganizationId: builder.query({
+      query: (id) => ({
+        url: `api/v1/project/organization/${id}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
   }),
 });
 
@@ -57,4 +71,6 @@ export const {
   useGetAllProjectsQuery,
   useDeleteProjectMutation,
   useUpdateProjectStatusMutation,
+  useGetProjectByMentorIdQuery,
+  useGetProjectByOrganizationIdQuery
 } = projectApi;
