@@ -46,7 +46,7 @@ const ViewProposal: React.FC = () => {
                   </MDBCol>
                   <MDBCol md="4">
                     <div className="custom-input mb-4">
-                      <label htmlFor="duedate">Submitted Date</label>
+                      <label htmlFor="duedate">Due Date</label>
                       <input
                         type="text"
                         id="duedate"
