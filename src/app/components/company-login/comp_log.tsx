@@ -27,20 +27,31 @@ const validationSchema = Yup.object({
 const CompLogIn = () => {
   const router = useRouter();
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
-  const { token } = useSelector((state: any) => state.auth);
+  const { token,user } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      router.push("/organization-dashboard");
+    const localUser = localStorage.getItem("user");
+    if (localUser) {
+      const parsedUser = JSON.parse(localUser);
+      const role = parsedUser?.role;
+      if (role === "MENTOR") {
+        router.push("/mentor-dashboard");
+      } else if (role === "ORGANIZATION") {
+        router.push("/organization-dashboard");
+      }
     }
   }, [router]);
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Organization login successful");
-      router.push("/organization-dashboard");
+      toast.success("Login successful");
+      const role = user?.role;
+      if (role === "MENTOR") {
+        router.push("/mentor-dashboard");
+      } else if (role === "ORGANIZATION") {
+        router.push("/organization-dashboard");
+      }
     }
     if (isError) {
       if ("data" in error) {

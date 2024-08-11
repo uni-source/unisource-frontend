@@ -6,7 +6,7 @@ import ProfileStat from "@/app/components/dashboard/mentor-dashboard/mentor-prof
 import AccountInformationForm from "@/app/components/dashboard/mentor-dashboard/mentor-profile/account-info/account-info";
 import PasswordSettingsForm from "@/app/components/dashboard/mentor-dashboard/mentor-profile/psw-setting/psw-setting";
 import Loading from "@/app/components/loading/loading";
-import { useGetMentorByIdQuery } from "../../../../redux/features/mentor/mentorApi";
+import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi";
 
 const Page: React.FC = () => {
 
@@ -25,7 +25,7 @@ const Page: React.FC = () => {
     data: organization,
     isLoading,
     refetch,
-  } = useGetMentorByIdQuery(userId, { refetchOnMountOrArgChange: true });
+  } = useGetMentorByIdentityQuery(userId, { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
     return (

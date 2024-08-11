@@ -4,6 +4,8 @@ import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sid
 import Box from "@mui/material/Box";
 import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
 import ProposalTable from "@/app/components/dashboard/mentor-dashboard/mentor-proposal/proposal-list/proposal-list";
+import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi"; 
+import Loading from "@/app/components/loading/loading";
 
 const Page: React.FC = ({ params }: any) => {
   const [userId, setUserId] = useState<number>(0);
@@ -15,23 +17,28 @@ const Page: React.FC = ({ params }: any) => {
       setUserId(parsedUser?.id);
       console.log(parsedUser?.id);
     }
-  }, []);  // Added an empty dependency array to only run this effect once.
+  }, []);
+  const { data: mentor, isLoading, refetch } = useGetMentorByIdentityQuery(userId,
+    { refetchOnMountOrArgChange: true });
+
+  if (isLoading) {
+    return <div><Loading /></div>;
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
-      <MiniDrawer childTitle="Pending Proposals" mentor={null} />
+      <MiniDrawer childTitle="Pending Proposals" mentor={mentor} />
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: 3,
-          marginTop: 4,
+          marginTop: 7,
           '@media (max-width: 600px)': {
             width: 320,
           },
         }}
       >
-        <SearchBox/>
         <ProposalTable/>
       </Box>
     </Box>

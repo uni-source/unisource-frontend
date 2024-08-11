@@ -10,7 +10,7 @@ import {
   MDBCardBody,
   MDBCardImage,
 } from "mdb-react-ui-kit";
-import { useUpdateOrganizationAvatarMutation } from "../../../../../../../redux/features/organization/organizationApi";
+import { useUpdateMentorAvatarMutation } from "../../../../../../../redux/features/mentor/mentorApi"; 
 import toast from "react-hot-toast";
 interface ProfileProfileStatProps {
   organization: any;
@@ -28,7 +28,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       isError: updateAvatarIsError,
       error: updateAvatarError,
     },
-  ] = useUpdateOrganizationAvatarMutation();
+  ] =useUpdateMentorAvatarMutation();
   const [image, setImage] = useState("");
 
   useEffect(() => {

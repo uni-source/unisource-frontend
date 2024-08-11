@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { Select, MenuItem, FormControl } from '@mui/material';
 import toast from 'react-hot-toast';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
-import { useGetAllMentorsQuery } from '../../../../../../redux/features/mentor/mentorApi';
+import { useGetMentorsByOrganizationIdQuery } from '../../../../../../redux/features/mentor/mentorApi';
 import { useCreateProjectMutation } from '../../../../../../redux/features/project/projectApi';
 import './create-project-component.css';
 
@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
 });
 
 const CreateProject: React.FC<OrganizationIdProps> = ({ organizationId }) => {
-  const { data: mentors, error: mentorsError } = useGetAllMentorsQuery({});
+  const { data: mentors, error: mentorsError } = useGetMentorsByOrganizationIdQuery(organizationId);
   const [createProject, { isLoading, isSuccess, isError, error }] = useCreateProjectMutation();
 
   useEffect(() => {

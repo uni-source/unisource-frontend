@@ -5,19 +5,34 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import SearchBox from '../search-box/search-box';
 import './project-list.css';
-import { useRouter } from 'next/navigation'
-import { useGetAllProjectsQuery } from '../../../../../../../redux/features/project/projectApi';
+import { useRouter } from 'next/navigation';
+import { useGetProjectByOrganizationIdQuery } from '../../../../../../../redux/features/project/projectApi';
 import Loading from '@/app/components/loading/loading';
-
-const ProjectTable = () => {
-    const { data: projects = [], isLoading, error } = useGetAllProjectsQuery({});
-    const [filteredRows, setFilteredRows] = useState(projects);
+interface OrganizationIdProps {
+    organizationId: number;
+  }
+const ProjectTable:React.FC<OrganizationIdProps> = ({ organizationId }) =>  {
+    const { data: projects = [], isLoading, error } = useGetProjectByOrganizationIdQuery(organizationId);
+    const [filteredRows, setFilteredRows] = useState([]);
     const router = useRouter();
+
     const handleViewClick = (id: number) => {
       router.push(`/organization-dashboard/organization-all-projects/${id}`);
-     };
+    };
+
     useEffect(() => {
-        setFilteredRows(projects);
+        if (projects?.data?.length) {
+            setFilteredRows(projects?.data.map((project: any) => ({
+                id: project.id,
+                pjname: project.name,
+                title: project.title,
+                category: project.category,
+                due_date: new Date(project.dueDate).toLocaleDateString(),
+                status: project.status || 'N/A', 
+            })));
+        }else {
+            setFilteredRows([]);
+        }
     }, [projects]);
 
     const columns: GridColDef[] = [
@@ -44,13 +59,19 @@ const ProjectTable = () => {
     ];
 
     const handleSearch = (query: string) => {
-      if (query) {
-          setFilteredRows(projects.filter((project: any) => project.id.includes(query)));
-      } else {
-          setFilteredRows(projects);
-      }
-  };
-
+        if (query) {
+            setFilteredRows(filteredRows.filter((project: any) => project.pjname.toLowerCase().includes(query.toLowerCase())));
+        } else {
+            setFilteredRows(projects.data.map((project: any) => ({
+                id: project.id,
+                pjname: project.name,
+                title: project.title,
+                category: project.category,
+                due_date: new Date(project.dueDate).toLocaleDateString(),
+                status: project.status || 'N/A',
+            })));
+        }
+    };
 
     return (
         <div>
@@ -68,8 +89,8 @@ const ProjectTable = () => {
             >
                 <Box sx={{ minWidth: 800 }}>
                     {isLoading ? (
-                        <Loading/>
-                    ) :  (
+                        <Loading />
+                    ) : (
                         <DataGrid
                             rows={filteredRows}
                             columns={columns}
