@@ -1,18 +1,14 @@
 'use client';
 import React, { useState } from 'react';
-import { Select, MenuItem, FormControl } from '@mui/material';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from 'mdb-react-ui-kit';
-import './proposal-table.css';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import './pending-table.css';
 
-
-const ViewProposal: React.FC = () => {
+const ViewPendingProject: React.FC = () => {
   const [formValues, setFormValues] = useState({
     
   });
 
   return (
-
     <MDBContainer id="mdb-container">
       <MDBRow className="justify-content-center">
         <MDBCol md="12">
@@ -27,8 +23,8 @@ const ViewProposal: React.FC = () => {
                       <label htmlFor="name">Project name</label>
                       <input
                         type="text"
-                        id="name"
-                        name="name"
+                        id="pname"
+                        name="pname"
                         className="form-control"
                         
                       />
@@ -48,16 +44,18 @@ const ViewProposal: React.FC = () => {
                   </MDBCol>
                   <MDBCol md="4">
                     <div className="custom-input mb-4">
-                      <label htmlFor="duedate">Due Date</label>
+                      <label htmlFor="duedate">Organization</label>
                       <input
                         type="text"
-                        id="duedate"
-                        name="subdate"
+                        id="organization"
+                        name="organization"
                         className="form-control"
                         
                       />
                     </div>
                   </MDBCol>
+
+                  
                 </MDBRow>
                 <MDBRow className="mt-3">
                   <MDBCol md="12">
@@ -70,44 +68,45 @@ const ViewProposal: React.FC = () => {
                       ></textarea>
                     </div>
                   </MDBCol>
+
+                  <MDBCol md="12">
+                    <label htmlFor="description">Technologies</label>
+                    <div className="custom-input mb-4">
+                      <textarea
+                        id="technologies"
+                        name="technologies"
+                        className="form-control"
+                      ></textarea>
+                    </div>
+                  </MDBCol>
                 </MDBRow>
                 
                 <MDBRow className="mt-3">
-                    <MDBCol md="3">
-                         Project proposal
-                            <br />
-                                 <div className="custom-input mb-3">
-                                    <MDBBtn className="ac-info-button" id='down-btn'>
-                                        <PictureAsPdfIcon style={{ marginRight: '8px' }} />
-                                        Download
-                                    </MDBBtn>
-                                </div>
+                  <MDBCol md="4">
+                      <div className="custom-input mb-4">
+                        <label htmlFor="mentor">Mentor</label>
+                        <input
+                          type="text"
+                          id="mentor"
+                          name="mentor"
+                          className="form-control"
+                        />
+                      </div>
+                    </MDBCol>
+
+                    <MDBCol md="4">
+                      <div className="custom-input mb-4">
+                        <label htmlFor="duedate">Due Date</label>
+                        <input
+                          type="text"
+                          id="duedate"
+                          name="subdate"
+                          className="form-control"
+                        />
+                      </div>
                     </MDBCol>
                 </MDBRow>
-                <MDBRow>
-                <MDBCol md="6">
-                    <div className="custom-input mb-4">
-                      <label htmlFor="name">Student Name</label>
-                      <input
-                        type="text"
-                        id="stdname"
-                        name="stdname"
-                        className="form-control"
-                      />
-                    </div>
-                  </MDBCol>
-                  <MDBCol md="6">
-                    <div className="custom-input mb-4">
-                      <label htmlFor="name">Student Email</label>
-                      <input
-                        type="text"
-                        id="stdEmail"
-                        name="stdEmail"
-                        className="form-control"
-                      />
-                    </div>
-                  </MDBCol>
-                </MDBRow>
+                
                 <br />
                 <MDBRow className="mt-4">
                   <MDBCol md="2">
@@ -126,7 +125,7 @@ const ViewProposal: React.FC = () => {
                   </MDBCol>
                   <MDBCol md="2">
                     <MDBBtn className="ac-info-button" type="submit">
-                      Accept
+                      Approve
                     </MDBBtn>
                   </MDBCol>
                   <MDBCol md="2">
@@ -144,4 +143,4 @@ const ViewProposal: React.FC = () => {
   );
 };
 
-export default ViewProposal;
+export default ViewPendingProject;

@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sidenav";
+import MiniDrawer from "@/app/components/dashboard/faculty-dashboard/side-nav/sidenav";
 import Box from "@mui/material/Box";
-import ProposalTable from "@/app/components/dashboard/mentor-dashboard/mentor-proposal/proposal-list/proposal-list";
+
 import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi"; 
 import Loading from "@/app/components/loading/loading";
-import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
 
+import PendingList from "@/app/components/dashboard/faculty-dashboard/faculty-pending-project/pending-list/pending-list";
+import SearchBox from "@/app/components/dashboard/faculty-dashboard/student-verification/search-box/search-box";
 
 const Page: React.FC = ({ params }: any) => {
   const [userId, setUserId] = useState<number>(0);
@@ -28,7 +29,7 @@ const Page: React.FC = ({ params }: any) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <MiniDrawer childTitle="Pending Proposals" mentor={mentor} />
+      <MiniDrawer childTitle="Pending Projects" mentor={mentor} />
       <Box
         component="main"
         sx={{
@@ -40,8 +41,8 @@ const Page: React.FC = ({ params }: any) => {
           },
         }}
       >
-        <SearchBox onSearch={mentor}/>
-        <ProposalTable/>
+        <SearchBox/>
+        <PendingList/>
       </Box>
     </Box>
   );

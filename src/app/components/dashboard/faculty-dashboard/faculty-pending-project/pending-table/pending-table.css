@@ -1,0 +1,86 @@
+.custom-input {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .custom-input .form-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    transition: all 0.2s;
+    background: white;
+    padding: 0 0.25rem;
+    pointer-events: none;
+  }
+  
+  .custom-input input:focus + .form-label,
+  .custom-input input:not(:placeholder-shown) + .form-label,
+  .custom-input textarea:focus + .form-label,
+  .custom-input textarea:not(:placeholder-shown) + .form-label,
+  .custom-input.floating .form-label {
+    top: -0.75rem;
+    left: 0.75rem;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+  
+   
+  .ac-info-button{
+  font-size: 14px !important;
+  font-weight: bolder !important;
+  color: white !important;
+  width: 100% !important;
+  height: 35px !important;
+  flex-shrink: 0 !important;
+  border-radius: 50px !important;
+  border: 1px solid #000 !important;
+  background: var(--button-purple) !important;
+  margin-right: 30px !important;
+  margin-bottom: 20px !important;
+  }
+
+/*comment*/
+
+.form-control{
+    height: 50px;
+}
+
+#projectDescription{
+    height: 329px;
+}
+
+#technologies{
+    height: 100px;
+}
+
+
+#mdb-container{
+    margin-top: 6rem;
+    margin-bottom: 2.5rem;
+}
+
+#label-technologies{
+    margin-top: 0;
+}
+
+#label-resources{
+    margin-top: 15px;
+}
+#label-duedate{
+    margin-top: 15px;
+}
+
+#label-mentor{
+    margin-top: 15px;
+}
+#download-prop-btn{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #B163FE;
+}
+
+#down-btn{
+    margin-top: 1rem;
+}
+
