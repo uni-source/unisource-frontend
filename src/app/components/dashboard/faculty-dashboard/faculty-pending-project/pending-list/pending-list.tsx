@@ -3,23 +3,25 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-import './proposal-list.css';
+import './pending-list.css';
 import { useRouter } from 'next/navigation';
 
 
-const ProposalTable=() =>{  
+const PendingList=() =>{  
 
   const router = useRouter();
   
   const handleViewClick = (id: number) => {
-   router.push(`/mentor-dashboard/mentor-proposals/${id}`);
+   router.push(`/faculty-dashboard/pending-projects/${id}`);
   };
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Proposal ID', flex: 1 },
+    { field: 'id', headerName: 'Project ID', flex: 1 },
     { field: 'pjname', headerName: 'Project Name', flex: 1 },
-    { field: 'stdname', headerName: 'Student Name', flex: 1 },
-    { field: 'duedate', headerName: 'Due Date', flex: 1 },
+    { field: 'title', headerName: 'Title', flex: 1 },
+    { field: 'category', headerName: 'Category', flex: 1 },
+    { field: 'organization', headerName: 'organization', flex: 1 },
+    { field: 'dueDate', headerName: 'Due Date', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
     { field: 'view',
       headerName: 'View',
@@ -37,7 +39,7 @@ const ProposalTable=() =>{
   ];
 
   const rows = [
-    { id:'1', pjname: 'Project Alpha',  stdname: "Reshan Gayantha", duedate: '2024-08-01', status: 'pending' }
+    { id:'1', pjname: 'Project Alpha',  title: "Community Platform", category: "Web", organization: "WSO2", dueDate: '2024-08-01', status: 'pending' }
   ];
 
   return (
@@ -72,4 +74,4 @@ const ProposalTable=() =>{
   );
 }
 
-export default ProposalTable;
+export default PendingList;

@@ -123,7 +123,7 @@ const StyledLink = styled(Link)({
 
 interface MiniDrawerProps {
   childTitle: string;
-  mentor:any;
+  mentor:any; 
 }
 
 export default function MiniDrawer({ childTitle,mentor }: MiniDrawerProps) {
@@ -155,7 +155,7 @@ export default function MiniDrawer({ childTitle,mentor }: MiniDrawerProps) {
     { text: 'Dashboard', icon: <DashboardIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard' },
     { text: 'Student Verification', icon: <PersonAddIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/student-verification' },
     { text: 'All Students', icon: <PeopleAltIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
-    { text: 'Pending Projects', icon: <RuleFolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
+    { text: 'Pending Projects', icon: <RuleFolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/pending-projects' },
     { text: 'All Projects', icon: <FolderCopyIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
     { text: 'Org Verification', icon: <AddBusinessIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
     { text: 'All Organizations', icon: <StoreIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
