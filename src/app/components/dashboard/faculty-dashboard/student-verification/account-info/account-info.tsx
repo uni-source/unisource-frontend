@@ -8,6 +8,8 @@ import {
   MDBCardBody
 } from 'mdb-react-ui-kit';
 import './account-info.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 const AccountInformationForm: React.FC = () => {
@@ -68,10 +70,18 @@ const AccountInformationForm: React.FC = () => {
                   </MDBBtn>
                 </MDBCol>
                 <MDBCol md="auto">
-                  <MDBBtn className="ac-info-button">
-                    Pending
-                  </MDBBtn>
+                  <DropdownButton
+                    id="status-dropdown"
+                    title="Pending"
+                    variant="secondary"
+                    
+                  >
+                    <Dropdown.Item href="#">Not Started</Dropdown.Item>
+                    <Dropdown.Item href="#">Pending</Dropdown.Item>
+                    <Dropdown.Item href="#">Approved</Dropdown.Item>
+                  </DropdownButton>
                 </MDBCol>
+                
               </MDBRow>
             </MDBCardBody>
           </MDBCard>

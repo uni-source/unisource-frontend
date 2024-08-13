@@ -157,8 +157,8 @@ export default function MiniDrawer({ childTitle,mentor }: MiniDrawerProps) {
     { text: 'All Students', icon: <PeopleAltIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/all-students' },
     { text: 'Pending Projects', icon: <RuleFolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/pending-projects' },
     { text: 'All Projects', icon: <FolderCopyIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/all-projects' },
-    { text: 'Org Verification', icon: <AddBusinessIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
-    { text: 'All Organizations', icon: <StoreIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/test' },
+    { text: 'Org Verification', icon: <AddBusinessIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/organization-verification' },
+    { text: 'All Organizations', icon: <StoreIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/faculty-dashboard/all-organization' },
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
 
