@@ -1,0 +1,43 @@
+.project-form-container {
+    background-color: var(--light-grey)!important;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 60px;
+  }
+  
+  .pdf-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .pdf-icon {
+    width: 24px;
+    height: auto;
+  }
+  
+  .btn-back {
+    font-size: 13px !important;
+    font-weight: bolder !important;
+    color: white !important;
+    width: 100px !important;
+    height: 35px !important;
+    flex-shrink: 0 !important;
+    border-radius: 50px !important;
+    border: 1px solid #000 !important;
+    background: var(--button-purple) !important;
+    margin-top: 30px !important;
+    margin-right: 10px !important;
+    text-align: center !important;
+  }
+
+  @media (min-width: 768px) {
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
