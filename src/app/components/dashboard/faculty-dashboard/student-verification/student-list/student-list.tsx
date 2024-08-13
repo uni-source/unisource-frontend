@@ -27,6 +27,7 @@ const StudentTable=() =>{
         <Button
             className='view-button'
             variant="contained"
+            href="/faculty-dashboard/student-verification/view-student"
         >
             View
         </Button>

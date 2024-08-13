@@ -63,7 +63,7 @@ const AccountInformationForm: React.FC = () => {
               </MDBRow>
               <MDBRow className="mt-4">
                 <MDBCol md="auto">
-                  <MDBBtn className="ac-info-button">
+                  <MDBBtn className="ac-info-button" href="/faculty-dashboard/student-verification">
                     Go Back
                   </MDBBtn>
                 </MDBCol>
