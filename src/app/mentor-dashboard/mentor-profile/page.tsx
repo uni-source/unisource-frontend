@@ -6,9 +6,10 @@ import ProfileStat from "@/app/components/dashboard/mentor-dashboard/mentor-prof
 import AccountInformationForm from "@/app/components/dashboard/mentor-dashboard/mentor-profile/account-info/account-info";
 import PasswordSettingsForm from "@/app/components/dashboard/mentor-dashboard/mentor-profile/psw-setting/psw-setting";
 import Loading from "@/app/components/loading/loading";
-import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
-import organizationAuth from '../../custom-hooks/organizationAuth';
+import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi";
+
 const Page: React.FC = () => {
+
   const [userId, setUserId] = useState<number>(0);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Page: React.FC = () => {
     data: organization,
     isLoading,
     refetch,
-  } = useGetOrganizationQuery(userId, { refetchOnMountOrArgChange: true });
+  } = useGetMentorByIdentityQuery(userId, { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
     return (

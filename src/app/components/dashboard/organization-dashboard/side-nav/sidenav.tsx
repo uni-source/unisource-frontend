@@ -28,6 +28,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
@@ -153,7 +154,7 @@ export default function MiniDrawer({ childTitle,organization }: MiniDrawerProps)
     { text: 'Projects', icon: <FolderIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/create-project' },
     { text: 'All Projects', icon: <FolderSharedIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-all-projects' },
     { text: 'Proposals', icon: <AssignmentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-proposals' },
-    { text: 'Mentor Account', icon: <EmojiEventsIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/organization-mentor-account' },
+    { text: 'Mentor Account', icon: <CoPresentIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '/organization-dashboard/create-mentor' },
     { text: 'Logout', icon: <ExitToAppIcon sx={{ fontSize: 30, marginTop: 1, marginBottom: 1 }} />, link: '', onClick: handleLoggedOut }
   ];
 

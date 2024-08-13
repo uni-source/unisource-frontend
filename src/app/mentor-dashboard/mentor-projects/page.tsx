@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sidenav";
 import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
-import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
-import ProjectGrid from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-table/project-table";
+import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi";
+import ProjectTable from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-list/project-list";
+import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -19,10 +20,10 @@ const Page: React.FC = () => {
   });
 
   const {
-    data: mentor,
+    data: organization,
     isLoading,
     refetch,
-  } = useGetOrganizationQuery(userId, { refetchOnMountOrArgChange: true });
+  } = useGetMentorByIdentityQuery(userId, { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
     return (
@@ -36,12 +37,12 @@ const Page: React.FC = () => {
     <Box sx={{ display: "flex" }}>
       <MiniDrawer
         childTitle="All Projects"
-        mentor={mentor}
+        mentor={organization}
       />
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-        <ProjectGrid />
+          <ProjectTable mentorId={organization?.data?.id}/>
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MDBContainer,
   MDBRow,
@@ -9,23 +9,25 @@ import {
   MDBCardBody,
 } from "mdb-react-ui-kit";
 import { useRouter } from "next/navigation";
+import { useGetProjectByIdQuery } from "../../../../../../redux/features/project/projectApi";
 import "./ProjectDetails.css";
+import Loading from "@/app/components/loading/loading";
 
 interface ProjectDetailsProps {
-  id: any;
+  projectId: string;
 }
 
-const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
+const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectId }) => {
   const router = useRouter();
+  const { data: project, isLoading, isError } = useGetProjectByIdQuery(projectId);
+
   const handleGoBack = () => {
     router.push(`/student-dashboard/student-projects`);
   };
 
-  const [formData, setFormData] = useState({
-    projectId: "",
-    name: "",
-    description: "",
-  });
+  if (isLoading) return <Loading />;
+
+  const { id, name, description, dueDate, resource } = project?.data || {};
 
   return (
     <MDBContainer>
@@ -40,13 +42,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                       type="text"
                       id="projectId"
                       className="form-control"
-                      value={formData.projectId}
+                      value={id || ""}
                       disabled
                     />
                     <label
                       htmlFor="projectId"
                       className={`form-label ${
-                        formData.projectId ? "floating" : ""
+                        projectId ? "floating" : ""
                       }`}
                     >
                       Project Id
@@ -59,13 +61,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                       type="text"
                       id="name"
                       className="form-control"
-                      value={formData.name}
+                      value={name || ""}
                       disabled
                     />
                     <label
-                      htmlFor="contactNumber"
+                      htmlFor="name"
                       className={`form-label ${
-                        formData.name ? "floating" : ""
+                        name ? "floating" : ""
                       }`}
                     >
                       Project Name
@@ -79,13 +81,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                     <textarea
                       id="description"
                       className="form-control"
-                      value={formData.description}
+                      value={description || ""}
                       disabled
                     ></textarea>
                     <label
                       htmlFor="description"
                       className={`form-label ${
-                        formData.description ? "floating" : ""
+                        description ? "floating" : ""
                       }`}
                     >
                       Description
@@ -93,7 +95,27 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                   </div>
                 </MDBCol>
               </MDBRow>
-              {"file name"}
+              <MDBRow className="mt-3">
+                <MDBCol md="12">
+                  <div className="custom-input mb-4">
+                    <input
+                      type="text"
+                      id="resource"
+                      className="form-control"
+                      value={resource || ""}
+                      disabled
+                    />
+                    <label
+                      htmlFor="resource"
+                      className={`form-label ${
+                        resource ? "floating" : ""
+                      }`}
+                    >
+                      Resource
+                    </label>
+                  </div>
+                </MDBCol>
+              </MDBRow>
               <MDBRow
                 className="mt-4"
                 style={{
@@ -104,7 +126,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ id }) => {
                 }}
               >
                 <MDBCol md="auto">
-                  <MDBBtn className="ac-info-button"onClick={() => handleGoBack()}>Go Back</MDBBtn>
+                  <MDBBtn className="ac-info-button" onClick={handleGoBack}>Go Back</MDBBtn>
                 </MDBCol>
                 <MDBCol md="auto" className="flex-column-mobile">
                   <MDBBtn className="ac-info-button">Choose File</MDBBtn>
