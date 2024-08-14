@@ -37,10 +37,9 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ p: 3, marginTop: 8, '@media (max-width: 600px)': {
             width: 300,
           }, }}>
-        <MyProjectTable />
+        <MyProjectTable studentId={userId}/>
       </Box>
     </Box>
   );
 };
-// export default studentAuth(Page);
-export default Page;
+export default studentAuth(Page);

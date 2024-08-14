@@ -2,19 +2,28 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import './project-table.css'
-const MyProjectTable = () => {
+import { useGetProjectsByStudentIdQuery } from '../../../../../../../redux/features/project/studentHasProjectApi';
+import './project-table.css';
+
+interface MyProjectTableProps {
+  studentId: number;
+}
+
+const MyProjectTable: React.FC<MyProjectTableProps> = ({ studentId }) => {
+  const { data, error, isLoading } = useGetProjectsByStudentIdQuery(studentId);
+
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Project ID', flex: 1 },
-    { field: 'name', headerName: 'Project Name', flex: 1 },
-    { field: 'mentor', headerName: 'Mentor', flex: 1 },
-    { field: 'due_date', headerName: 'Due date', flex: 1 },
+    { field: 'projectId', headerName: 'Project ID', flex: 1 },
+    { field: 'projectName', headerName: 'Project Name', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
   ];
 
-  const rows = [
-    { id: '1', name: 'Project Alpha', mentor: 'John Wick', due_date: '2024-08-01', status: 'Completed' },
-  ];
+  const rows = data?.data?.map((project: { id: any; projectId: any; projectName: any; status: any; }) => ({
+    id: project.id,
+    projectId: project.projectId,
+    projectName: project.projectName,
+    status: project.status,
+  })) || [];
 
   return (
     <Box
@@ -22,13 +31,13 @@ const MyProjectTable = () => {
         height: 400,
         width: '100%',
         overflow: 'auto',
-      }
-    }
+      }}
     >
       <Box sx={{ minWidth: 800 }}>
         <DataGrid
           rows={rows}
           columns={columns}
+          loading={isLoading}
           initialState={{
             pagination: {
               paginationModel: {
@@ -37,12 +46,11 @@ const MyProjectTable = () => {
             },
           }}
           pageSizeOptions={[5]}
-          checkboxSelection
           disableRowSelectionOnClick
         />
       </Box>
     </Box>
   );
-}
+};
 
 export default MyProjectTable;

@@ -5,10 +5,11 @@ import { SvgIconProps } from '@mui/material/SvgIcon';
 import { styled } from '@mui/material/styles';
 
 interface StatCardProps {
-  icon: React.ReactElement<SvgIconProps>;
+  icon?: React.ReactElement<SvgIconProps>;
   stat: string;
   label: string;
   color: string;
+  image?: string; 
 }
 
 const CustomCard = styled(Card)({
@@ -34,13 +35,24 @@ const IconContainer = styled('div')(({ color }) => ({
   backgroundColor: 'white',
 }));
 
-const StatCard: React.FC<StatCardProps> = ({ icon, stat, label, color }) => {
+const BadgeImage = styled('img')({
+  width: '4rem',
+  height: '4rem',
+  borderRadius: '50%',
+  objectFit: 'cover',
+});
+
+const StatCard: React.FC<StatCardProps> = ({ icon, stat, label, color, image }) => {
   return (
     <CustomCard className="stat-card">
       <Card.Body className="d-flex align-items-center">
-        <IconContainer color={color}>
-          {icon}
-        </IconContainer>
+        {image ? (
+          <BadgeImage src={image} alt={label} />
+        ) : (
+          <IconContainer color={color}>
+            {icon}
+          </IconContainer>
+        )}
         <div>
           <Typography variant="h5" component="div">
             {stat}
