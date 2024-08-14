@@ -36,10 +36,9 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8, '@media (max-width: 600px)': {
             width: 320,
           },  }}>
-        <ProposalGrid />
+        <ProposalGrid studentId={userId}/>
       </Box>
     </Box>
     )
 };
-// export default studentAuth(Page);
-export default Page;
+export default studentAuth(Page);

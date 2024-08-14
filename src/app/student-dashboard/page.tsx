@@ -33,12 +33,11 @@ const Page: React.FC = () => {
             width: 320,
           }, }}>
         <h4>Overview</h4>
-        <StatsRow />
-        <BasicTable />
+        <StatsRow student={student?.data}studentId={userId}/>
+        <BasicTable studentId={userId}/>
       </Box>
     </Box>
   );
 };
 
-// export default studentAuth(Page);
-export default Page;
+export default studentAuth(Page);

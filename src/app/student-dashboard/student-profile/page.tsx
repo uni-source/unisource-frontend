@@ -17,7 +17,6 @@ const Page: React.FC = () => {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
-      console.log(parsedUser?.id)
     }
   });
 
@@ -40,5 +39,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default studentAuth(Page);
-export default Page;
+export default studentAuth(Page);

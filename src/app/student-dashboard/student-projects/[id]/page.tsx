@@ -30,11 +30,10 @@ const Page: React.FC = ({params}:any) => {
             width: 320,
           }, }}>
         <h4>Project Details</h4>
-        <ProjectDetails projectId={params.id}/>
+        <ProjectDetails projectId={params.id} studentId={userId}/>
       </Box>
     </Box>
 
   )
 }
-// export default studentAuth(Page);
-export default Page;
+export default studentAuth(Page);
