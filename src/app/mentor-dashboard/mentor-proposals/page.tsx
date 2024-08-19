@@ -5,8 +5,7 @@ import Box from "@mui/material/Box";
 import ProposalTable from "@/app/components/dashboard/mentor-dashboard/mentor-proposal/proposal-list/proposal-list";
 import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi"; 
 import Loading from "@/app/components/loading/loading";
-import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
-
+import mentorAuth from "@/app/custom-hooks/mentorAuth";
 
 const Page: React.FC = ({ params }: any) => {
   const [userId, setUserId] = useState<number>(0);
@@ -40,11 +39,10 @@ const Page: React.FC = ({ params }: any) => {
           },
         }}
       >
-        <SearchBox onSearch={mentor}/>
-        <ProposalTable/>
+        <ProposalTable mentorId={mentor?.data?.id}/>
       </Box>
     </Box>
   );
 };
 
-export default Page;
+export default mentorAuth(Page);

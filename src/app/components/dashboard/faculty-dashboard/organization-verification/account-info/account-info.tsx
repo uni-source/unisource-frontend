@@ -10,9 +10,72 @@ import {
 import './account-info.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useGetOrganizationQuery,useVerifyOrganizationMutation } from '../../../../../../../redux/features/organization/organizationApi';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+interface ProjectGridProps {
+  organizationId: number;
+}
 
+const AccountInformationForm: React.FC<ProjectGridProps> = ({ organizationId }) => {
+  const router = useRouter();
+  const { data: organization, isLoading, isError,refetch } = useGetOrganizationQuery(organizationId,
+    { refetchOnMountOrArgChange: true });
+  const [verifyOrganization] = useVerifyOrganizationMutation();
+  const [status, setStatus] = useState<string>('Not Started');
+  const [adminIdentityId, setAdminIdentityId] = useState<number | null>(null);
+  const handleBack = () => {
+    router.push(`/faculty-dashboard/organization-verification`);
+  };
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setAdminIdentityId(parsedUser?.id);
+    }
+  }, []); 
 
-const AccountInformationForm: React.FC = () => {
+  useEffect(() => {
+    const updateVerificationStatus = async () => {
+      if (status === 'Approved' && adminIdentityId !== null) {
+        try {
+          const response = await verifyOrganization({
+            adminIdentityId,
+            organizationId,
+            verifiedOrganization: true,
+          }).unwrap();
+          toast.success("Updated verification status")
+          refetch()
+          router.push(`/faculty-dashboard/organization-verification`);
+        } catch (error) {
+          console.error('Error updating verification status (Approved):', error);
+        }
+      }else if(status === 'Pending' && adminIdentityId !== null){
+        try {
+          const response = await verifyOrganization({
+            adminIdentityId,
+            organizationId,
+            verifiedOrganization: false,
+          }).unwrap();
+          toast.success("Updated verification status")
+          refetch()
+          router.push(`/faculty-dashboard/organization-verification`);
+        } catch (error) {
+          console.error('Error updating verification status (Pending):', error);
+        }
+        
+      }
+    };
+
+    updateVerificationStatus();
+    
+  }, [status, adminIdentityId, organizationId, verifyOrganization, refetch, router]);
+
+  const handleStatusChange = (eventKey: string | null) => {
+    if (eventKey) {
+      setStatus(eventKey);
+    }
+  };
 
   return (
     <MDBContainer>
@@ -30,7 +93,8 @@ const AccountInformationForm: React.FC = () => {
                       type="text"
                       id="fullname"
                       className="form-control"
-                      value=""
+                      value={organization?.data?.name || ''}
+                      readOnly
                     />
                     <label htmlFor="fullname" className={`form-label`}>
                       Organization Name
@@ -43,6 +107,8 @@ const AccountInformationForm: React.FC = () => {
                       type="text"
                       id="contactNumber"
                       className="form-control"
+                      value={organization?.data?.contact || ''}
+                      readOnly
                     />
                     <label htmlFor="contactNumber" className={`form-label`}>
                       Contact Number
@@ -52,20 +118,20 @@ const AccountInformationForm: React.FC = () => {
               </MDBRow>
               <MDBRow className="mt-4">
                 <MDBCol md="auto">
-                  <MDBBtn className="ac-info-button">
+                  <MDBBtn className="ac-info-button"onClick={handleBack}>
                     Go Back
                   </MDBBtn>
                 </MDBCol>
                 <MDBCol md="auto">
                   <DropdownButton
                     id="status-dropdown"
-                    title="Pending"
+                    title={status}
                     variant="secondary"
-                    
+                    onSelect={handleStatusChange}
                   >
-                    <Dropdown.Item href="#">Not Started</Dropdown.Item>
-                    <Dropdown.Item href="#">Pending</Dropdown.Item>
-                    <Dropdown.Item href="#">Approved</Dropdown.Item>
+                    <Dropdown.Item eventKey="Not Started">Not Started</Dropdown.Item>
+                    <Dropdown.Item eventKey="Pending">Pending</Dropdown.Item>
+                    <Dropdown.Item eventKey="Approved">Approved</Dropdown.Item>
                   </DropdownButton>
                 </MDBCol>
                 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,29 +9,42 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import NoteIcon from '@mui/icons-material/Note';
 import { useGetProjectByOrganizationIdQuery } from '../../../../../../redux/features/project/projectApi'; 
 import { useGetMentorsByOrganizationIdQuery } from '../../../../../../redux/features/mentor/mentorApi'; 
+import { useGetProposalsByOrganizationIdQuery } from '../../../../../../redux/features/proposal/proposalApi'; 
+import { useGetStudentHasProjectByOrganizationIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi';
 
 const StatsRow: React.FC<{ organizationId: number }> = ({ organizationId }) => {
-  
   const { data: projectData, isLoading: isProjectLoading, isError: isProjectError } = useGetProjectByOrganizationIdQuery(organizationId);
   const { data: mentorData, isLoading: isMentorLoading, isError: isMentorError } = useGetMentorsByOrganizationIdQuery(organizationId);
-
-  const projectCount = React.useMemo(() => {
-    if (isProjectLoading || isProjectError || !projectData) return '...'; 
+  const { data: proposalData, isLoading: isProposalLoading, isError: isProposalError } = useGetProposalsByOrganizationIdQuery(organizationId);
+  const { data: studentHasProject, isLoading: isStudentHasProject, isError: isStudentHasProjectError } = useGetStudentHasProjectByOrganizationIdQuery(organizationId);
+  const projectCount = useMemo(() => {
+    if (isProjectLoading || isProjectError || !projectData) return '0'; 
     return projectData.data.length; 
   }, [projectData, isProjectLoading, isProjectError]);
 
-  const mentorCount = React.useMemo(() => {
-    if (isMentorLoading || isMentorError || !mentorData) return '...'; 
+  const mentorCount = useMemo(() => {
+    if (isMentorLoading || isMentorError || !mentorData) return '0'; 
     return mentorData.data.length; 
   }, [mentorData, isMentorLoading, isMentorError]);
 
+  const approvedProposalCount = useMemo(() => {
+    if (isProposalLoading || isProposalError || !proposalData) return '0';
+    return proposalData.data.filter((proposal: any) => proposal.status === 'Approved').length;
+  }, [proposalData, isProposalLoading, isProposalError]);
+
+  const availableStudentsCount = useMemo(() => {
+    if (isStudentHasProject|| isStudentHasProjectError|| !studentHasProject) return '0';
+    
+    const uniqueStudentIds = new Set(studentHasProject.data.map((project: any) => project.studentId));
+    return uniqueStudentIds.size.toString();
+  }, [studentHasProject, isStudentHasProject, isStudentHasProjectError]);
   return (
     <Container className="my-4">
       <Row>
         <Col xs={12} md={6} lg={3} className="mb-4">
           <StatCard
             icon={<FaceIcon style={{ fontSize: '3rem' }} />}
-            stat="20"
+            stat={availableStudentsCount}
             label="Available Students"
             color="green"
           />
@@ -55,8 +68,8 @@ const StatsRow: React.FC<{ organizationId: number }> = ({ organizationId }) => {
         <Col xs={12} md={6} lg={3} className="mb-4">
           <StatCard
             icon={<NoteIcon style={{ fontSize: '3rem' }} />}
-            stat="18"
-            label="Proposals Received"
+            stat={approvedProposalCount.toString()}
+            label="Approved Proposals"
             color="brown"
           />
         </Col>

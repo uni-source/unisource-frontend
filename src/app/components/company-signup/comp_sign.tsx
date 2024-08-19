@@ -31,18 +31,19 @@ export default function CompSign() {
   const [register, { isLoading, isSuccess, error, isError }] =
     useRegisterMutation();
 
-  React.useEffect(() => {
-    if (isSuccess) {
-      toast.success("Company sign up successful");
-      router.push("/company-login");
-    }
-    if (isError) {
-      if ("data" in error) {
-        const errorData = (error as any) || "Registration Error";
-        toast.error(errorData?.data?.message);
+    React.useEffect(() => {
+      if (isSuccess) {
+        toast.success("Company sign up successful");
+        router.push("/company-login");
       }
-    }
-  }, [isSuccess, isError, error]);
+      if (isError) {
+        if ("data" in error) {
+          const errorData = (error as any) || "Registration Error";
+          toast.error(errorData?.data?.message);
+        }
+      }
+    }, [isSuccess, isError, error, router]);
+    
   const formik = useFormik({
     initialValues: {
       company: "",

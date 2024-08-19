@@ -6,6 +6,7 @@ import StatsRow from '../components/dashboard/mentor-dashboard/stat-row/statrow'
 import BasicTable from '../components/dashboard/mentor-dashboard/contribution-summery-table/cstable';
 import Loading from '../components/loading/loading';
 import { useGetMentorByIdentityQuery } from '../../../redux/features/mentor/mentorApi';
+import mentorAuth from '../custom-hooks/mentorAuth';
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -33,10 +34,10 @@ const Page: React.FC = () => {
           }, }}>
         <h4>Overview</h4>
         <StatsRow mentorId={mentor?.data?.id}/>
-        <BasicTable />
+        <BasicTable mentorId={mentor?.data?.id}/>
       </Box>
     </Box>
   );
 };
 
-export default Page;
+export default mentorAuth(Page);

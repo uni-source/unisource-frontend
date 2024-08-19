@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import { useGetOrganizationQuery } from "../../../../../../../redux/features/organization/organizationApi";
 import { 
     MDBCol, 
     MDBContainer, 
@@ -11,12 +11,17 @@ import {
     MDBCardImage 
 } from "mdb-react-ui-kit";
 
-interface ProfileProfileStatProps {
-    student: any;
-    refetch: any;
-}
-
-const ProfileStats: React.FC = () => {
+interface ProjectGridProps {
+    id: number;
+  }
+  
+const ProfileStats: React.FC<ProjectGridProps> = ({id}) => {
+    const { data:organization, isLoading, isError,refetch} =useGetOrganizationQuery(id,
+        { refetchOnMountOrArgChange: true });
+        useEffect(() => {
+          refetch()
+        }, [refetch])
+        
     return (
         <section style={{ backgroundColor: "white" }}>
             <MDBContainer className="py-5">
@@ -35,7 +40,7 @@ const ProfileStats: React.FC = () => {
                             >
                                 {/* Avatar Image */}
                                 <MDBCardImage
-                                    src={"/organization-avatar.png"}
+                                    src={organization?.data?.public_url ||"/organization-avatar.png"}
                                     alt="avatar"
                                     className="rounded-circle"
                                     fluid
@@ -49,29 +54,7 @@ const ProfileStats: React.FC = () => {
                                     }}
                                 />
 
-                                {/* File Input */}
-                                <input
-                                    type="file"
-                                    id="banner"
-                                    accept="image/*"
-                                    style={{ display: "none" }}
-                                />
-
-                                {/* Camera Icon Label */}
-                                <label
-                                    htmlFor="banner"
-                                    style={{
-                                        position: "absolute",
-                                        bottom: "65px",
-                                        right: "30%",
-                                        cursor: "pointer",
-                                        zIndex: 20,
-                                    }}
-                                >
-                                    <AiOutlineCamera
-                                        style={{ color: "black", fontSize: "25px" }}
-                                    />
-                                </label>
+                                
 
                                 {/* Organization Role Text */}
                                 <p style={{ marginBottom: "1rem" }}>Organization</p>
@@ -94,7 +77,7 @@ const ProfileStats: React.FC = () => {
                                     </MDBCol>
                                     <MDBCol sm="9">
                                         <MDBCardText className="text-muted">
-                                            {/*Name here*/}
+                                        {organization?.data?.name || 'N/A'}
                                         </MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
@@ -107,7 +90,7 @@ const ProfileStats: React.FC = () => {
                                     </MDBCol>
                                     <MDBCol sm="9">
                                         <MDBCardText className="text-muted">
-                                            {/*Email here*/}
+                                        {organization?.data?.email || 'N/A'}
                                         </MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
@@ -120,7 +103,7 @@ const ProfileStats: React.FC = () => {
                                     </MDBCol>
                                     <MDBCol sm="9">
                                         <MDBCardText className="text-muted">
-                                            {/*Student id here*/}
+                                        {organization?.data?.identityId || 'N/A'}
                                         </MDBCardText>
                                     </MDBCol>
                                 </MDBRow>
@@ -133,7 +116,7 @@ const ProfileStats: React.FC = () => {
                                     </MDBCol>
                                     <MDBCol sm="9">
                                         <MDBCardText className="text-muted">
-                                            {/*Verification stats here*/}
+                                        {organization?.data?.verifiedOrganization ? 'Verified' : 'Not Verified'}
                                         </MDBCardText>
                                     </MDBCol>
                                 </MDBRow>

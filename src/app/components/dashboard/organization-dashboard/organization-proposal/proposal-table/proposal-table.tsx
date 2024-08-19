@@ -1,12 +1,17 @@
-'use client';
-
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import './proposal-table.css';
+import { useGetProposalsByOrganizationIdQuery } from '../../../../../../../redux/features/proposal/proposalApi'; 
 
-const ProposalTable=() =>{  
+interface ProposalTableProps {
+  organizationId: number;
+  searchTerm: string;
+}
+
+const ProposalTable: React.FC<ProposalTableProps> = ({ organizationId, searchTerm }) => {
+  const { data: proposalsData, isLoading, isError } = useGetProposalsByOrganizationIdQuery(organizationId);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Proposal ID', flex: 1 },
@@ -14,23 +19,26 @@ const ProposalTable=() =>{
     { field: 'pjname', headerName: 'Project Name', flex: 1 },
     { field: 'sub_date', headerName: 'Submitted Date', flex: 1 },
     { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view',
-      headerName: 'View',
-      flex: 1,
-      renderCell: (params) => (
-        <Button
-            className='view-button'
-            variant="contained"
-        >
-            View
-        </Button>
-      )
-    }
+    
   ];
 
-  const rows = [
-    { id: 1, name: 'Project Alpha', stdname: 'Alpha Title', pjname: 'Category A', sub_date: '2024-08-01', status: 'pending' }
-  ];
+  
+  const rows = React.useMemo(() => {
+    if (isLoading || isError || !proposalsData) return [];
+
+    return proposalsData.data
+      .filter((proposal: any) =>
+        (proposal.status === 'Pending' || proposal.status === 'Approved') &&
+        (searchTerm === '' || proposal.projectName.toLowerCase().includes(searchTerm))
+      )
+      .map((proposal: any) => ({
+        id: proposal.id,
+        stdname: proposal.studentName,
+        pjname: proposal.projectName,
+        sub_date: proposal.submittedDate,
+        status: proposal.status,
+      }));
+  }, [proposalsData, isLoading, isError, searchTerm]);
 
   return (
     <Box
@@ -39,9 +47,9 @@ const ProposalTable=() =>{
         width: '100%',
         overflow: 'auto',
         '@media (max-width:600px)': {
-          width: '100%', 
-          overflowX: 'auto' 
-        }
+          width: '100%',
+          overflowX: 'auto',
+        },
       }}
     >
       <Box sx={{ minWidth: 800 }}>
@@ -56,12 +64,12 @@ const ProposalTable=() =>{
             },
           }}
           pageSizeOptions={[5]}
-          checkboxSelection
           disableRowSelectionOnClick
+          loading={isLoading}
         />
       </Box>
     </Box>
   );
-}
+};
 
 export default ProposalTable;

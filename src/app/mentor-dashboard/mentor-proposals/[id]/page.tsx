@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import MiniDrawer from "@/app/components/dashboard/mentor-dashboard/side-nav/sidenav";
 import Box from "@mui/material/Box";
 import ViewProposal from "@/app/components/dashboard/mentor-dashboard/mentor-proposal/proposal-table/proposal-table";
-
+import mentorAuth from "@/app/custom-hooks/mentorAuth";
+import { useGetMentorByIdentityQuery } from "../../../../../redux/features/mentor/mentorApi";
 
 
 const Page: React.FC = ({ params }: any) => {
@@ -17,13 +18,17 @@ const Page: React.FC = ({ params }: any) => {
       console.log(parsedUser?.id);
     }
   }, []);  
-
+  const {
+    data: organization,
+    isLoading,
+    refetch,
+  } = useGetMentorByIdentityQuery(userId, { refetchOnMountOrArgChange: true });
   return (
     <Box sx={{ display: "flex" }}>
       <MiniDrawer childTitle="View Proposals" mentor={null} />
-      <ViewProposal/>
+      <ViewProposal proposalId={params.id} mentor={organization?.data}/>
     </Box>
   );
 };
 
-export default Page;
+export default mentorAuth(Page);

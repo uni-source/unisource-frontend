@@ -1,38 +1,28 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
+import { useGetAllStudentsQuery } from '../../../../../../../redux/features/student/studentApi';
 import './student-list.css';
-import { useRouter } from 'next/navigation';
-import { useGetProjectByOrganizationIdQuery } from '../../../../../../../redux/features/project/projectApi';
 import Loading from '@/app/components/loading/loading';
 
+const StudentTable: React.FC = () => {
+  const { data, error, isLoading } = useGetAllStudentsQuery({});
+  
+  if (isLoading) return <Loading />;
 
-const StudentTable:React.FC = () =>  {
+  const rows:any[] = data?.data.map((student: { identityId: any; name: any; score: any; verifiedStudent: any; }) => ({
+    id: student?.identityId, 
+    stdname: student?.name,
+    score: student?.score,
+    validity: student?.verifiedStudent ? 'verified' : 'unverified', 
+  })) || [];
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Identity ID', flex: 1 },
     { field: 'stdname', headerName: 'Student Name', flex: 1 },
     { field: 'score', headerName: 'Score', flex: 1 },
     { field: 'validity', headerName: 'Validity', flex: 1 },
-    { field: 'view',
-      headerName: 'View',
-      flex: 1,
-      renderCell: (params) => (
-        <Button
-            className='view-button'
-            variant="contained"
-            href="/faculty-dashboard/all-students/view-student"
-        >
-            View
-        </Button>
-      )
-    }
-  ];
-
-  const rows = [
-    { id:'1', stdname: 'Avindu Kavinda', score: '500', validity: 'verified' }
   ];
 
   return (

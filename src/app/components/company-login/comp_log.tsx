@@ -59,7 +59,8 @@ const CompLogIn = () => {
         toast.error(errorData?.data?.message);
       }
     }
-  }, [isSuccess, isError, error, token, router]);
+  }, [isSuccess, isError, error, token, router, user?.role]);
+  
   const formik = useFormik({
     initialValues: {
       email: "",

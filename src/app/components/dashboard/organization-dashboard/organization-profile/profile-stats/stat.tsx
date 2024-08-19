@@ -68,6 +68,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
     }
   };
 
+  
   return (
     <section style={{ backgroundColor: "white" }}>
       <MDBContainer className="py-5">
@@ -188,10 +189,10 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      {organization?.data?.verified
+                      {organization?.data?.verifiedOrganization
                         ? "Verified"
                         : "Not Verified"}{" "}
-                      {organization?.data?.verified ? (
+                      {organization?.data?.verifiedOrganization ? (
                         <VerifiedUserIcon />
                       ) : null}
                     </MDBCardText>

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useGetProjectsByStudentIdQuery } from '../../../../../../../redux/features/project/studentHasProjectApi';
+import { useGetStudentHasProjectByStudentIdQuery } from '../../../../../../../redux/features/project/studentHasProjectApi';
 import './project-table.css';
 
 interface MyProjectTableProps {
@@ -10,7 +10,7 @@ interface MyProjectTableProps {
 }
 
 const MyProjectTable: React.FC<MyProjectTableProps> = ({ studentId }) => {
-  const { data, error, isLoading } = useGetProjectsByStudentIdQuery(studentId);
+  const { data, error, isLoading } = useGetStudentHasProjectByStudentIdQuery(studentId);
 
   const columns: GridColDef[] = [
     { field: 'projectId', headerName: 'Project ID', flex: 1 },

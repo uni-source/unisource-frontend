@@ -8,7 +8,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { useGetAllProjectsQuery } from '../../../../../../redux/features/project/projectApi'; 
-import { useGetProjectsByStudentIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi'; 
+import { useGetStudentHasProjectByStudentIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi'; 
 interface Student {
   contact?: string;
   description?: string;
@@ -27,7 +27,7 @@ interface StatsRowProps {
 
 const StatsRow: React.FC<StatsRowProps> = ({ student, studentId }) => {
   const { data: projectsData } = useGetAllProjectsQuery({});
-  const { data: studentProjectsData } = useGetProjectsByStudentIdQuery(studentId);
+  const { data: studentProjectsData } = useGetStudentHasProjectByStudentIdQuery(studentId);
 
   const availableProjectsCount = projectsData?.data?.length || 0;
   const projectContributionCount = studentProjectsData?.data?.length || 0;

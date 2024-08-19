@@ -6,7 +6,7 @@ const TermsAndConditions = () => {
     return (
         <>
             <div className="Terms-Header-inner">
-                <Topic message='Terms & Conditions' />
+                <Topic message="Terms & Conditions" />
             </div>
             <div className="terms-outer">
                 <div className="terms-inner">
@@ -21,11 +21,11 @@ const TermsAndConditions = () => {
                     <h5>5. Intellectual Property</h5>
                     <p>All content submitted to the platform, including code, documentation, and other materials, must comply with the applicable open source licenses. Users retain ownership of their contributions, but grant the platform and its users a license to use, modify, and distribute such content as part of the collaborative projects.</p>
                     <h5>6. Project Contributions</h5>
-                    <p>Undergraduates, organizations, and freelancers are expected to adhere to the project guidelines and standards set by the project maintainers. Contributions should be meaningful, respectful, and in alignment with the project's goals.</p>
+                    <p>Undergraduates, organizations, and freelancers are expected to adhere to the project guidelines and standards set by the project maintainers. Contributions should be meaningful, respectful, and in alignment with the projects goals.</p>
                     <h5>7. Privacy Policy</h5>
                     <p>Your use of the platform is also governed by our Privacy Policy, which is incorporated into these Terms by this reference. Please review our Privacy Policy to understand our practices.</p>
                     <h5>8. Limitation of Liability</h5>
-                    <p>The platform is provided "as is" and "as available" without warranties of any kind, either express or implied. UniSource does not guarantee the accuracy, completeness, or usefulness of any information on the platform and will not be liable for any loss or damage caused by your reliance on such information.</p>
+                    <p>The platform is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or implied. UniSource does not guarantee the accuracy, completeness, or usefulness of any information on the platform and will not be liable for any loss or damage caused by your reliance on such information.</p>
                     <h5>9. Termination</h5>
                     <p>UniSource reserves the right to terminate or suspend access to the platform for any reason, including, but not limited to, a breach of these Terms. Users may also terminate their accounts at any time.</p>
                     <h5>10. Modifications to Terms</h5>
@@ -39,4 +39,5 @@ const TermsAndConditions = () => {
         </>
     );
 };
+
 export default TermsAndConditions;

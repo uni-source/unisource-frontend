@@ -7,6 +7,7 @@ import AccountInformationForm from "@/app/components/dashboard/mentor-dashboard/
 import PasswordSettingsForm from "@/app/components/dashboard/mentor-dashboard/mentor-profile/psw-setting/psw-setting";
 import Loading from "@/app/components/loading/loading";
 import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi";
+import mentorAuth from "@/app/custom-hooks/mentorAuth";
 
 const Page: React.FC = () => {
 
@@ -17,7 +18,6 @@ const Page: React.FC = () => {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
-      console.log(parsedUser?.id);
     }
   });
 
@@ -50,5 +50,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default organizationAuth(Page);
-export default Page;
+export default mentorAuth(Page);

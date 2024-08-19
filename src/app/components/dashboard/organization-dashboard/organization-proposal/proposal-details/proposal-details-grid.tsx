@@ -35,10 +35,6 @@ const ProposalGrid: React.FC = () => {
             <label htmlFor="studentName">Student Name</label>
             <input type="text" className="form-control" id="studentName" />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="studentEmail">Student Email</label>
-            <input type="email" className="form-control" id="studentEmail" />
-          </div>
         </div>
         <Link href='/organization-dashboard/organization-proposals'>
         <button type="button" className="btn btn-back">Back</button>

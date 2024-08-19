@@ -33,11 +33,8 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8 }}>
         <StatsRow organizationId={userId}/>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={12}>
             <RecentProjects organizationId={userId}/>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <LeaderBoard />
           </Grid>
         </Grid>
       </Box>
@@ -45,5 +42,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default organizationAuth(Page);
-export default Page;
+export default organizationAuth(Page);
