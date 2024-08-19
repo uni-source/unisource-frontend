@@ -28,13 +28,7 @@ const FacLogIn = () => {
   const [login, { isLoading, isSuccess, isError, error }] = useLoginMutation();
   const { token } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      router.push("/faculty-dashboard");
-    }
-  }, [router]);
-
+ 
   useEffect(() => {
     if (isSuccess) {
       toast.success("User login successful");

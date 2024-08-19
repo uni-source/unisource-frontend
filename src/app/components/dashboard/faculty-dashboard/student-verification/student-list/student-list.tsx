@@ -1,70 +1,99 @@
 'use client';
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import './student-list.css';
 import { useRouter } from 'next/navigation';
+import { useGetAllStudentsQuery } from '../../../../../../../redux/features/student/studentApi'; 
+import Loading from '@/app/components/loading/loading';
+import SearchBox from '../search-box/search-box';
 
-
-const StudentTable=() =>{  
-
+const StudentTable = () => {  
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
   
+  const { data, isLoading, isError } = useGetAllStudentsQuery({});
+
   const handleViewClick = (id: number) => {
-   router.push(`/mentor-dashboard/mentor-projects/${id}`);
+    router.push(`/faculty-dashboard/student-verification/${id}`);
   };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const rows = React.useMemo(() => {
+    if (!data || !data.data) return []; 
+
+    const students: any[] = data?.data;
+
+    const filteredStudents = students
+      .filter(student => student?.verifiedStudent === false) 
+      .filter(student => student?.name.toLowerCase().includes(searchQuery.toLowerCase())) // Filter by search query
+      .map(student => ({
+        id: student?.identityId, 
+        stdname: student?.name,
+        email: student?.email,
+      }));
+
+    return filteredStudents;
+  }, [data, searchQuery]);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Identity ID', flex: 1 },
     { field: 'stdname', headerName: 'Student Name', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1 },
-    { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view',
+    {
+      field: 'view',
       headerName: 'View',
       flex: 1,
       renderCell: (params) => (
         <Button
-            className='view-button'
-            variant="contained"
-            href="/faculty-dashboard/student-verification/view-student"
+          className='view-button'
+          variant="contained"
+          onClick={() => handleViewClick(params.row.id)} 
         >
-            View
+          View
         </Button>
       )
     }
   ];
 
-  const rows = [
-    { id:'1', stdname: 'Avindu Kavinda', email: 'ict21894@fot.sjp.ac.lk', status: 'pending' }
-  ];
+  if (isLoading) {
+    return <Loading/>;
+  }
 
   return (
-    <Box
-      sx={{
-        height: 400,
-        width: '100%',
-        overflow: 'auto',
-        '@media (max-width:600px)': {
-          width: '100%', 
-          overflowX: 'auto' 
-        }
-      }}
-    >
-      <Box sx={{ minWidth: 800 }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
+    <Box>
+      <SearchBox searchQuery={searchQuery} onSearchChange={handleSearchChange} /> 
+      <Box
+        sx={{
+          height: 400,
+          width: '100%',
+          overflow: 'auto',
+          '@media (max-width:600px)': {
+            width: '100%', 
+            overflowX: 'auto' 
+          }
+        }}
+      >
+        <Box sx={{ minWidth: 800 }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5]}
-          disableRowSelectionOnClick
-        />
+            }}
+            pageSizeOptions={[5]}
+            disableRowSelectionOnClick
+          />
+        </Box>
       </Box>
     </Box>
   );

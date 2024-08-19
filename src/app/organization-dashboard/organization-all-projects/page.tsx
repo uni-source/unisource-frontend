@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
 import { useGetOrganizationQuery } from "../../../../redux/features/organization/organizationApi";
 import ProjectTable from "@/app/components/dashboard/organization-dashboard/organization-all-project-component/project-list/project-list";
+import organizationAuth from "@/app/custom-hooks/organizationAuth";
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -46,6 +47,4 @@ const Page: React.FC = () => {
     </Box>
   );
 };
-
-// export default organizationAuth(Page);
-export default Page;
+export default organizationAuth(Page);

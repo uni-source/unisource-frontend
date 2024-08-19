@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
 import { useGetMentorByIdentityQuery } from "../../../../../redux/features/mentor/mentorApi"; 
 import ProjectGrid from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-table/project-table";
+import mentorAuth from "@/app/custom-hooks/mentorAuth";
 
 const Page: React.FC = ({params}: any) => {
   const [userId, setUserId] = useState<number>(0);
@@ -45,4 +46,4 @@ const Page: React.FC = ({params}: any) => {
   );
 };
 
-export default Page;
+export default mentorAuth(Page);

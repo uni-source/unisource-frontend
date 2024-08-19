@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useGetProjectsByStudentIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi';
+import { useGetStudentHasProjectByStudentIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi';
 import Loading from '@/app/components/loading/loading';
 
 interface BasicTableProps {
@@ -14,7 +14,7 @@ interface BasicTableProps {
 }
 
 export default function BasicTable({ studentId }: BasicTableProps) {
-  const { data, error, isLoading } = useGetProjectsByStudentIdQuery(studentId);
+  const { data, error, isLoading } = useGetStudentHasProjectByStudentIdQuery(studentId);
 
   if (isLoading) {
     return <Loading />;

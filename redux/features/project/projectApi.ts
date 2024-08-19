@@ -41,7 +41,7 @@ export const projectApi = apiSlice.injectEndpoints({
     }),
     updateProjectStatus: builder.mutation({
       query: (projectStatusData) => ({
-        url: "api/v1/project/status",
+        url: "api/v1/project/change-status",
         method: "PUT",
         body: projectStatusData,
         credentials: "include" as const,

@@ -7,7 +7,8 @@ import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/m
 import Loading from "@/app/components/loading/loading";
 
 import PendingList from "@/app/components/dashboard/faculty-dashboard/faculty-pending-project/pending-list/pending-list";
-import SearchBox from "@/app/components/dashboard/faculty-dashboard/student-verification/search-box/search-box";
+import { useGetAdminByIdentityIdQuery } from "../../../../redux/features/admin/adminApi";
+import adminAuth from "@/app/custom-hooks/adminApi";
 
 const Page: React.FC = ({ params }: any) => {
   const [userId, setUserId] = useState<number>(0);
@@ -20,7 +21,7 @@ const Page: React.FC = ({ params }: any) => {
       console.log(parsedUser?.id);
     }
   }, []);
-  const { data: mentor, isLoading, refetch } = useGetMentorByIdentityQuery(userId,
+  const { data: mentor, isLoading, refetch } = useGetAdminByIdentityIdQuery(userId,
     { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
@@ -41,11 +42,10 @@ const Page: React.FC = ({ params }: any) => {
           },
         }}
       >
-        <SearchBox/>
         <PendingList/>
       </Box>
     </Box>
   );
 };
 
-export default Page;
+export default adminAuth(Page);

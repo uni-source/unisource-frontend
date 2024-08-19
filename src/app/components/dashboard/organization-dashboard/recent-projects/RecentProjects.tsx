@@ -26,7 +26,7 @@ const RecentProjects = ({ organizationId }: { organizationId: number }) => {
     return sortedProjects.slice(0, 10).map((project: any) => ({
       id: project.id,
       name: project.name,
-      mentor: project.mentorName,
+      mentor: project.mentorID,
       DueDate: new Date(project.dueDate).toLocaleDateString(),
       status: project.status,
     }));

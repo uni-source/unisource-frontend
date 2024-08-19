@@ -7,17 +7,38 @@ import FaceIcon from '@mui/icons-material/Face';
 import TaskIcon from '@mui/icons-material/Task';
 import NoteIcon from '@mui/icons-material/Note';
 import { useGetProjectByMentorIdQuery } from '../../../../../../redux/features/project/projectApi';
-//jj
+import { useGetProposalsByMentorIdQuery } from '../../../../../../redux/features/proposal/proposalApi';
+import { useGetStudentHasProjectByMentorIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi'; 
+
 const StatsRow: React.FC<{ mentorId: number }> = ({ mentorId }) => {
-  
-  const { data: projectData, isLoading, isError } = useGetProjectByMentorIdQuery(mentorId, {
+  const { data: projectData, isLoading: isLoadingProjects, isError: isErrorProjects } = useGetProjectByMentorIdQuery(mentorId, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const { data: proposalData, isLoading: isLoadingProposals, isError: isErrorProposals } = useGetProposalsByMentorIdQuery(mentorId, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const { data: studentData, isLoading: isLoadingStudents, isError: isErrorStudents } = useGetStudentHasProjectByMentorIdQuery(mentorId, {
     refetchOnMountOrArgChange: true,
   });
 
   const projectCount = React.useMemo(() => {
-    if (isLoading || isError || !projectData) return '...';
+    if (isLoadingProjects || isErrorProjects || !projectData) return '0';
     return projectData.data.length;
-  }, [projectData, isLoading, isError]);
+  }, [projectData, isLoadingProjects, isErrorProjects]);
+
+  const approvedProposalCount = React.useMemo(() => {
+    if (isLoadingProposals || isErrorProposals || !proposalData) return '0';
+    const approvedProposals = proposalData.data.filter((proposal: any) => proposal.status === "Approve");
+    return approvedProposals.length;
+  }, [proposalData, isLoadingProposals, isErrorProposals]);
+
+  const studentCount = React.useMemo(() => {
+    if (isLoadingStudents || isErrorStudents || !studentData) return '0';
+    const uniqueStudents = new Set(studentData.data.map((student: any) => student.studentId));
+    return uniqueStudents.size;
+  }, [studentData, isLoadingStudents, isErrorStudents]);
 
   return (
     <Container className="my-4">
@@ -25,7 +46,7 @@ const StatsRow: React.FC<{ mentorId: number }> = ({ mentorId }) => {
         <Col xs={12} md={6} lg={3} className="mb-4">
           <StatCard
             icon={<FaceIcon style={{ fontSize: '3rem' }} />}
-            stat="20" 
+            stat={studentCount.toString()} 
             label="Students"
             color="green"
           />
@@ -41,8 +62,8 @@ const StatsRow: React.FC<{ mentorId: number }> = ({ mentorId }) => {
         <Col xs={12} md={6} lg={3} className="mb-4">
           <StatCard
             icon={<NoteIcon style={{ fontSize: '3rem' }} />}
-            stat="18" 
-            label="Proposals"
+            stat={approvedProposalCount.toString()} 
+            label="Approved Proposals"
             color="brown"
           />
         </Col>

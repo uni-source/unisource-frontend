@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
   category: Yup.string().required('Category is required'),
   description: Yup.string().required('Description is required'),
   technologies: Yup.string().required('Technologies are required'),
-  resource: Yup.string().url('Invalid URL').required('Resource is required'),
+  resource: Yup.string().required('Resource is required'),
   dueDate: Yup.date().required('Due date is required'),
   mentorID: Yup.string().required('Mentor is required'),
 });

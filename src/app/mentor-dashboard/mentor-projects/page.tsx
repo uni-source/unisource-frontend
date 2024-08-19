@@ -6,6 +6,7 @@ import Loading from "@/app/components/loading/loading";
 import { useGetMentorByIdentityQuery } from "../../../../redux/features/mentor/mentorApi";
 import ProjectTable from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/project-list/project-list";
 import SearchBox from "@/app/components/dashboard/mentor-dashboard/mentor-allprojects/search-box/search-box";
+import mentorAuth from "@/app/custom-hooks/mentorAuth";
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -48,5 +49,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default organizationAuth(Page);
-export default Page;
+export default mentorAuth(Page);

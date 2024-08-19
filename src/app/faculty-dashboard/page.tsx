@@ -9,6 +9,8 @@ import OngoingProjects from '../components/dashboard/faculty-dashboard/ongoing-p
 import BestPerformance from '../components/dashboard/faculty-dashboard/best-performance/BestPerformance';
 import { useGetOrganizationQuery } from '../../../redux/features/organization/organizationApi';
 import organizationAuth from '../custom-hooks/organizationAuth';
+import { useGetAdminByIdentityIdQuery } from '../../../redux/features/admin/adminApi';
+import adminAuth from '../custom-hooks/adminApi';
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -21,7 +23,7 @@ const Page: React.FC = () => {
     }
   });
 
-  const { data: mentor, isLoading, refetch } = useGetMentorByIdQuery(userId,
+  const { data: mentor, isLoading, refetch } = useGetAdminByIdentityIdQuery(userId,
     { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
@@ -49,4 +51,4 @@ const Page: React.FC = () => {
 
 };
 
-export default Page;
+export default adminAuth(Page);

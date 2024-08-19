@@ -44,6 +44,8 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectId, studentId })
     formData.append('studentId', studentId.toString());
     formData.append('projectId', projectId.toString());
     formData.append('file', file);
+    formData.append('organizationId',project?.data?.organizationID),
+    formData.append('mentorId',project?.data?.mentorID)
 
     try {
       await createProposal(formData).unwrap();

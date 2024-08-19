@@ -189,8 +189,8 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   </MDBCol>
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
-                      {student?.data?.verified ? "Verified" : "Not Verified"}{" "}
-                      {student?.data?.verified ? <VerifiedUserIcon /> : null}
+                      {student?.data?.verifiedStudent ? "Verified" : "Not Verified"}{" "}
+                      {student?.data?.verifiedStudent ? <VerifiedUserIcon /> : null}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>

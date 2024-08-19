@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Loading from "@/app/components/loading/loading";
 import { useGetOrganizationQuery } from "../../../../../redux/features/organization/organizationApi";
 import ProjectGrid from "@/app/components/dashboard/organization-dashboard/organization-all-project-component/project-table/project-table";
+import organizationAuth from "@/app/custom-hooks/organizationAuth";
 
 
 const Page: React.FC = ({params}:any) => {
@@ -43,7 +44,7 @@ const Page: React.FC = ({params}:any) => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 4,'@media (max-width: 600px)': {
             width: 320,
           }, }}>
-            <ProjectGrid id={params.id}/>
+            <ProjectGrid id={params.id} refetch={refetch}/>
             
         
       </Box>
@@ -52,4 +53,4 @@ const Page: React.FC = ({params}:any) => {
 };
 
 
-export default Page;
+export default organizationAuth(Page);

@@ -1,5 +1,6 @@
 import { apiSlice } from "../apiSlice";
 
+
 export const proposalApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createProposal: builder.mutation({
@@ -46,6 +47,20 @@ export const proposalApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+    getProposalsByOrganizationId: builder.query({
+      query: (organizationId) => ({
+        url: `api/v1/proposal/organization/${organizationId}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
+    getProposalsByMentorId: builder.query({
+      query: (mentorId) => ({
+        url: `api/v1/proposal/mentor/${mentorId}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
   }),
 });
 
@@ -56,4 +71,6 @@ export const {
   useGetProposalByIdQuery,
   useGetProposalsByStudentIdQuery,
   useGetProposalsByProjectIdQuery,
+  useGetProposalsByOrganizationIdQuery,
+  useGetProposalsByMentorIdQuery
 } = proposalApi;

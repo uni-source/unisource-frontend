@@ -11,9 +11,10 @@ import Loading from '@/app/components/loading/loading';
 
 interface ProjectGridProps {
     id: number;
+    refetch:any;
 }
 
-const ProjectGrid: React.FC<ProjectGridProps> = ({ id }) => {
+const ProjectGrid: React.FC<ProjectGridProps> = ({ id ,refetch}) => {
     const { data: project, error: projectError, isLoading } = useGetProjectByIdQuery(id);
     const [updateProject] = useUpdateProjectMutation();
     const router = useRouter();
@@ -44,6 +45,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ id }) => {
             try {
                 await updateProject(values).unwrap();
                 toast.success('Project updated successfully');
+                refetch()
                 router.push('/organization-dashboard/organization-all-projects');
             } catch (error) {
                 toast.error('Failed to update project');

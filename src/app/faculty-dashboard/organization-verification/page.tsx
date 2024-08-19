@@ -6,6 +6,8 @@ import { useGetMentorByIdQuery } from '../../../../redux/features/mentor/mentorA
 import Loading from '@/app/components/loading/loading';
 import SearchBox from '@/app/components/dashboard/faculty-dashboard/organization-verification/search-box/search-box';
 import OrganizationTable from '@/app/components/dashboard/faculty-dashboard/organization-verification/organization-list/organization-list';
+import { useGetAdminByIdentityIdQuery } from '../../../../redux/features/admin/adminApi';
+import adminAuth from '@/app/custom-hooks/adminApi';
 
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
@@ -18,7 +20,7 @@ const Page: React.FC = () => {
     }
   });
 
-  const { data: mentor, isLoading, refetch } = useGetMentorByIdQuery(userId,
+  const { data: mentor, isLoading, refetch } = useGetAdminByIdentityIdQuery(userId,
     { refetchOnMountOrArgChange: true });
 
   if (isLoading) {
@@ -31,11 +33,10 @@ const Page: React.FC = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: 8, '@media (max-width: 600px)': {
             width: 320,
           }, }}>
-            <SearchBox />
             <OrganizationTable />
       </Box>
     </Box>
   );
 };
 
-export default Page;
+export default adminAuth(Page);

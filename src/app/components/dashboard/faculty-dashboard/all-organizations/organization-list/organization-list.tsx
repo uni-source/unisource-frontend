@@ -1,40 +1,46 @@
 'use client';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
+import { useGetAllOrganizationsQuery } from '../../../../../../../redux/features/organization/organizationApi';
 import './organization-list.css';
-import { useRouter } from 'next/navigation';
+import Loading from '@/app/components/loading/loading';
+import SearchBox from '../search-box/search-box';
 
+const OrganizationTable: React.FC = () => {
+  const { data, error, isLoading } = useGetAllOrganizationsQuery({});
+  const [filteredRows, setFilteredRows] = useState<any[]>([]);
 
-const OrganizationTable=() =>{  
-  const router = useRouter();
-  
-  const handleViewClick = (id: number) => {
-   router.push(`/mentor-dashboard/mentor-projects/${id}`);
+  useEffect(() => {
+    if (data?.data) {
+      setFilteredRows(data.data);
+    }
+  }, [data]);
+
+  const handleSearch = (searchTerm: string) => {
+    if (searchTerm === '') {
+      setFilteredRows(data?.data || []);
+    } else {
+      const filtered = data?.data.filter((organization: { name: string; }) =>
+        organization.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredRows(filtered || []);
+    }
   };
+
+  if (isLoading) return <Loading />;
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Organization ID', flex: 1 },
     { field: 'orgname', headerName: 'Organization Name', flex: 1 },
-    { field: 'status', headerName: 'Status', flex: 1 },
-    { field: 'view',
-      headerName: 'View',
-      flex: 1,
-      renderCell: (params) => (
-        <Button
-            className='view-button'
-            variant="contained"
-        >
-            View
-        </Button>
-      )
-    }
+    { field: 'status', headerName: 'Status', flex: 1 }
   ];
 
-  const rows = [
-    { id:'1', orgname: 'CodeGen', status: 'pending' }
-  ];
+  const rows = filteredRows.map((organization: { id: any; name: any; verifiedOrganization: any; }, index: number) => ({
+    id: organization.id || index,
+    orgname: organization.name,
+    status: organization.verifiedOrganization ? 'verified' : 'unverified'
+  }));
 
   return (
     <Box
@@ -48,6 +54,7 @@ const OrganizationTable=() =>{
         }
       }}
     >
+      <SearchBox onSearch={handleSearch} />
       <Box sx={{ minWidth: 800 }}>
         <DataGrid
           rows={rows}

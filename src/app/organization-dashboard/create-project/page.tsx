@@ -6,6 +6,7 @@ import Loading from '@/app/components/loading/loading';
 import { useGetOrganizationQuery } from '../../../../redux/features/organization/organizationApi';
 import organizationAuth from '../../custom-hooks/organizationAuth';
 import CreateProject from '@/app/components/dashboard/organization-dashboard/create-project-component/create-project-component';
+
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
 
@@ -34,5 +35,4 @@ const Page: React.FC = () => {
   );
 };
 
-// export default organizationAuth(Page);
-export default Page;
+export default organizationAuth(Page);

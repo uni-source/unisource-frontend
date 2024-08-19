@@ -40,16 +40,30 @@ export const studentHasProjectApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
-    getProjectsByStudentId: builder.query({
+    getStudentHasProjectByStudentId: builder.query({
       query: (studentId) => ({
         url: `api/v1/student-has-project/student/${studentId}`,
         method: "GET",
         credentials: "include" as const,
       }),
     }),
-    getProjectByProjectId: builder.query({
+    getStudentHasProjectByProjectId: builder.query({
       query: (projectId) => ({
         url: `api/v1/student-has-project/project/${projectId}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
+    getStudentHasProjectByOrganizationId: builder.query({
+      query: (organizationId) => ({
+        url: `api/v1/student-has-project/organization/${organizationId}`,
+        method: "GET",
+        credentials: "include" as const,
+      }),
+    }),
+    getStudentHasProjectByMentorId: builder.query({
+      query: (mentorId) => ({
+        url: `api/v1/student-has-project/mentor/${mentorId}`,
         method: "GET",
         credentials: "include" as const,
       }),
@@ -63,6 +77,8 @@ export const {
   useUpdateStatusMutation,
   useGetAllStudentHasProjectsQuery,
   useGetStudentHasProjectByIdQuery,
-  useGetProjectsByStudentIdQuery,
-  useGetProjectByProjectIdQuery,
+  useGetStudentHasProjectByStudentIdQuery,
+  useGetStudentHasProjectByProjectIdQuery,
+  useGetStudentHasProjectByOrganizationIdQuery,
+  useGetStudentHasProjectByMentorIdQuery
 } = studentHasProjectApi;
