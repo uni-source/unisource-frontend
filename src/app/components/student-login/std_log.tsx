@@ -71,7 +71,7 @@ const StdLogIn = () => {
           alignItems: "center",
         }}
       >
-        <CustomIcon />
+        <img className='login-img' src="./UniSourcelogo.png" alt="UniSource Logo" width="65" height="60" />
         <Typography component="h1" variant="h5">
           Login
         </Typography>
