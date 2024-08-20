@@ -7,11 +7,9 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: {
-    default : "UniSource",
-    template : "%s - UniSource"
-  },
+  title: "UniSource",
   description: "University-Driven Open Source Community",
+
 };
 
 export default function RootLayout({
