@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   description: "University-Driven Open Source Community",
 
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
