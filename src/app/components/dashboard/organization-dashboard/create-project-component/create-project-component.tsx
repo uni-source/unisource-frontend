@@ -27,6 +27,9 @@ const validationSchema = Yup.object({
 const CreateProject: React.FC<OrganizationIdProps> = ({ organizationId }) => {
   const { data: mentors, error: mentorsError } = useGetMentorsByOrganizationIdQuery(organizationId);
   const [createProject, { isLoading, isSuccess, isError, error }] = useCreateProjectMutation();
+useEffect(() => {
+ console.log(organizationId)
+}, [organizationId])
 
   useEffect(() => {
     if (isSuccess) {
@@ -53,6 +56,7 @@ const CreateProject: React.FC<OrganizationIdProps> = ({ organizationId }) => {
       mentorID: '',
       organizationID: organizationId,  // Include organizationId in initialValues
     },
+    enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
