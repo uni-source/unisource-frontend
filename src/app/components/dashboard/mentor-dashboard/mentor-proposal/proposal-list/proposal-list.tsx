@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { useGetProposalsByMentorIdQuery } from '../../../../../../../redux/features/proposal/proposalApi';
 import Loading from '@/app/components/loading/loading'; 
 import SearchBox from '../../mentor-allprojects/search-box/search-box';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 interface ProposalTableProps {
   mentorId: number;
@@ -14,7 +16,8 @@ interface ProposalTableProps {
 
 const ProposalTable: React.FC<ProposalTableProps> = ({ mentorId }) => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = React.useState<string>("");
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [selectedStatus, setSelectedStatus] = React.useState<string>('All');
 
   const { data: proposalsData, isLoading, isError } = useGetProposalsByMentorIdQuery(mentorId, {
     refetchOnMountOrArgChange: true,
@@ -26,6 +29,10 @@ const ProposalTable: React.FC<ProposalTableProps> = ({ mentorId }) => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+  };
+
+  const handleStatusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedStatus(event.target.value);
   };
 
   const columns: GridColDef[] = [
@@ -57,16 +64,44 @@ const ProposalTable: React.FC<ProposalTableProps> = ({ mentorId }) => {
     return <div>Error loading proposals.</div>;
   }
 
-  // Filter proposals based on the search query and status
+  // Filter proposals based on the search query and selected status
   const filteredRows = proposalsData.data
-    .filter((proposal: any) => proposal.status === 'pending')
+    .filter((proposal: any) => 
+      selectedStatus === 'All' || proposal.status === selectedStatus
+    )
     .filter((proposal: any) => 
       proposal.projectName.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
   return (
     <Box>
-      <SearchBox onSearch={handleSearch} />
+      <Box
+        marginBottom={2}
+        sx={{
+          display: 'flex',
+          gap: 2,
+          flexDirection: {
+            xs: 'column',
+            sm: 'row'
+          }
+        }}
+      >
+        <SearchBox onSearch={handleSearch} />
+        <TextField
+          select
+          label="Filter by Status"
+          value={selectedStatus}
+          onChange={handleStatusChange}
+          variant="outlined"
+          sx={{ flex: 1 }}
+          className={"mt-5"}
+        >
+          <MenuItem value="All">All</MenuItem>
+          <MenuItem value="pending">Pending</MenuItem>
+          <MenuItem value="Approved">Approved</MenuItem>
+          <MenuItem value="rejected">Rejected</MenuItem>
+        </TextField>
+      </Box>
       <Box
         sx={{
           height: 400,

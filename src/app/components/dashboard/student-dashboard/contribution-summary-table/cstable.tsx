@@ -26,7 +26,6 @@ export default function BasicTable({ studentId }: BasicTableProps) {
           <TableRow>
             <TableCell>Project ID</TableCell>
             <TableCell align="left">Project Name</TableCell>
-            <TableCell align="left">Due Date</TableCell>
             <TableCell align="left">Status</TableCell>
           </TableRow>
         </TableHead>
@@ -40,7 +39,6 @@ export default function BasicTable({ studentId }: BasicTableProps) {
                 {project.projectId}
               </TableCell>
               <TableCell align="left">{project.projectName}</TableCell>
-              <TableCell align="left">{project.dueDate}</TableCell>
               <TableCell align="left">{project.status}</TableCell>
             </TableRow>
           ))}

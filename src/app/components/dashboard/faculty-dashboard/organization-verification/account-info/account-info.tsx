@@ -22,7 +22,7 @@ const AccountInformationForm: React.FC<ProjectGridProps> = ({ organizationId }) 
   const { data: organization, isLoading, isError,refetch } = useGetOrganizationQuery(organizationId,
     { refetchOnMountOrArgChange: true });
   const [verifyOrganization] = useVerifyOrganizationMutation();
-  const [status, setStatus] = useState<string>('Not Started');
+  const [status, setStatus] = useState<string>('Change');
   const [adminIdentityId, setAdminIdentityId] = useState<number | null>(null);
   const handleBack = () => {
     router.push(`/faculty-dashboard/organization-verification`);
@@ -129,7 +129,7 @@ const AccountInformationForm: React.FC<ProjectGridProps> = ({ organizationId }) 
                     variant="secondary"
                     onSelect={handleStatusChange}
                   >
-                    <Dropdown.Item eventKey="Not Started">Not Started</Dropdown.Item>
+                    <Dropdown.Item eventKey="Change">Change</Dropdown.Item>
                     <Dropdown.Item eventKey="Pending">Pending</Dropdown.Item>
                     <Dropdown.Item eventKey="Approved">Approved</Dropdown.Item>
                   </DropdownButton>

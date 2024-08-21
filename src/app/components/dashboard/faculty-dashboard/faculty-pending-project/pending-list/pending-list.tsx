@@ -10,12 +10,17 @@ import Loading from '@/app/components/loading/loading';
 
 const PendingList = () => {  
   const router = useRouter();
-  const { data, error, isLoading } = useGetAllProjectsQuery({});
+  const { data, error, isLoading,refetch } = useGetAllProjectsQuery({},
+    { refetchOnMountOrArgChange: true });
 
   const handleViewClick = (id: number) => {
     router.push(`/faculty-dashboard/pending-projects/${id}`);
   };
 
+  React.useEffect(() => {
+    refetch()
+  }, [refetch])
+  
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'Project ID', flex: 1 },
     { field: 'pjname', headerName: 'Project Name', flex: 1 },

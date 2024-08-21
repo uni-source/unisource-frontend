@@ -34,6 +34,7 @@ const Page: React.FC = () => {
           }, }}>
         <h4>Overview</h4>
         <StatsRow student={student?.data}studentId={userId}/>
+        <h4>Project Contribution Summary</h4>
         <BasicTable studentId={userId}/>
       </Box>
     </Box>

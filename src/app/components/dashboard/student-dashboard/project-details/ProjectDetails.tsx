@@ -37,24 +37,25 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ projectId, studentId })
       toast.success('Please choose a file before submitting.');
       return;
     }
-
-    const formData = new FormData();
-    formData.append('status', 'pending');
-    formData.append('submissionDate', new Date().toISOString().split('T')[0]);
-    formData.append('studentId', studentId.toString());
-    formData.append('projectId', projectId.toString());
-    formData.append('file', file);
-    formData.append('organizationId',project?.data?.organizationID),
-    formData.append('mentorId',project?.data?.mentorID)
-
-    try {
-      await createProposal(formData).unwrap();
-      toast.success('Proposal created successfully!');
-      router.push('/student-dashboard/student-proposals');
-    } catch (error) {
-      console.error('Failed to create proposal:', error);
-      toast.error('Failed to create proposal. Please try again.');
+    if(project.data){
+      const formData = new FormData();
+      formData.append('status', 'pending');
+      formData.append('submissionDate', new Date().toISOString().split('T')[0]);
+      formData.append('studentId', studentId.toString());
+      formData.append('projectId', projectId.toString());
+      formData.append('file', file);
+      formData.append('organizationId',project?.data?.organizationID),
+      formData.append('mentorId',project?.data?.mentorID)
+      try {
+        await createProposal(formData).unwrap();
+        toast.success('Proposal created successfully!');
+        router.push('/student-dashboard/student-proposals');
+      } catch (error) {
+        console.error('Failed to create proposal:', error);
+        toast.error('Failed to create proposal. Please try again.');
+      }
     }
+        
   };
 
   const handleGoBack = () => {

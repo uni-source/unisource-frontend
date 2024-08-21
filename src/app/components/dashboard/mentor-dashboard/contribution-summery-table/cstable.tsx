@@ -20,7 +20,12 @@ const BasicTable: React.FC<BasicTableProps> = ({ mentorId }) => {
   if (isLoading) {
     return <Loading />;
   }
-  const pendingProposals = proposalsData?.data.filter((proposal: any) => proposal.status === 'pending');
+
+  if (isError) {
+    return <div>Error loading proposals.</div>;
+  }
+
+  const pendingProposals = proposalsData?.data?.filter((proposal: any) => proposal.status === 'pending') || [];
 
   return (
     <Paper>
@@ -38,16 +43,22 @@ const BasicTable: React.FC<BasicTableProps> = ({ mentorId }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pendingProposals.map((proposal: any) => (
-              <TableRow key={proposal?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  {proposal?.projectName}
-                </TableCell>
-                <TableCell align="left">{proposal?.studentName}</TableCell>
-                <TableCell align="left">{proposal?.submissionDate}</TableCell>
-                <TableCell align="left">{proposal?.status}</TableCell>
+            {pendingProposals.length > 0 ? (
+              pendingProposals.map((proposal: any) => (
+                <TableRow key={proposal?.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    {proposal?.projectName}
+                  </TableCell>
+                  <TableCell align="left">{proposal?.studentName}</TableCell>
+                  <TableCell align="left">{proposal?.submissionDate}</TableCell>
+                  <TableCell align="left">{proposal?.status}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} align="center">No pending proposals</TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>

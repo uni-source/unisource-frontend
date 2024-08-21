@@ -14,7 +14,8 @@ const StudentTable = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   
-  const { data, isLoading, isError } = useGetAllStudentsQuery({});
+  const { data, isLoading, isError,refetch } = useGetAllStudentsQuery({},
+    { refetchOnMountOrArgChange: true });
 
   const handleViewClick = (id: number) => {
     router.push(`/faculty-dashboard/student-verification/${id}`);
@@ -24,6 +25,10 @@ const StudentTable = () => {
     setSearchQuery(e.target.value);
   };
 
+  React.useEffect(() => {
+    refetch()
+  }, [refetch])
+  
   const rows = React.useMemo(() => {
     if (!data || !data.data) return []; 
 

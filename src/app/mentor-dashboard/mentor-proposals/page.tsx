@@ -27,7 +27,7 @@ const Page: React.FC = ({ params }: any) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <MiniDrawer childTitle="Pending Proposals" mentor={mentor} />
+      <MiniDrawer childTitle="All Proposals" mentor={mentor} />
       <Box
         component="main"
         sx={{
