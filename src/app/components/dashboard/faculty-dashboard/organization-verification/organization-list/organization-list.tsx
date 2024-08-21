@@ -11,7 +11,8 @@ import SearchBox from '../search-box/search-box';
 const OrganizationTable: React.FC = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const { data, isLoading, isError } = useGetAllOrganizationsQuery({});
+  const { data, isLoading, isError,refetch } = useGetAllOrganizationsQuery({},
+    { refetchOnMountOrArgChange: true });
   
   const handleViewClick = (id: number) => {
     router.push(`/faculty-dashboard/organization-verification/${id}`);
@@ -20,7 +21,9 @@ const OrganizationTable: React.FC = () => {
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
-
+  React.useEffect(() => {
+    refetch()
+  }, [refetch])
   const rows = React.useMemo(() => {
     if (!data || !data.data) return []; 
 

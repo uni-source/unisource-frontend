@@ -19,6 +19,7 @@ interface Project {
   resource: string;
   dueDate: string;
   description: string;
+  status: string; // Assuming status is a string field
 }
 
 const AllProjects = () => {
@@ -29,8 +30,11 @@ const AllProjects = () => {
 
   const filteredProjects = React.useMemo(() => {
     if (!projects?.data) return [];
-
+  
     return (projects.data as Project[])
+      .filter((project: Project) =>
+        ['APPROVED', 'ONGOING'].includes(project.status) 
+      )
       .filter((project: Project) =>
         project.name.toLowerCase().includes(search.toLowerCase())
       )
@@ -38,11 +42,14 @@ const AllProjects = () => {
         selectedCategory === 'All' || project.category === selectedCategory
       );
   }, [projects?.data, search, selectedCategory]);
-
+  
   const categories = React.useMemo(() => {
     if (!projects?.data) return ['All'];
-
-    const uniqueCategories = new Set((projects.data as Project[]).map(project => project.category));
+  
+    const filteredProjects = (projects.data as Project[]).filter(project => 
+      ['APPROVED', 'ONGOING'].includes(project.status)
+    );
+    const uniqueCategories = new Set(filteredProjects.map(project => project.category));
     return ['All', ...Array.from(uniqueCategories)];
   }, [projects?.data]);
 
@@ -81,7 +88,6 @@ const AllProjects = () => {
 
   return (
     <Box
-    
       sx={{
         height: 500,
         width: '100%',
@@ -93,7 +99,7 @@ const AllProjects = () => {
       }}
     >
       <Box
-      marginTop={5}
+        marginTop={5}
         sx={{
           display: 'flex',
           gap: 2,

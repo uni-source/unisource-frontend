@@ -17,7 +17,7 @@ const Page: React.FC = () => {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
     }
-  });
+  },[userId]);
 
   const {
     data: organization,

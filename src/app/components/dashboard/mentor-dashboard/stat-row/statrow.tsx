@@ -30,7 +30,7 @@ const StatsRow: React.FC<{ mentorId: number }> = ({ mentorId }) => {
 
   const approvedProposalCount = React.useMemo(() => {
     if (isLoadingProposals || isErrorProposals || !proposalData) return '0';
-    const approvedProposals = proposalData.data.filter((proposal: any) => proposal.status === "Approve");
+    const approvedProposals = proposalData.data.filter((proposal: any) => proposal.status === "Approved");
     return approvedProposals.length;
   }, [proposalData, isLoadingProposals, isErrorProposals]);
 

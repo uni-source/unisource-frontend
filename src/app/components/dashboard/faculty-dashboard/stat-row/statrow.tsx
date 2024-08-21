@@ -15,7 +15,7 @@ import { useGetAllOrganizationsQuery } from '../../../../../../redux/features/or
 const StatsRow: React.FC = () => {
   // State for storing counts
   const [verifiedStudentCount, setVerifiedStudentCount] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
+  const [approvedProjectCount, setApprovedProjectCount] = useState(0);
   const [mentorCount, setMentorCount] = useState(0);
   const [verifiedOrganizationCount, setVerifiedOrganizationCount] = useState(0);
 
@@ -28,11 +28,12 @@ const StatsRow: React.FC = () => {
     }
   }, [studentData]);
 
-  // Fetch all projects and calculate the total number of projects
+  // Fetch all projects and calculate the count of approved projects
   const { data: projectData } = useGetAllProjectsQuery({});
   useEffect(() => {
     if (projectData && projectData.data) {
-      setProjectCount(projectData.data.length);
+      const count = projectData.data.filter((project: any) => project.status === 'APPROVED').length;
+      setApprovedProjectCount(count);
     }
   }, [projectData]);
 
@@ -67,8 +68,8 @@ const StatsRow: React.FC = () => {
         <Col xs={12} md={6} lg={3} className="mb-4">
           <StatCard
             icon={<TaskIcon style={{ fontSize: '3rem' }} />}
-            stat={projectCount.toString()}
-            label="Projects"
+            stat={approvedProjectCount.toString()}
+            label="Approved Projects"
             color="blue"
           />
         </Col>

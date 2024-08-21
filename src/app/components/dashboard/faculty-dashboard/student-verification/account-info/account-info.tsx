@@ -22,7 +22,7 @@ const AccountInformationForm: React.FC<ProjectGridProps> = ({ studentId }) => {
   const { data: student, isLoading, isError,refetch } = useGetStudentQuery(studentId,
     { refetchOnMountOrArgChange: true });
   const [verifyStudent] = useVerifyStudentMutation();
-  const [status, setStatus] = useState<string>('Not Started');
+  const [status, setStatus] = useState<string>('Change');
   const [adminIdentityId, setAdminIdentityId] = useState<number | null>(null);
   const handleBack = () => {
     router.push(`/faculty-dashboard/student-verification`);
@@ -144,7 +144,7 @@ const AccountInformationForm: React.FC<ProjectGridProps> = ({ studentId }) => {
                     variant="secondary"
                     onSelect={handleStatusChange}
                   >
-                    <Dropdown.Item eventKey="Not Started">Not Started</Dropdown.Item>
+                    <Dropdown.Item eventKey="Change">Change</Dropdown.Item>
                     <Dropdown.Item eventKey="Pending">Pending</Dropdown.Item>
                     <Dropdown.Item eventKey="Approved">Approved</Dropdown.Item>
                   </DropdownButton>

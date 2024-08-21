@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
@@ -11,6 +11,10 @@ interface ProposalTableProps {
 }
 
 const ProposalTable: React.FC<ProposalTableProps> = ({ organizationId, searchTerm }) => {
+  useEffect(() => {
+    console.log(organizationId)
+  }, [organizationId])
+  
   const { data: proposalsData, isLoading, isError } = useGetProposalsByOrganizationIdQuery(organizationId);
 
   const columns: GridColDef[] = [
@@ -35,7 +39,7 @@ const ProposalTable: React.FC<ProposalTableProps> = ({ organizationId, searchTer
         id: proposal.id,
         stdname: proposal.studentName,
         pjname: proposal.projectName,
-        sub_date: proposal.submittedDate,
+        sub_date: proposal.submissionDate,
         status: proposal.status,
       }));
   }, [proposalsData, isLoading, isError, searchTerm]);

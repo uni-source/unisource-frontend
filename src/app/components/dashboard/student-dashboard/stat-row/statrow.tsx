@@ -9,6 +9,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { useGetAllProjectsQuery } from '../../../../../../redux/features/project/projectApi'; 
 import { useGetStudentHasProjectByStudentIdQuery } from '../../../../../../redux/features/project/studentHasProjectApi'; 
+
 interface Student {
   contact?: string;
   description?: string;
@@ -20,6 +21,7 @@ interface Student {
   score?: number;
   verified?: boolean;
 }
+
 interface StatsRowProps {
   student?: Student;
   studentId: number;
@@ -29,10 +31,23 @@ const StatsRow: React.FC<StatsRowProps> = ({ student, studentId }) => {
   const { data: projectsData } = useGetAllProjectsQuery({});
   const { data: studentProjectsData } = useGetStudentHasProjectByStudentIdQuery(studentId);
 
-  const availableProjectsCount = projectsData?.data?.length || 0;
+  // Count projects by status
+  const projectCounts = {
+    approved: 0,
+    ongoing: 0,
+  };
+
+  if (projectsData?.data) {
+    projectsData.data.forEach((project: { status: string }) => {
+      if (project.status === 'APPROVED') projectCounts.approved += 1;
+      if (project.status === 'ONGOING') projectCounts.ongoing += 1;
+    });
+  }
+
+  const availableProjectsCount = projectCounts.approved + projectCounts.ongoing;
   const projectContributionCount = studentProjectsData?.data?.length || 0;
 
-  const completenessFields: Array<keyof Student> = ['contact', 'description', 'public_id'];
+  const completenessFields: Array<keyof Student> = ['name', 'contact', 'description', 'public_id'];
   const filledFields = student
     ? completenessFields.filter(field => !!student[field])
     : [];
@@ -51,7 +66,6 @@ const StatsRow: React.FC<StatsRowProps> = ({ student, studentId }) => {
 
   const currentScore = student?.score ?? 0;
   const currentBadge = badges.find(badge => currentScore >= badge.minScore) || badges[0];
-
 
   return (
     <Container className="my-4">
