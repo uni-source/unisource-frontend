@@ -1,5 +1,5 @@
 'use client';
-
+import './AllProjects.css';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/navigation';
 import { useGetAllProjectsQuery } from '../../../../../../redux/features/project/projectApi';
-import './AllProjects.css';
 import Loading from '@/app/components/loading/loading';
 
 interface Project {
@@ -77,7 +76,7 @@ const AllProjects = () => {
       headerName: 'Description',
       flex: 1,
       renderCell: (params) => (
-        <Button variant="contained" color="primary" onClick={() => handleViewClick(params.row.id)}>
+        <Button className="ac-info-button"  onClick={() => handleViewClick(params.row.id)}>
           View
         </Button>
       )
