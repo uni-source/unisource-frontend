@@ -126,6 +126,8 @@
     }
 
     .uni-logo {
+        height: 230px;
+        width: 230px;
         margin: 0 auto; 
         text-align: center;
     }
@@ -148,6 +150,11 @@
     .logo-name{
         text-align: center;
         align-items: center;
+        font-size: 45px;
+    }
+
+    .logo-description{
+        font-size: 20px;
     }
 }
 
