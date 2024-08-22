@@ -1,4 +1,4 @@
-.custom-footer, .text-muted {
+.custom-footer{
     background-color: var(--dark-grey) !important;
     color: white !important;
 }
