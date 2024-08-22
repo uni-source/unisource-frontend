@@ -30,7 +30,7 @@ const Footer = () => {
         <hr className="my-4" />
         <div className="row spacing">
           <div className="col-12 text-center">
-            <span className="text-muted copywrite" style={{ color: 'white !important' }}>
+            <span className="copywrite">
               © 2024 Faculty of Technology. All Rights Reserved.
             </span>
           </div>
