@@ -76,7 +76,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
             <MDBCard
               className="mb-4"
               style={{
-                backgroundColor: "var(--light-grey)",
+                backgroundColor: "var(--light-grey) !important",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
               }}
             >
@@ -144,7 +144,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
             <MDBCard
               className="mb-4"
               style={{
-                backgroundColor: "var(--light-grey)",
+                backgroundColor: "var(--light-grey) !important",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
               }}
             >
