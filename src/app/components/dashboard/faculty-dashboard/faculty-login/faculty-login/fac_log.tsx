@@ -65,7 +65,7 @@ const FacLogIn = () => {
           alignItems: "center",
         }}
       >
-        <CustomIcon />
+        <img className='login-img' src="https://res.cloudinary.com/driglvefm/image/upload/v1724343794/UniSourceLogo_vty7wl.png" alt="UniSource Logo" width="65" height="60" />
         <Typography component="h1" variant="h5">
           Login
         </Typography>
