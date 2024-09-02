@@ -1,0 +1,131 @@
+.ForWhom-outer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 0;
+}
+
+.ForWhom-inner {
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+
+.ForWhom-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card {
+  background: var(--light-purple);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 200px;
+  height: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.card img {
+  max-width: 100%;
+  height: 7rem;
+  width: 7rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Poppins;
+}
+
+
+@media (min-width: 1200px) {
+  .ForWhom-container{
+    width: 100%;
+    
+  }
+}
+
+
+/*Smart phone*/
+
+@media (max-width: 767px) {
+  .ForWhom-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    gap: 15px;
+  }
+
+  .card {
+    max-width: 170px;
+    flex: 1 1 45%;
+    margin-bottom: 10px;
+    
+  }
+
+  .card img {
+    max-width: 100%;
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 10px;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 951px) {
+  .ForWhom-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .card {
+    max-width: 10rem; 
+    flex: 1 1 40%;
+    width: 7rem;
+  }
+
+  .card img {
+    max-width: 100%;
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 10px;
+  }
+}
+
+
+@media (min-width: 951px) and (max-width: 1199px) {
+  .ForWhom-container {
+    gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .card {
+    max-width: 158px;
+    flex: 1 1 40%;
+    height: 11rem;
+  }
+
+  .card img {
+    max-width: 100%;
+    height: 5rem;
+    width: 5rem;
+    margin-bottom: 10px;
+  }
+}

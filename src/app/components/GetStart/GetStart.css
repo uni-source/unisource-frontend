@@ -1,0 +1,128 @@
+
+.GetStart-outer {
+    background-color: white;
+    padding: 20px;
+}
+
+.GetStarted-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.GetStarted-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px;
+}
+
+.GetStarted-left-container,
+.GetStarted-right-container {
+    background-color: var(--light-purple);
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.get-start-heading {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Roboto;
+}
+
+.heading-container {
+    margin-bottom: 25px;
+}
+
+ul li {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/* Large screens */
+@media (min-width: 1200px) {
+  .GetStarted-container {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .GetStarted-left-container,
+  .GetStarted-right-container {
+    width: 48%;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+  .GetStarted-container {
+    flex-direction: column;
+    padding: 0.4rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .GetStarted-left-container,
+  .GetStarted-right-container {
+    width: 100%;
+    padding: 20px;
+    max-width: 500px;
+  }
+
+  .get-start-heading {
+    font-size: 20px;
+  }
+
+  ul li {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 950px) {
+  .GetStarted-container {
+    flex-direction: column;
+    padding: 6rem;
+    padding-top: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .GetStarted-left-container,
+  .GetStarted-right-container {
+    width: 95%;
+  }
+
+  .get-start-heading {
+    font-size: 20px;
+  }
+
+  ul li {
+    font-size: 16px;
+  }
+}
+
+/* Laptops */
+@media (min-width: 950px) and (max-width: 1199px) {
+  .GetStarted-container {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .GetStarted-left-container,
+  .GetStarted-right-container {
+    width: 48%;
+  }
+
+  .get-start-heading {
+    font-size: 20px;
+  }
+
+  ul li {
+    font-size: 16px;
+  }
+}

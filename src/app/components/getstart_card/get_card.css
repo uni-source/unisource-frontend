@@ -1,0 +1,68 @@
+.image-container {
+    width: 200px !important;
+    height: 200px !important;
+    margin: 0 auto !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: white !important;
+  }
+  
+  .image-square {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px 20px 20px 20px !important;
+  }
+  
+  .image-square img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  .card{
+    border: 0px !important;
+    background-color: var(--light-purple) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 20px !important;
+  }
+
+  .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .card-title {
+    margin-top: 20px !important;
+    font-weight: bold !important;
+  }
+  
+  .card .btn {
+    margin: 5px !important;
+  }
+  
+  .cust-btn {
+    font-size: 17px !important;
+    font-weight: bolder !important;
+    color: white !important;
+    width: 100px !important; 
+    height: 40px !important; 
+    border-radius: 20px !important;
+    border: 1px solid #000 !important;
+    background: var(--button-purple) !important;
+    margin-right: 30px !important;
+  }
+  
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, 
+  .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+    background-color: var(--button-purple) !important;
+    border-color: #000 !important;
+    color: white !important;
+  }
+  

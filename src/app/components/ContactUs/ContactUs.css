@@ -1,0 +1,169 @@
+.ContactUs-outer {
+    padding: 2rem 0;
+    position: relative;
+    bottom: -1.5rem; 
+    margin-top: 2rem;
+  }
+  
+  #ContactUs-outer-id{
+    background-color: #F5F5F5 ;
+  }
+  .ContactUs-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 6rem;
+  }
+  
+  .ContactUs-container {
+    width: 75%; 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+   
+  }
+  
+  .ContactUs-left-container {
+    flex: 1; 
+  }
+  
+  .ContactUs-right-container {
+    flex: 1; 
+    background-color: var(--light-purple);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+  }
+  
+  .ContactUs-img {
+    width: 100%;
+    height:264px;
+  }
+  
+  .ContactUs-paragraph {
+    font-size: 16px; 
+    margin-bottom: 1rem; 
+  }
+  
+  .ContactUs-paragraph{
+    line-height: 1.3;
+  }
+  
+  /* Mobile phones */
+  @media (min-width: 501px) and (max-width: 767px) {
+    .ContactUs-container {
+      flex-direction: column;
+      width: 70%;
+      max-width: 690px;
+      height: auto;
+    }
+    .ContactUs-right-container{
+      padding-left: 2rem;
+      padding-top: 2rem;
+    }
+
+    .ContactUs-img {
+      height: auto; 
+    }
+
+    .ContactUs-paragraph{
+      line-height: 1;
+      font-size: 14px;
+    }
+    .ContactUs-inner {
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .ContactUs-container {
+      flex-direction: column;
+      width: 90%;
+      height: auto; 
+    }
+    
+    .ContactUs-left-container{
+      padding:0;
+    }
+    .ContactUs-right-container {
+      width: 100%;
+      background-color: var(--light-purple);
+      padding-top: 2rem;
+      padding-left: 2rem;
+      height: auto;
+    }
+    
+    .ContactUs-img {
+      height: auto;
+    }
+    
+    .ContactUs-paragraph {
+      font-size: 14px;
+      line-height: 1; 
+    }
+    .ContactUs-details-container{
+      height: auto;
+    }
+    .ContactUs-inner {
+      padding-bottom: 4rem;
+    }
+
+    .ContactUs-outer {
+      margin-top: 2rem;
+    }
+  }
+  
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .ContactUs-container {
+      flex-direction: row;
+      display: flex;
+      width: 90%;
+    }
+
+    .ContactUs-img {
+      height:240px;
+      width:100%;
+      min-width: 350px;
+    }
+
+    .ContactUs-left-container{
+      width: 50%;
+    }
+
+    .ContactUs-right-container {
+      background-color: var(--light-purple);
+      padding-left: 1rem;
+      padding-top: 1.5rem;
+      
+    }
+    .ContactUs-details-container{
+      min-width: 200px;
+    }
+
+    .ContactUs-paragraph {
+      font-size: 14px;
+      line-height: 1.3; 
+    }
+    .ContactUs-outer {
+      margin-top: 1rem;
+    }
+  }
+  
+  /* Laptops and Desktops */
+  @media (min-width: 1025px) {
+    .ContactUs-left-container{
+      width: 50%;
+    }
+    .ContactUs-right-container {
+       padding-left: 1.5rem;
+       padding-top: 1.5rem;
+       height: 265px;
+    }
+    
+    .ContactUs-img {
+      height: 265px;
+    }
+  }
+  

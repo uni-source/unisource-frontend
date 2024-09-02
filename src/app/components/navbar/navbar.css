@@ -4,63 +4,71 @@
 
 .bg-body-tertiary{
     background-color: rgb(255, 255, 255) !important;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
 .logo-images{
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
 }
 
 .logo-text{
-    font-size: 25px;
-    color:#3900F8;
-    font-weight: bolder;
-    padding-left: 20px;
+    font-size: 25px !important;
+    color:#3900F8 !important;
+    font-weight: bolder !important;
+    padding-left: 20px !important;
 }
 
 .logo{
-    height: 60px;
-    width: 65px;
-    margin-left: 20px;
+    height: 60px !important;
+    width: 65px !important;
+    margin-left: 20px !important;
 }
 
 .navbar-btn{
-    font-size: 18px;
-    font-weight: bolder;
-    color: white;
-    width: 130px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    border: 1px solid #000;
-    background: #9E3DFF;
-    margin-right: 30px;
+    font-size: 19px !important;
+    font-weight: bolder !important;
+    color: white !important;
+    width: 130px !important;
+    height: 40px !important;
+    flex-shrink: 0 !important;
+    border-radius: 20px !important;
+    border: 1px solid #000 !important;
+    background: var(--button-purple) !important;
+    margin-right: 30px !important;
 }
 
 .navbar-nav {
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
   
 .nav-link {
-    margin: 0 15px;
+    margin: 0 15px !important;
 }
 
 .nav-link-content{
-    font-size: 18px;
+    font-size: 20px !important;
 }
 
 @media(max-width:992px){
     .navbar-btn{
-        font-size: 15px;
-        height: 40px;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%; /* Ensure button takes full width of Navbar */
+        font-size: 15px !important;
+        height: 40px !important;
+        align-items: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        width:100% !important; 
+        margin-bottom: 20px !important;
+    }
 
+    .nav-link-content{
+        text-align: center !important;
+    }
+    
+    .form-btn{
+        justify-content: center !important;
     }
 } 
 
@@ -68,18 +76,18 @@
 @media(max-width:700px){
 
     .logo-text{
-        font-size: 18px;
-        padding-left: 10px;
+        font-size: 18px !important;
+        padding-left: 10px !important;
     }
 
     .logo{
-        height:60px;
-        width: 65px;
-        margin-left: 10px;
+        height:60px !important;
+        width: 65px !important;
+        margin-left: 10px !important;
     }
 
     .nav-link-content{
-        font-size: 17px;
+        font-size: 17px !important;
     }
 
     
@@ -90,20 +98,18 @@
 @media(max-width:480px){
 
     .logo-text{
-        font-size: 16px;
-        padding-left: 5px;
+        font-size: 16px !important;
+        padding-left: 5px !important;
     }
 
     .logo{
-        height:50px;
-        width: 55px;
-        margin-left: 5px;
+        height:50px !important;
+        width: 55px !important;
+        margin-left: 5px !important;
     }
 
     .nav-link-content{
-        font-size: 15px;
+        font-size: 15px !important;
     }
 
-    
-    
 }
