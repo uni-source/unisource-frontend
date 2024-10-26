@@ -1,9 +1,11 @@
-  *{
-    font-family: 'poppins';
-  }
+
   
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
   
+
+  *{
+    font-family: 'Roboto';
+  }
 
   body, p {
     margin: 0;
@@ -58,12 +60,13 @@
   
   .stat-item {
     background-color: var(--light-purple);
-    padding: 1.9rem;
+    padding: 2.5vw;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     text-align: center;
-    height: 152px; 
+    height: 172px; 
     min-width: 150px; 
+    align-content: center;
   }
   
   .stat-value {

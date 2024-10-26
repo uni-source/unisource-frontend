@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 *{
-    font-family: 'poppins' !important;
+    font-family: 'Roboto' !important;
 } 
 
 .bg-body-tertiary{
@@ -89,10 +91,6 @@
     .nav-link-content{
         font-size: 17px !important;
     }
-
-    
-
-
 }
 
 @media(max-width:480px){
@@ -111,5 +109,4 @@
     .nav-link-content{
         font-size: 15px !important;
     }
-
 }

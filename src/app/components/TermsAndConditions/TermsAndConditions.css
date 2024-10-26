@@ -1,6 +1,9 @@
-* {
-    font-family: 'poppins' !important;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+    font-family: 'Roboto' !important;
+} 
+
 
 .Terms-Header-inner {
     background-color: var(--light-grey);
@@ -33,16 +36,17 @@
 h1,
 h5 {
     color: #333;
-    margin-bottom: 10px;
+    
 }
 
 h5 {
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .terms-inner p {
     color: black;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     font-size: 18px;
 }
 

@@ -8,3 +8,17 @@
 .copywrite{
     color: white !important;
 }
+
+@media(max-width:480px){
+    .mb-1{
+        color: white !important;
+        font-size: 14px;
+    }
+    .copywrite{
+        color: white !important;
+        font-size: 14px;
+    }
+    .h4 mb-0{
+        font-size: 12px !important;
+    }
+}

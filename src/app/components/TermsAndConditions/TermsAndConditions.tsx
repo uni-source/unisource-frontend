@@ -15,17 +15,17 @@ const TermsAndConditions = () => {
                     <h5>2. Eligibility</h5>
                     <p>All users must meet the eligibility criteria as specified in the respective sections for undergraduates, organizations, and freelancers.</p>
                     <h5>3. Account Registration</h5>
-                    <p>Users must create an account to participate in the platform. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.</p>
+                    <p>Users must create an account to participate in the platform. You should agree to provide accurate, current, and complete information during the registration process and keep update such informations to ensure accuracy of the platform </p>
                     <h5>4. User Conduct</h5>
-                    <p>Users agree to use the platform in a manner consistent with all applicable laws and regulations. Users are prohibited from posting or transmitting any content that is unlawful, threatening, abusive, defamatory, or otherwise offensive.</p>
+                    <p>Users agree to use the platform in a manner consistent with all applicable laws and regulations. Users are prohibited from submitting any content that is unlawful, threatening, abusive, defamatory, or otherwise offensive.</p>
                     <h5>5. Intellectual Property</h5>
-                    <p>All content submitted to the platform, including code, documentation, and other materials, must comply with the applicable open source licenses. Users retain ownership of their contributions, but grant the platform and its users a license to use, modify, and distribute such content as part of the collaborative projects.</p>
+                    <p>All content submitted to the platform must comply with the applicable open source licenses. Users retain ownership of their contributions, but grant the platform and its users a license to use, modify, and distribute such content as part of the collaborative projects.</p>
                     <h5>6. Project Contributions</h5>
-                    <p>Undergraduates, organizations, and freelancers are expected to adhere to the project guidelines and standards set by the project maintainers. Contributions should be meaningful, respectful, and in alignment with the projects goals.</p>
+                    <p>Undergraduates, organizations, and freelancers are expected to adhere to the project guidelines and standards set by UniSource platform. Contributions should be meaningful, respectful, and in alignment with the projects goals.</p>
                     <h5>7. Privacy Policy</h5>
-                    <p>Your use of the platform is also governed by our Privacy Policy, which is incorporated into these Terms by this reference. Please review our Privacy Policy to understand our practices.</p>
+                    <p>Your use of the platform is also governed by our Privacy Policy, which is incorporated into these Terms by this reference. </p>
                     <h5>8. Limitation of Liability</h5>
-                    <p>The platform is provided &quot;as is&quot; and &quot;as available&quot; without warranties of any kind, either express or implied. UniSource does not guarantee the accuracy, completeness, or usefulness of any information on the platform and will not be liable for any loss or damage caused by your reliance on such information.</p>
+                    <p>UniSource does not guarantee the accuracy, completeness, or usefulness of any information on the platform and will not be liable for any loss or damage caused by your reliance on such information. The Organization should sign a service agreement with the particular student before start contribution on a project.</p>
                     <h5>9. Termination</h5>
                     <p>UniSource reserves the right to terminate or suspend access to the platform for any reason, including, but not limited to, a breach of these Terms. Users may also terminate their accounts at any time.</p>
                     <h5>10. Modifications to Terms</h5>
