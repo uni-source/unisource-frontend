@@ -83,7 +83,8 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ id ,refetch}) => {
                             type="text"
                             className="form-control"
                             id="name"
-                            {...formik.getFieldProps('name')}
+                            {...formik.getFieldProps('name') }
+                            
                         />
                         {formik.touched.name && formik.errors.name ? (
                             <div className="error">{formik.errors.name}</div>
@@ -119,6 +120,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({ id ,refetch}) => {
                     <textarea
                         className="form-control"
                         id="description"
+                        
                         rows={4}
                         {...formik.getFieldProps('description')}
                     ></textarea>

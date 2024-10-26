@@ -1,12 +1,12 @@
 .project-form-container {
     background-color: var(--light-grey)!important;
-    padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 1000px;
-    margin: auto;
-    margin-top: 60px;
+    padding: 20px !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    max-width: 1000px !important;
+    margin: auto !important;
+    margin-top: 60px !important;
   }
   
   .btn-back {
@@ -26,8 +26,10 @@
 
   @media (min-width: 768px) {
     .form-row {
-      display: flex;
-      justify-content: space-between;
+      display: flex !important;
+      justify-content: space-between !important;
     }
   }
 
+
+  

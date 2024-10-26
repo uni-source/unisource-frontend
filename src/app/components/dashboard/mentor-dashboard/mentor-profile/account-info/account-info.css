@@ -13,7 +13,7 @@
     left: 1rem;
     transform: translateY(-50%);
     transition: all 0.2s;
-    background: white;
+    background-color: var(--light-grey);
     padding: 0 0.25rem;
     pointer-events: none;
   }

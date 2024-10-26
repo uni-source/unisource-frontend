@@ -12,6 +12,7 @@ import NavScrollExample from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import Loading from "./components/loading/loading";
 
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
