@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
-import Avatar from "@mui/material/Avatar";
 import {
   MDBCol,
   MDBContainer,
@@ -10,13 +9,16 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-} from "mdb-react-ui-kit";
+} from "mdb-react-ui-kit"; 
 import { useUpdateAvatarMutation } from "../../../../../../../redux/features/student/studentApi";
 import toast from "react-hot-toast";
+import Loading from "@/app/components/loading/loading";
+
 interface ProfileProfileStatProps {
   student: any;
   refetch: any;
 }
+
 const ProfileStat: React.FC<ProfileProfileStatProps> = ({
   student,
   refetch,
@@ -33,24 +35,21 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
 
   useEffect(() => {
     if (student?.data?.public_url) {
-      console.log(student);
       setImage(student?.data?.public_url);
     }
   }, [student, refetch]);
+
   useEffect(() => {
     if (updateAvatarIsSuccess) {
       toast.success("User profile picture update successful");
     }
     if (updateAvatarIsError) {
-      if ("data" in updateAvatarError) {
-        const errorData =
-          (updateAvatarError as any) || "Profile image update failed";
-        toast.error(errorData?.data?.message);
-      }
+      const errorData = (updateAvatarError as any)?.data?.message || "Profile image update failed";
+      toast.error(errorData);
     }
   }, [updateAvatarIsSuccess, updateAvatarError, updateAvatarIsError]);
 
-  const handleUpdate = async (e: any) => {
+  const handleUpdate = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -60,14 +59,20 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
         }
       };
       reader.readAsDataURL(file);
+
       const formData = new FormData();
       formData.append("file", file);
       formData.append("public_id", student?.data?.public_id);
       formData.append("identityId", student?.data?.identityId);
+
       await updateAvatar(formData).unwrap();
       refetch();
     }
   };
+
+  if (!student) {
+    return <Loading />;
+  }
 
   return (
     <section style={{ backgroundColor: "white" }}>
@@ -85,37 +90,20 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                 className="text-center"
                 style={{ position: "relative", padding: "10px" }}
               >
-                {image ? (
-                  <MDBCardImage
-                    src={image}
-                    alt="avatar"
-                    className="rounded-circle"
-                    fluid
-                    style={{
-                      width: "180px",
-                      height: "180px",
-                      marginBottom: "25px",
-                      marginTop: "20px",
-                      objectFit: "contain",
-                      zIndex: 10,
-                    }}
-                  />
-                ) : (
-                  <MDBCardImage
-                    src="/avatar.png"
-                    alt="avatar"
-                    className="rounded-circle"
-                    fluid
-                    style={{
-                      width: "180px",
-                      height: "180px",
-                      marginBottom: "25px",
-                      marginTop: "20px",
-                      objectFit: "contain",
-                      zIndex: 10,
-                    }}
-                  />
-                )}
+                <MDBCardImage
+                  src={image || "/avatar.png"}
+                  alt="avatar"
+                  className="rounded-circle"
+                  fluid
+                  style={{
+                    width: "180px",
+                    height: "180px",
+                    marginBottom: "25px",
+                    marginTop: "20px",
+                    objectFit: "contain",
+                    zIndex: 10,
+                  }}
+                />
                 <input
                   type="file"
                   id="banner"
@@ -133,9 +121,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                     zIndex: 20,
                   }}
                 >
-                  <AiOutlineCamera
-                    style={{ color: "black", fontSize: "25px" }}
-                  />
+                  <AiOutlineCamera style={{ color: "black", fontSize: "25px" }} />
                 </label>
                 <p style={{ marginBottom: "1rem" }}>Student</p>
               </MDBCardBody>
@@ -190,7 +176,7 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
                   <MDBCol sm="9">
                     <MDBCardText className="text-muted">
                       {student?.data?.verifiedStudent ? "Verified" : "Not Verified"}{" "}
-                      {student?.data?.verifiedStudent ? <VerifiedUserIcon /> : null}
+                      {student?.data?.verifiedStudent && <VerifiedUserIcon />}
                     </MDBCardText>
                   </MDBCol>
                 </MDBRow>

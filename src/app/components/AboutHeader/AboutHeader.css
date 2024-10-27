@@ -1,3 +1,6 @@
+*{
+    font-family: "Roboto", sans-serif !important;
+}
 .About-Header-outer {
     height: 300px;
     background-color: white;

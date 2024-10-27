@@ -8,7 +8,7 @@ function Header() {
       <div className="header-img">
         <img src="./assets/USJ.png" alt="University Logo" className="uni-logo" />
       </div>
-      <div className="line1"></div>
+      <div className="line1"></div> 
       <div className="header-text">
         <div className="text-wrapper">
           <div className="main-header-text">

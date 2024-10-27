@@ -1,4 +1,7 @@
- 
+ *{
+  font-family: "Roboto", sans-serif !important;
+ }
+
   .image_wrapper {
     margin: 0px 0px;
     width: 280px; 

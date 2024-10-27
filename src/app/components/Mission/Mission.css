@@ -1,4 +1,7 @@
 
+*{
+  font-family: "Roboto", sans-serif !important;
+}
 .Mission-outer {
     background-color: white;
     width: 100%;
@@ -38,7 +41,7 @@
     }
 
     #our-mission{
-        font-family: Roboto;
+      font-family: "Roboto", sans-serif !important;
         font-size: 28px;
         font-weight: bold;
       }
@@ -59,7 +62,7 @@
     }
 
     #our-mission{
-        font-family: Roboto;
+      font-family: "Roboto", sans-serif !important;
         font-size: 26px;
         font-weight: bold;
       }
@@ -82,7 +85,7 @@
     }
 
     #our-mission{
-        font-family: Roboto;
+      font-family: "Roboto", sans-serif !important;
         font-size: 24px;
         font-weight: bold;
       }
@@ -97,7 +100,7 @@
     }
 
     #our-mission{
-        font-family: Roboto;
+      font-family: "Roboto", sans-serif !important;
         font-size: 20px;
         font-weight: bold;
       }

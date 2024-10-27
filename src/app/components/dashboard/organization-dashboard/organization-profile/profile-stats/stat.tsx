@@ -12,6 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useUpdateOrganizationAvatarMutation } from "../../../../../../../redux/features/organization/organizationApi";
 import toast from "react-hot-toast";
+import Loading from "@/app/components/loading/loading";
 interface ProfileProfileStatProps {
   organization: any;
   refetch: any;
@@ -67,6 +68,9 @@ const ProfileStat: React.FC<ProfileProfileStatProps> = ({
       refetch();
     }
   };
+  if (!organization) {
+    return <Loading />;
+  }
 
   
   return (
