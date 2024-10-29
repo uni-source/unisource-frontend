@@ -13,7 +13,7 @@ const Footer = () => {
               style={{ height: '80px' }}  
               alt="UniSource Logo"
             />
-            <span style={{ fontSize: '20px'}} className="h4 mb-0">
+            <span style={{ fontSize: '18px'}} className="h4 mb-0">
               Introducing Undergraduates to<br /> open source software development
             </span>
           </div>

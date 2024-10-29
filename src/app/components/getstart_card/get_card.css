@@ -1,3 +1,6 @@
+*{
+  font-family: "Roboto", sans-serif !important;
+}
 .image-container {
     width: 200px !important;
     height: 200px !important;

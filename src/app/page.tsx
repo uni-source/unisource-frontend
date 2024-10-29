@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -18,28 +18,29 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
+  
   return (
     <>
-    {isLoading ? (
-      <Loading />
-    ) : (
-      <>
-        <NavScrollExample />
-        <Header />
-        <HeaderStats />
-        <Topic message="Our Partners" />
-        <Cslider />
-        <Topic message="Key Benefits" />
-        <Benefits />
-        <Topic message="Technologies You Reach Here" />
-        <Tslider />
-        <Footer />
-      </>
-    )}
-  </>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <NavScrollExample />
+          <Header />
+          <HeaderStats />
+          <Topic message="Our Partners" />
+          <Cslider />
+          <Topic message="Key Benefits" />
+          <Benefits />
+          <Topic message="Technologies You Reach Here" />
+          <Tslider />
+          <Footer />
+        </>
+      )}
+    </>
   );
 }

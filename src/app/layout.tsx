@@ -4,6 +4,7 @@ import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ClientProvider from "./ClientProvider";
 import { Toaster } from "react-hot-toast";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

@@ -1,9 +1,7 @@
   *{
-    font-family: 'poppins';
+    font-family: "Roboto", sans-serif !important;
   }
   
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
-
   body, p {
     margin: 0;
     padding: 0;
@@ -84,7 +82,7 @@
     height: 40px;
     flex-shrink: 0;
     border-radius: 20px;
-    border: 1px solid #000;
+    border: 1px solid var(--button-purple);
     background: var(--button-purple);
     margin-top: 20px;
     margin-right: 30px;
