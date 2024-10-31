@@ -8,17 +8,18 @@ import PasswordSettingsForm from '@/app/components/dashboard/student-dashboard/s
 import Loading from '@/app/components/loading/loading';
 import { useGetStudentQuery } from '../../../../redux/features/student/studentApi';
 import studentAuth from '@/app/custom-hooks/studentAuth';
-
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 const Page: React.FC = () => {
   const [userId, setUserId] = useState<number>(0);
-
+  
+  
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserId(parsedUser?.id);
     }
-  });
+  },[]);
 
   const { data: student, isLoading, refetch } = useGetStudentQuery(userId,
     { refetchOnMountOrArgChange: true });

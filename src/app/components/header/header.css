@@ -8,12 +8,15 @@
     justify-content: center;
     min-height: 90vh;
     width: 100%;
-    background-color:#e9dcf7be;
-    background-image: url('https://i.ytimg.com/vi/YjBnFNXIAOk/maxresdefault.jpg');
+    background-color: #e9dcf7be;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://i.ytimg.com/vi/YjBnFNXIAOk/maxresdefault.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 
 .uni-logo {
     height: 250px;
@@ -43,7 +46,7 @@
     font-weight: bold;
     font-size: 65px;
     margin: 0;
-    color: #000000;
+    color: #3900F8;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 
                  0 0 10px rgba(255, 255, 255, 0.6), 
                  0 0 15px rgba(255, 255, 255, 0.4);
@@ -54,10 +57,14 @@
     margin: 0;
     font-weight: bold;
     color: #000000;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 
-                 0 0 10px rgba(255, 255, 255, 0.6), 
-                 0 0 15px rgba(255, 255, 255, 0.4);
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.9),
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 30px rgba(255, 255, 255, 0.7),
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 0 50px rgba(255, 255, 255, 0.5);
 }
+
 .header-img {
     display: flex;
     height: auto;
